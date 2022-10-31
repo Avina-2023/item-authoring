@@ -20,3 +20,4 @@ FROM nginx:1.17.1-alpine
 COPY --from=build /usr/src/app/dist/qa-authoring /usr/share/nginx/html
 #COPY ./lxp.crt /etc/ssl/certs/
 #COPY ./lxp.key /etc/ssl/certs/
+EXPOSE 80
