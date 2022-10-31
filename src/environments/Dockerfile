@@ -21,7 +21,7 @@ ENV PM2_SECRET_KEY uk0fqq76fb9ahwn
 # Bundle app source
 COPY . /usr/src/app
 
-EXPOSE 3000
+EXPOSE 80
 
 # CMD ["node","Server.js"]
 CMD ["pm2-runtime", "app.js"]
