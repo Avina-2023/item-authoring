@@ -14,10 +14,6 @@ RUN npm install
 
 RUN npm install -g pptx2pdf
 
-RUN npm install pm2 -g
-ENV PM2_PUBLIC_KEY 2r7xone702tn4gr
-ENV PM2_SECRET_KEY uk0fqq76fb9ahwn
-
 # Bundle app source
 COPY . /usr/src/app
 
