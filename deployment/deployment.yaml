@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webrtc-admin
+  name: authoringuiservice
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: webrtc-admin
+      app: authoringuiservice
   template:
     metadata:
       labels:
-        app: webrtc-admin
+        app: authoringuiservice
     spec:
       containers:
-        - name: webrtc-admin
-          image: uapdevqa.azurecr.io/webrtc-admin:$tag
+        - name: authoringuiservice
+          image: uapdevqa.azurecr.io/authoringuiservice:$tag
           imagePullPolicy: Always
           env:
           - name: PORT
-            value: '9001'
+            value: '80'
           ports:
-          - containerPort: 9001
+          - containerPort: 80
       imagePullSecrets:
         - name: mysecret
