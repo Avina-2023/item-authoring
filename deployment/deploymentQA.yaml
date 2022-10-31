@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authoringuiservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authoringuiservice
+  template:
+    metadata:
+      labels:
+        app: authoringuiservice
+    spec:
+      containers:
+        - name: authoringuiservice
+          image: uapdevqa.azurecr.io/authoringuiservice:$tag
+          imagePullPolicy: Always
+          env:
+          - name: PORT
+            value: '80'
+          ports:
+          - containerPort: 80
+      imagePullSecrets:
+        - name: mysecret
