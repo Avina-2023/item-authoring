@@ -22,6 +22,3 @@ ENV PM2_SECRET_KEY uk0fqq76fb9ahwn
 COPY . /usr/src/app
 
 EXPOSE 80
-
-# CMD ["node","Server.js"]
-CMD ["pm2-runtime", "app.js"]
