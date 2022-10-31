@@ -1,15 +1,46 @@
-.mat-form-spacing {
-  margin-bottom: 20px;
-  left: -68px;
-}
 .sign-head h1 {
-  color: red;
+  position: relative;
+  bottom: 25px;
 }
-.signIn {
+
+.wrap-reg {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 150px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.form-wrapper {
+  width: 55%;
+  @media only screen and (min-width: 1440px) {
+    width: 100%;
+  }
+}
+
+.btn {
+  font-size: 16px;
+  border: none;
+  border-radius: 50px !important;
+  width: 50%;
+  padding: 12px 10px;
+  margin-top: 40px;
+  background: #00b0ed;
+  background: linear-gradient(90deg, #27bbee 0, #88ba2f);
+  color: #fff;
+
+  border-radius: 50px !important;
+}
+.center {
   text-align: center;
-  font-size: 24px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  line-height: 42px;
-  color: #000000;
+}
+.btn:hover {
+  //   background: $primary-hover-color !important;
+  transition: ease-out 0.3s;
+}
+.center {
+  text-align: center;
 }
