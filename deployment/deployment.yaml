@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webrtc-admin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webrtc-admin
+  template:
+    metadata:
+      labels:
+        app: webrtc-admin
+    spec:
+      containers:
+        - name: webrtc-admin
+          image: uapdevqa.azurecr.io/webrtc-admin:$tag
+          imagePullPolicy: Always
+          env:
+          - name: PORT
+            value: '9001'
+          ports:
+          - containerPort: 9001
+      imagePullSecrets:
+        - name: mysecret
