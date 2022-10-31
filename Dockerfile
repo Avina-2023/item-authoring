@@ -1,20 +1,23 @@
 ### STAGE 1: Build ###
-FROM node:14.19.0 AS build
-
-RUN npm config set registry http://registry.npmjs.org/
-#ENV REDIS=redis-master
-#ENV REDIS_PORT=6379
-# Create app directory
-RUN mkdir -p /usr/src/app
+FROM node:14.16.0 AS build
 WORKDIR /usr/src/app
+ARG environment
+ENV PORT=$environment
+RUN echo "Oh dang look at port ${PORT}"
 
-# Install app dependencies
-COPY package.json /usr/src/app/
+COPY package.json ./
+RUN npm config set registry http://registry.npmjs.org/ 
 RUN npm install
 
-RUN npm install -g pptx2pdf
 
-# Bundle app source
-COPY . /usr/src/app
+COPY . .
+#RUN ng serve
 
-EXPOSE 80
+#RUN npm run build:${PORT}
+RUN npm run build
+### STAGE 2: Run ###
+FROM nginx:1.17.1-alpine
+COPY --from=build /usr/src/app/dist/certification /usr/share/nginx/html
+COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
+#COPY ./lxp.crt /etc/ssl/certs/
+#COPY ./lxp.key /etc/ssl/certs/
