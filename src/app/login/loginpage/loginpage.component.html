@@ -1,7 +1,6 @@
 <!-- Login Page User Name -->
-
 <div class="wrap-reg">
-    <form [formGroup]="loginForm" class="form-wrapper">
+    <form [formGroup]="loginForm" class="form-wrapper" (ngSubmit)="submit()">
         <div class="sign-head">
             <h1 class="signIn">Sign-in to your account</h1>
         </div>
@@ -27,8 +26,9 @@
 
         <mat-form-field class="mat-form-spacing" appearance="outline">
             <mat-label class="label-color">{{'Password' }}</mat-label>
-            <input matInput [placeholder]="'Enter password'" [type]="toggleVisibility ? 'text' : 'password'"
-                formControlName="password" [ngClass]="{ 'is-invalid': password.touched && password.errors }" required>
+            <input matInput class="mat-input" [placeholder]="'Enter password'"
+                [type]="toggleVisibility ? 'text' : 'password'" formControlName="password"
+                [ngClass]="{ 'is-invalid': password.touched && password.errors }" required>
 
             <mat-icon matPrefix>
                 <span class="material-symbols-outlined login-email-icon">
@@ -50,8 +50,13 @@
                 {{'30 Characters only allowed'
                 }}</mat-error>
         </mat-form-field>
+        <!-- Forgot-password -->
+        <div class="forgot-div">
+            <mat-label>
+                <a class="forgot" (click)="forgotPassword()">{{'Forgot password?'}}</a>
+            </mat-label>
+        </div>
         <!-- Login-btn -->
-
         <div class="center">
             <button class="btn" [ngStyle]="{'opacity': loginForm.invalid ? '0.5' :'1.0'}" id="login" mat-raised-button
                 [disabled]="loginForm.invalid" type="submit">
@@ -59,4 +64,5 @@
         </div>
 
     </form>
+
 </div>

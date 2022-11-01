@@ -1,3 +1,5 @@
+@import "../../../themes/theme.scss";
+
 .main-wrapper-login {
   overflow: hidden;
   display: flex;
@@ -26,7 +28,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    background-color: #ddf1ff;
+    background-color: $left-login-bg;
     .main-logo {
       height: 69px;
       display: flex;
@@ -34,7 +36,7 @@
       margin-top: 100px;
     }
     .login-head {
-      color: #08558c;
+      color: $left-head;
       font-size: 22px;
       text-align: center;
       margin-top: 36px;
@@ -47,33 +49,14 @@
       transform: scaleX(-1);
     }
   }
+
+  // Right Login Component
   .right {
     width: 50%;
     height: 100%;
     align-items: center;
     justify-content: center;
     position: relative;
-    background-color: #ffffff;
-  }
-  .left {
-    @media only screen and (max-width: 767px) {
-      display: none;
-    }
-    &::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 1px;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.15);
-    }
-  }
-  .right {
-    flex-direction: column;
-    @media only screen and (max-width: 767px) {
-      width: 90%;
-      margin: 0 auto;
-    }
+    background-color: $right-login-bg;
   }
 }

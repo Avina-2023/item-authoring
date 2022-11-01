@@ -10,6 +10,8 @@ export class HomedashboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    // console.log(this.auth.getLocalValue('token'))
+    // this.auth.canAccess()
   }
 
 }

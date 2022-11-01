@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
+import { AppConfigService } from 'src/app/utils/app-config.service';
 
 @Component({
   selector: 'app-loginpage',
@@ -13,8 +16,9 @@ export class LoginpageComponent implements OnInit {
   capsOn: any;
   constructor(
     private fb: FormBuilder,
-
-
+    private router: Router,
+    private auth: ApiService,
+    private authOne: AppConfigService
   ) { }
 
   ngOnInit(): void {
@@ -25,9 +29,26 @@ export class LoginpageComponent implements OnInit {
     })
   }
 
-  // submit() {
-  //   this.route.navigate(['/homedash'])
-  // }
+  submit() {
+    let data = {
+      email: this.loginForm.value.email,
+      pass: this.loginForm.value.password
+    }
+    this.auth.register(data).subscribe((res: any) => {
+      if (res.success) {
+        this.authOne.setlocalValue('token', res.token.access_token);
+        this.router.navigate(['/home'])
+      } else {
+        alert('Invalid user')
+      }
+
+
+    })
+
+  }
+  forgotPassword() {
+    this.router.navigate(['/forgot'])
+  }
 
   get email() {
     return this.loginForm.get('email');

@@ -9,13 +9,21 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material/material.module';
 import { HomedashboardComponent } from './dashboard/homedashboard/homedashboard.component';
+import { CommonSidebarComponent } from './shared/common-sidebar/common-sidebar.component';
+import { DashboardHeaderComponent } from './shared/dashboard-header/dashboard-header.component';
+import { RouterModule } from '@angular/router';
+import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginpageComponent,
     SignupComponent,
-    HomedashboardComponent
+    HomedashboardComponent,
+    CommonSidebarComponent,
+    DashboardHeaderComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +31,8 @@ import { HomedashboardComponent } from './dashboard/homedashboard/homedashboard.
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    AppRoutingModule
+    RouterModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
