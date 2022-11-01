@@ -14,6 +14,7 @@ import { DashboardHeaderComponent } from './shared/dashboard-header/dashboard-he
 import { RouterModule } from '@angular/router';
 import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
 import { HttpClientModule } from '@angular/common/http';
+import { IsAccessGuard } from './guards/is-access.guard';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [IsAccessGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

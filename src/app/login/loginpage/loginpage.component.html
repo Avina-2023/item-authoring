@@ -30,7 +30,8 @@
                 [type]="toggleVisibility ? 'text' : 'password'" formControlName="password"
                 [ngClass]="{ 'is-invalid': password.touched && password.errors }" required>
 
-            <mat-icon matPrefix>
+            <mat-icon matPrefix style="    position: relative;
+            bottom: 1px;">
                 <span class="material-symbols-outlined login-email-icon">
                     lock
                 </span>

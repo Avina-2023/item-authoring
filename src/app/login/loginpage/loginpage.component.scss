@@ -29,6 +29,22 @@ mat-form-field {
   }
 }
 
+::ng-deep .mat-form-field-required-marker {
+  color: red;
+}
+label span.mat-form-field-required-marker {
+  color: red;
+}
+
+.login-icon-color {
+  font-size: 22px;
+}
+// .login-email-icon {
+//   position: absolute;
+//   font-size: 20px;
+//   top: 3px;
+// }
+
 // Forgot password css
 .forgot {
   cursor: pointer;
