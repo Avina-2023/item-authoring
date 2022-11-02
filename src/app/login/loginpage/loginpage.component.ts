@@ -37,12 +37,11 @@ export class LoginpageComponent implements OnInit {
     this.auth.register(data).subscribe((res: any) => {
       if (res.success) {
         this.authOne.setlocalValue('token', res.token.access_token);
-        this.router.navigate(['/home'])
+        this.authOne.setlocalValue('firstname', res.data.attributes.firstName);
+        this.router.navigate(['home'])
       } else {
         alert('Invalid user')
       }
-
-
     })
 
   }

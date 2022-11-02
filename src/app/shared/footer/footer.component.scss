@@ -1,0 +1,35 @@
+@import "../../../themes/theme.scss";
+
+// .footer-section {
+//   background-color: $right-login-bg;
+//   height: 30px;
+//   width: auto;
+//   .forgot1 {
+//     display: flex;
+//     justify-content: flex-start;
+//     position: relative;
+//     top: 6px;
+//   }
+// }
+
+.footer-section {
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  color: $left-head !important;
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+  gap: 4px;
+  background: $right-login-bg;
+  width: auto;
+  height: 30px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 2em;
+  .forgot1 {
+    font-weight: 500;
+    font-size: 14px;
+  }
+}

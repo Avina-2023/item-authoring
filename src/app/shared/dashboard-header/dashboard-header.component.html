@@ -1,1 +1,22 @@
-<p>dashboard-header works!</p>
+<mat-toolbar class="headerShadow">
+    <div class="header-cont">
+
+        <div class="dash-logo">
+            <span class="img-wrapper">
+                <img alt="main-login-logo" class="beforeloginimgLT" src="assets/images/Group 21190.svg">
+            </span>
+        </div>
+
+        <div class="test-head">
+            <h1>Test Authoring System</h1>
+        </div>
+        <span class="rightlog">
+            {{username ? '' + username : ''}}
+        </span>
+
+        <span matTooltip="Logout" class="logout">
+            <em class="icon-logout"></em>
+        </span>
+
+    </div>
+</mat-toolbar>

@@ -1,9 +1,6 @@
-import { Injectable } from '@angular/core';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AppConstantsService {
-
-  constructor() { }
-}
+export const APP_CONSTANTS = {
+  ROUTES: {
+    lOGPAGE: '/login',
+    FORGOT: 'forgot-password',
+  }
+};
