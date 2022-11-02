@@ -6,16 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./common-sidebar.component.scss']
 })
 export class CommonSidebarComponent implements OnInit {
-  sidebarOpen: any;
+
   constructor() { }
 
   ngOnInit(): void {
-    this.sidebarOpen = true;
+
   }
 
-  sidebar() {
-    this.sidebarOpen = !this.sidebarOpen;
-  }
 
 
 }

@@ -1,11 +1,17 @@
+.mat-side {
+  background-color: #f1f2f1ee;
+  width: 70px;
+}
+
 .tp-container {
   position: absolute;
   top: 60px;
   bottom: 0;
+
   left: 0;
   right: 0;
   height: auto;
-  background: #eee;
+  background-color: #dfe2e3;
 }
 .tp-section {
   display: flex;
