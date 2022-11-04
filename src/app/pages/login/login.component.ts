@@ -3,13 +3,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
+import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 
 @Component({
-  selector: 'app-loginpage',
-  templateUrl: './loginpage.component.html',
-  styleUrls: ['./loginpage.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class LoginpageComponent implements OnInit {
+export class LoginComponent implements OnInit {
+
   loginForm: FormGroup | any;
   toggleVisibility = false;
   disableLogin = false;
@@ -17,8 +19,8 @@ export class LoginpageComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private auth: ApiService,
-    private authOne: AppConfigService
+    private https: ApiService,
+    private authConfig: AppConfigService
   ) { }
 
   ngOnInit(): void {
@@ -34,11 +36,12 @@ export class LoginpageComponent implements OnInit {
       email: this.loginForm.value.email,
       pass: this.loginForm.value.password
     }
-    this.auth.register(data).subscribe((res: any) => {
-      if (res.success) {
-        this.authOne.setlocalValue('token', res.token.access_token);
-        this.authOne.setlocalValue('firstname', res.data.attributes.firstName);
-        this.router.navigate(['home'])
+    this.https.register(data).subscribe((res: any) => {
+      if (true) {
+        this.authConfig.setlocalValue('token', res.token.access_token);
+        this.authConfig.setlocalValue('firstname', res.data.attributes.firstName);
+        this.authConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.DASHBOARD)
+        // this.router.navigate(['/home']);
       } else {
         alert('Invalid user')
       }
@@ -55,5 +58,4 @@ export class LoginpageComponent implements OnInit {
   get password() {
     return this.loginForm.get('password');
   }
-
 }

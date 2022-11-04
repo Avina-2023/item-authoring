@@ -20,10 +20,5 @@ export class ApiService {
   login(data: any) {
     return this.http.post(`${this.BASE_URL}/login`, data);
   }
-  isLoggedIn() {
-    return localStorage.getItem('token');
-  }
-  gettoken() {
-    localStorage.getItem('token');
-  }
+
 }

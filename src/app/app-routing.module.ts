@@ -1,20 +1,28 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomedashboardComponent } from './dashboard/homedashboard/homedashboard.component';
 import { IsAccessGuard } from './guards/is-access.guard';
-import { LogpageComponent } from './login/logpage/logpage.component';
+import { IsloggedInGuard } from './guards/islogged-in.guard';
+import { HomedashboardComponent } from './pages/admin/homedashboard/homedashboard.component';
+import { ForgotComponent } from './pages/forgot/forgot.component';
+import { LoginComponent } from './pages/login/login.component';
+import { APP_CONSTANTS } from './utils/app-constants.service';
 
 const routes: Routes = [
   {
-    path: '', component: LogpageComponent
+    path: '', component: LoginComponent
   },
   {
-    path: 'home', component: HomedashboardComponent
+    path: 'forgot', component: ForgotComponent
   },
   {
-    path: '/login',
-    loadChildren: () => import('./login/login-routing/login-routing.module').then(m => m.LoginRoutingModule), canActivate: [IsAccessGuard]
+    path: `${APP_CONSTANTS.ROUTES.AUTH}`, loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+
   },
+  {
+    path: `**`,
+    pathMatch: 'full',
+    component: LoginComponent
+  }
 ];
 
 @NgModule({

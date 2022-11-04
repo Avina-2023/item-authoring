@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -6,7 +7,15 @@ import { Injectable } from '@angular/core';
 export class AppConfigService {
 
 
-  constructor() { }
+  constructor(
+    private route: Router
+  ) { }
+
+  // Navigations
+  routeNavigation(path: any) {
+    return this.route.navigate([path]);
+  }
+
 
   setlocalValue(key: string, value: string) {
     return localStorage.setItem(key, value);
