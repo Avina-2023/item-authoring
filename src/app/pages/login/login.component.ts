@@ -41,11 +41,11 @@ export class LoginComponent implements OnInit {
         this.authConfig.setlocalValue('token', res.token.access_token);
         this.authConfig.setlocalValue('firstname', res.data.attributes.firstName);
         this.authConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.DASHBOARD)
-        // this.router.navigate(['/home']);
       } else {
         alert('Invalid user')
       }
-    })
+    }
+    )
 
   }
   forgotPassword() {

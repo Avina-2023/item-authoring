@@ -9,7 +9,7 @@ import { APP_CONSTANTS } from '../utils/app-constants.service';
   providedIn: 'root'
 })
 export class IsAccessGuard implements CanLoad {
-  constructor(private appConfig: AppConfigService, private apiService: ApiService) {
+  constructor(private appConfig: AppConfigService) {
 
   }
 

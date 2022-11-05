@@ -13,23 +13,24 @@
 // }
 
 .footer-section {
+  margin-left: 52px;
+  width: 1314px;
   position: absolute;
   bottom: 2px;
   left: 0;
-  right: 0;
-  color: $left-head !important;
   display: flex;
   justify-content: flex-start;
   text-align: left;
-  gap: 4px;
-  background: $right-login-bg;
-  width: auto;
+  background: red;
   height: 30px;
   align-items: center;
-  flex-wrap: wrap;
   padding: 0 2em;
+  .footer20 {
+    margin-top: 5px;
+  }
   .forgot1 {
     font-weight: 500;
     font-size: 14px;
+    color: $left-head !important;
   }
 }

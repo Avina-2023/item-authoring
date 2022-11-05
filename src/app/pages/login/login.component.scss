@@ -22,38 +22,6 @@
   @media only screen and (min-width: 576px) and (max-width: 767px) {
     margin: 60px 0;
   }
-  .left {
-    width: 100%;
-    // height: 100%px;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    background-color: $left-login-bg;
-    .main-logo {
-      height: 69px;
-      display: flex;
-      justify-content: center;
-      margin-top: 100px;
-    }
-    .login-head {
-      color: $left-head;
-      font-size: 22px;
-      text-align: center;
-      margin-top: 36px;
-      font-weight: 500;
-      line-height: normal;
-    }
-    .main-display-image {
-      display: flex;
-      justify-content: center;
-    }
-    .beforeloginimg {
-      height: 273px;
-      margin-top: 56px;
-      transform: scaleX(-1);
-    }
-  }
-
   // Right Login Component
   .right {
     display: flex;
@@ -70,6 +38,7 @@
   position: relative;
   bottom: 25px;
   font-weight: 500;
+  font-size: 24px;
 }
 .wrap-reg {
   width: max-content;
@@ -102,14 +71,14 @@ label span.mat-form-field-required-marker {
 }
 
 .login-icon-color {
-  font-size: 22px;
+  font-size: 21px;
 }
-// .login-email-icon {
-//   position: absolute;
-//   font-size: 20px;
-//   top: 3px;
-// }
-
+.login-email-icon {
+  position: absolute;
+  width: 18px;
+  height: 14px;
+  top: -1px;
+}
 // Forgot password css
 .forgot {
   cursor: pointer;
@@ -132,11 +101,14 @@ label span.mat-form-field-required-marker {
   font-size: 16px;
   border: none;
   border-radius: 50px !important;
-  width: 45%;
+  width: 186px;
+  height: 47px;
   padding: 12px 10px;
   margin-top: 40px;
   background: $primary-login;
-  background: linear-gradient(90deg, $primary-linear 0, $primary-linear-sec);
+  background: transparent
+    linear-gradient(90deg, #27bbee 0%, #40bbbd 48%, #88ba2f 100%) 0% 0%
+    no-repeat padding-box;
   color: $primary-text;
   cursor: pointer;
   border-radius: 50px !important;

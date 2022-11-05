@@ -1,12 +1,23 @@
 <mat-sidenav-container class="tp-container">
-    <mat-sidenav mode="side" class="mat-side" opened>
-
-        <ul>
-            <li>
-
-            </li>
-        </ul>
-
+    <mat-sidenav mode="side" style="width: 60px; " opened>
+        <mat-nav-list>
+            <ul>
+                <ng-container>
+                    <li routerLinkActive="active">
+                        <span>
+                            <img src="/assets/images/Icon material-dashboard.svg" alt="" srcset="">
+                        </span>
+                    </li>
+                </ng-container>
+                <ng-container>
+                    <li routerLinkActive="active">
+                        <span>
+                            <img src="../../../assets/images/6eebba19df90b99745033c579b20deef.svg" alt="" srcset="">
+                        </span>
+                    </li>
+                </ng-container>
+            </ul>
+        </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>Main content</mat-sidenav-content>
 </mat-sidenav-container>

@@ -4,66 +4,102 @@ mat-toolbar {
   width: 100%;
   padding: 0;
   box-sizing: border-box;
-  height: 60px;
+  height: 48px;
   background: $primary-login;
-  background: linear-gradient(90deg, #08558c 0, #16bef0, #4eba62);
+  background: transparent
+    linear-gradient(90deg, #08558c 0%, #16bef0 51%, #4eba62 100%) 0% 0%
+    no-repeat padding-box;
   margin-bottom: 0;
   display: flex;
-  justify-content: space-between;
   z-index: 9;
+}
+.logo-content {
+  display: flex;
 }
 .header-cont {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
+  flex-direction: row;
   width: 100%;
   height: 100%;
   align-items: center;
-
-  .dash-logo {
-    height: inherit;
-    background-color: $right-login-bg;
-    width: 200px;
-  }
-  img {
-    height: 50px;
-    width: 100%;
-    margin-top: 4px;
-  }
-  .img-wrapper {
-    height: 45px;
-  }
-  .title {
-    margin-right: 15px;
-    font-size: 16px;
-  }
-  .logout {
-    cursor: pointer;
-    img {
-      height: 22px;
-    }
+}
+.dash-logo {
+  height: inherit;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  width: 131px;
+  height: 48px;
+}
+img {
+  width: 73px;
+  height: 31px;
+  margin-top: 4px;
+}
+.img-wrapper {
+  height: 45px;
+  position: relative;
+  left: 30px;
+  top: 5px;
+}
+.test-head {
+  color: #ffffff;
+  position: relative;
+  top: 8px;
+  left: 25px;
+}
+.test-head h1 {
+  font-size: 18px;
+  width: 184px;
+  height: 21px;
+}
+.right-logout {
+  display: flex;
+  margin-right: 20px;
+  justify-content: flex-end;
+  .select-cont {
+    margin-right: 25px;
+    margin-top: 0px;
   }
 }
+
 .rightlog {
+  color: #ffffff;
+  margin-right: 15px;
+  font-size: 16px;
   display: flex;
   align-items: center;
   font-weight: 400;
 }
-
-.user-ins {
+.center-code {
+  border: 1px solid white;
+  height: 30px;
+  position: relative;
+  right: 6px;
+}
+.logout {
   cursor: pointer;
-  em {
-    font-size: 16px;
-    top: -1px;
-    position: relative;
+  position: relative;
+  top: 5px;
+  left: 1px;
+  img {
+    width: 15px;
+    height: 15px;
   }
 }
-.user-guide {
-  color: #0000ee;
+
+label {
+  color: #000000;
   font-size: 14px;
+  font-weight: 500;
+  padding-right: 10px;
 }
-.user-guide:hover {
-  color: #000080;
-  transition: 580ms linear;
-  text-decoration: underline;
+
+select {
+  font-size: 0.9rem;
+  padding: 2px 5px;
+  width: 252px;
+  height: 35px;
+  border: 0px;
+  outline: 0px;
+  color: gray;
 }

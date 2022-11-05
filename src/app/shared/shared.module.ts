@@ -6,21 +6,26 @@ import { CommonSidebarComponent } from './common-sidebar/common-sidebar.componen
 import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
 import { AdminModule } from '../pages/admin/admin-module';
 import { FooterComponent } from './footer/footer.component';
+import { LogincommonsideComponent } from './logincommonside/logincommonside.component';
+import { MaterialModule } from '../material/material/material.module';
 @NgModule({
     declarations: [
         DashboardHeaderComponent,
         CommonSidebarComponent,
-        FooterComponent
+        FooterComponent,
+        LogincommonsideComponent,
     ],
     imports: [
         CommonModule,
+        MaterialModule
 
     ],
     exports: [
         CommonModule,
         DashboardHeaderComponent,
         CommonSidebarComponent,
-        FooterComponent
+        FooterComponent,
+        LogincommonsideComponent,
 
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],

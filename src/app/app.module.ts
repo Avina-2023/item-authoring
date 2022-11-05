@@ -12,11 +12,15 @@ import { IsAccessGuard } from './guards/is-access.guard';
 import { LoginComponent } from './pages/login/login.component';
 import { SharedModule } from './shared/shared.module';
 import { IsloggedInGuard } from './guards/islogged-in.guard';
+import { ForgotComponent } from './pages/forgot/forgot.component';
+import { SetPasswordComponent } from './pages/set-password/set-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    ForgotComponent,
+    SetPasswordComponent
 
   ],
   imports: [
