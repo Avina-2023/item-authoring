@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppConfigService } from 'src/app/utils/app-config.service';
+import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 
 @Component({
   selector: 'app-forgot',
@@ -9,26 +11,28 @@ import { Router } from '@angular/router';
 })
 export class ForgotComponent implements OnInit {
   loginForm: FormGroup | any;
-
+  currentYear: number | undefined;
+  disableLogin = false;
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authConfig: AppConfigService,
   ) { }
 
 
   ngOnInit(): void {
+    this.currentYear = new Date().getFullYear();
     const emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.maxLength(100), Validators.pattern(emailregex)]],
-      password: ['', [Validators.required, Validators.maxLength(30)]],
     })
   }
 
-  submit() {
-    this.router.navigate(['/'])
+  next() {
+    this.authConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN)
   }
   Goback() {
-    this.router.navigate(['/'])
+    this.authConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN)
   }
 
 }

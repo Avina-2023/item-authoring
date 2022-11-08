@@ -14,7 +14,7 @@ import { SharedModule } from './shared/shared.module';
 import { IsloggedInGuard } from './guards/islogged-in.guard';
 import { ForgotComponent } from './pages/forgot/forgot.component';
 import { SetPasswordComponent } from './pages/set-password/set-password.component';
-
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +31,18 @@ import { SetPasswordComponent } from './pages/set-password/set-password.componen
     MaterialModule,
     RouterModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    ToastrModule.forRoot(
+      {
+        timeOut: 3000,
+        preventDuplicates: true,
+        maxOpened: 1,
+        autoDismiss: true,
+        progressBar: true,
+        progressAnimation: 'increasing',
+        closeButton: true
+      }
+    ),
   ],
 
   providers: [IsAccessGuard, IsloggedInGuard],

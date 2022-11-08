@@ -9,6 +9,9 @@
                         <form [formGroup]="loginForm" class="form-wrapper" (ngSubmit)="submit()">
                             <div class="sign-head">
                                 <h1 class="signIn">Sign-in to your account</h1>
+                                <div class="footer-logo">
+                                    <span> © {{currentYear}} L&T EduTech. All Rights Reserved</span>
+                                </div>
                             </div>
                             <mat-form-field class="mat-form-spacing" appearance="outline">
                                 <mat-label class="label-color">Username</mat-label>
@@ -74,6 +77,7 @@
 
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

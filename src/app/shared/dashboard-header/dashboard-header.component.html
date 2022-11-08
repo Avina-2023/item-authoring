@@ -1,44 +1,43 @@
-<mat-toolbar class="headerShadow">
-    <div class="header-cont">
-        <!-- Logo Heading -->
-        <div class="logo-content">
-            <div class="dash-logo">
-                <span class="img-wrapper">
-                    <img alt="main-login-logo" class="beforeloginimgLT" src="assets/images/Group 21190.svg">
-                </span>
-            </div>
-            <div class="test-head">
-                <h1>Test Authoring System</h1>
-            </div>
-        </div>
-
-        <!-- right logout -->
-        <div class="right-logout">
-            <div class="select-cont">
-                <label for="select" id="org-name">Organisation Name: </label>
-                <!-- <select name="pets">
-                    <option value="Edutech"> L&T EduTech</option>
-                    <option value="Admin">Admin</option>
-                    <option value="Candidate">Candidate</option>
-                </select> -->
-                <mat-form-field appearance="fill">
-                    <mat-label>Choose an option</mat-label>
-                    <mat-select>
-                        <mat-option value="option1">Option 1</mat-option>
-                        <mat-option value="option2">Option 2 (disabled)</mat-option>
-                        <mat-option value="option3">Option 3</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-
-            <span class="rightlog">
-                {{username ? '' + username : ''}}
-            </span>
-            <div class="center-code">
-            </div>
-            <span matTooltip="Logout" class="logout">
-                <img src="assets/images/a083ce591dbe7b95af372eb82032e1c7.svg" alt="logout-img">
-            </span>
+<mat-toolbar>
+    <span class="img-wrapper dash-logo">
+        <img alt="main-login-logo" class="beforeloginimgLT" src="assets/images/Group 21190.svg">
+    </span>
+    <div class="head-title">
+        <span>Test Authoring System</span>
+    </div>
+    <span class="example-spacer"></span>
+    <div class="border-select">
+        <label for="selectName" id="org-name">Organisation Name: </label>
+        <div class="custom-select" style="width:200px; 
+            height: 35px;">
+            <select>
+                <option value="0">L&T EduTech</option>
+                <option value="1">Adani</option>
+                <option value="2">Candidate</option>
+            </select>
         </div>
     </div>
+
+
+    <span class="rightlog">
+        {{username ? '' + username : ''}}
+    </span>
+    <div class="center-code">
+    </div>
+    <span matTooltip="Logout" class="logout" (click)="logOut()">
+        <img src="assets/images/a083ce591dbe7b95af372eb82032e1c7.svg" alt="logout-img">
+    </span>
 </mat-toolbar>
+
+<ng-template #matDialog>
+    <span class="popup-image">
+        <img src="../../../assets/images/8121a812e88ceae3fd349443047ed425.svg" alt="popup-image">
+    </span>
+    <h1 mat-dialog-title class="sure-message">Are you Sure?</h1>
+    <h1 class="popupHead" mat-dialog-title>You want to logout from the application</h1>
+    <!-- <div mat-dialog-content>This dialog showcases the title, close, content and actions elements.</div> -->
+    <div class="action" mat-dialog-actions>
+        <button class="con-btn" mat-button [mat-dialog-close]="true">CANCEL</button>
+        <button class="confirm" mat-button (click)="closeDialog($event)">YES </button>
+    </div>
+</ng-template>

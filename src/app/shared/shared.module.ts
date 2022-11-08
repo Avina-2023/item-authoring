@@ -26,6 +26,7 @@ import { MaterialModule } from '../material/material/material.module';
         CommonSidebarComponent,
         FooterComponent,
         LogincommonsideComponent,
+        MaterialModule
 
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],

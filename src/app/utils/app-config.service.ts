@@ -24,4 +24,11 @@ export class AppConfigService {
   getLocalValue(key: any) {
     return localStorage.getItem(key)
   }
+
+  // Clear local and session data
+  clearLocalData() {
+    return localStorage.clear();
+  }
+
+
 }

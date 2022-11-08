@@ -38,6 +38,13 @@
   font-weight: 500;
   font-size: 24px;
 }
+.footer-logo {
+  position: absolute;
+  bottom: 20px;
+  font-size: 14px;
+  color: $sign-head;
+  left: 15%;
+}
 .wrap-reg {
   width: max-content;
   display: flex;
@@ -88,6 +95,7 @@ label span.mat-form-field-required-marker {
   text-align: end;
   position: relative;
   bottom: 8px;
+  // left: 100px !important;
   right: 45px;
 }
 

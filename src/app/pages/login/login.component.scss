@@ -40,6 +40,12 @@
   font-weight: 500;
   font-size: 24px;
 }
+.footer-logo {
+  position: absolute;
+  bottom: 20px;
+  font-size: 14px;
+  color: $sign-head;
+}
 .wrap-reg {
   width: max-content;
   display: flex;
