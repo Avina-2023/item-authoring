@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoginpageComponent } from './loginpage.component';
+import { CommonSidebarComponent } from './common-sidebar.component';
 
-describe('LoginpageComponent', () => {
-  let component: LoginpageComponent;
-  let fixture: ComponentFixture<LoginpageComponent>;
+describe('CommonSidebarComponent', () => {
+  let component: CommonSidebarComponent;
+  let fixture: ComponentFixture<CommonSidebarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginpageComponent ]
+      declarations: [ CommonSidebarComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LoginpageComponent);
+    fixture = TestBed.createComponent(CommonSidebarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

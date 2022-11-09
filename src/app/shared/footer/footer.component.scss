@@ -1,0 +1,27 @@
+@import "../../../themes/theme.scss";
+
+.footer-section {
+  z-index: 1;
+  margin-left: 52px;
+  width: 1314px;
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+  background: #ffffff;
+  height: 30px;
+  align-items: center;
+  padding: 0 2em;
+  .footer20 {
+    margin-top: 5px;
+  }
+  .forgot1 {
+    font-weight: 500;
+    font-size: 14px;
+    color: $left-head !important;
+    position: relative;
+    right: 15px;
+  }
+}
