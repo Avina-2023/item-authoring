@@ -1,70 +1,27 @@
-<mat-sidenav-container class="tp-container">
-    <mat-sidenav mode="side" opened>
-        <mat-nav-list>
-            <ul>
+<mat-drawer-container class="example-container mat-typography" autosize style="height: 100vh;">
+    <mat-drawer #drawer mode="side" disableClose="true" opened="true">
+        <mat-nav-list class="mathigh">
+            <!-- <mat-list-item (click)="navigateTo('dashboard')">
                 <ng-container>
-                    <li routerLinkActive="active" (click)="navigateTo('dashboard')">
+                    <li routerLinkActive="active">
                         <span>
                             <img src="assets/images/Icon material-dashboard.svg" alt="" srcset="">
                         </span>
                     </li>
                 </ng-container>
+            </mat-list-item> -->
+            <mat-list-item (click)="navigateTo('jobslist')">
                 <ng-container>
-                    <li (click)="navigateTo('jobslist')">
+                    <li>
                         <span>
-                            <img src="assets/images/6eebba19df90b99745033c579b20deef.svg" alt="" srcset="">
+                            <img matTooltip="Jobs List" src="assets/images/6eebba19df90b99745033c579b20deef.svg" alt=""
+                                srcset="">
                         </span>
                     </li>
                 </ng-container>
-            </ul>
+            </mat-list-item>
+
         </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
+    </mat-drawer>
 
-        <!-- <router-outlet></router-outlet> -->
-
-        <!-- Cut Content -->
-        <div class="upload-btnOne" (click)="showUpload()">
-            <button mat-raised-button color="primary">Primary</button>
-        </div>
-
-        <ng-template #matDialog mat-dialog-container>
-            <div class="upload-title">
-                <h1 mat-dialog-title class="sure-message">Upload Items</h1>
-                <span class="popup-image" (click)="closeDialog($event)">
-                    <img src="assets/images/Path 29948.svg" alt="popup-image">
-                </span>
-            </div>
-            <div class="center-line">
-
-            </div>
-            <!-- <mat-divider></mat-divider> -->
-            <div class="item-reference">
-                <img src="assets/images/Icon awesome-info-circle.svg" alt="">
-                <span class="item-text">Items with same Reference Id will get replaced with the existing one.</span>
-            </div>
-
-            <div class="uploded-moc">
-                <div class="common-upload-btn">
-                    <button class="common-btn">
-                        <img src="../../../assets/images/Icon awesome-cloud-upload-alt.svg" alt="sd">
-                        Upload the Items list</button>
-                </div>
-                <div>
-                    <span class="zip-msg">(File extension allowed .zip)</span>
-                </div>
-            </div>
-
-            <div class="upload-btn" mat-dialog-actions align="center">
-                <button class="cancel" mat-button [mat-dialog-close]=" true">Cancel</button>
-                <button class="upload" mat-button (click)="closeDialog($event)">Upload </button>
-            </div>
-            <!-- Upload Documents -->
-
-        </ng-template>
-
-
-        <!-- Cut COntent End -->
-    </mat-sidenav-content>
-
-</mat-sidenav-container>
+</mat-drawer-container>

@@ -15,15 +15,12 @@ import { IsloggedInGuard } from './guards/islogged-in.guard';
 import { ForgotComponent } from './pages/forgot/forgot.component';
 import { SetPasswordComponent } from './pages/set-password/set-password.component';
 import { ToastrModule } from 'ngx-toastr';
-import { JobslistComponent } from './pages/admin/jobslist/jobslist.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ForgotComponent,
     SetPasswordComponent,
-
-
   ],
   imports: [
     BrowserModule,

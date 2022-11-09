@@ -11,7 +11,7 @@ mat-toolbar {
     no-repeat padding-box;
   margin-bottom: 0;
   display: flex;
-  z-index: 9;
+  box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%) !important;
 }
 .logo-content {
   display: flex;
@@ -26,7 +26,7 @@ mat-toolbar {
 .beforeloginimgLT {
   position: absolute;
   width: 73px;
-  left: 30px;
+  left: 16px;
   top: 8px;
 }
 .img-wrapper {
@@ -67,6 +67,7 @@ mat-toolbar {
   right: 33px;
   position: relative;
   top: 16px;
+  cursor: pointer;
 }
 
 label {
@@ -139,6 +140,7 @@ label {
   justify-content: center !important;
   position: relative;
   top: 20px;
+  margin-top: 24px;
 }
 .sure-message {
   text-align: center !important;

@@ -1,1 +1,111 @@
-<p>jobslist works!</p>
+<div class="upload-btnOne" (click)="showUpload()">
+    <button class="upload-xcel" mat-raised-button color="primary">Upload Items</button>
+</div>
+
+<ng-template #matDialog mat-dialog-container>
+    <div class="upload-title">
+        <h1 mat-dialog-title class="sure-message">Upload Items</h1>
+        <span class="popup-image" (click)="closeDialog($event)">
+            <img src="assets/images/Path 29948.svg" alt="popup-image">
+        </span>
+    </div>
+    <div class="center-line">
+
+    </div>
+    <!-- <mat-divider></mat-divider> -->
+    <div class="item-reference">
+        <img src="assets/images/Icon awesome-info-circle.svg" alt="">
+        <span class="item-text">Items with same Reference Id will get replaced with the existing one.</span>
+    </div>
+
+    <div class="uploded-moc">
+        <div class="common-upload-btn">
+            <button class="common-btn">
+                <img src="../../../assets/images/Icon awesome-cloud-upload-alt.svg" alt="sd">
+                Upload the Items list</button>
+        </div>
+        <div>
+            <span class="zip-msg">(File extension allowed .zip)</span>
+        </div>
+    </div>
+
+    <div class="upload-btn" mat-dialog-actions align="center">
+        <button class="cancel" mat-button [mat-dialog-close]=" true">Cancel</button>
+        <button class="upload" mat-button (click)="closeDialog($event)">Upload </button>
+    </div>
+    <!-- Upload Documents -->
+
+</ng-template>
+<!-- Cut COntent End -->
+
+<!-- job list wrapper -->
+<div class="joblist-wrapper" *ngFor="let jobs of jodlist">
+    <div class="job-id">
+        <div class="jobid-sec">
+            {{jobs.JopId}}
+        </div>
+    </div>
+    <!--  -->
+    <div class="file-name">
+        <div style="width: 46%;">
+            <span>File name</span>
+            <div class="jobs-filetag">
+                {{jobs.FileName}}
+            </div>
+        </div>
+
+        <div class="upload-span">
+            <div class="p-l-10">
+                <span>Uploaded By</span>
+                <div class="jobs-filetag">
+                    {{jobs.UploadedBy}}
+                </div>
+            </div>
+
+
+        </div>
+        <div class="upload-span">
+            <div class="p-l-10">
+                <span>Uploaded On</span>
+                <div class="jobs-filetag">
+                    {{jobs.UploadedOn}}
+                </div>
+            </div>
+
+        </div>
+        <div class="upload-span">
+            <div class="p-l-10">
+                <span>Total Items Count</span>
+                <div class="jobs-item">
+                    {{jobs.TotalItemsCount}}
+                </div>
+            </div>
+
+        </div>
+        <div class="upload-span">
+            <div class="p-l-10">
+                <span>Processed</span>
+                <div class="jobs-proc">
+                    {{jobs.Processed}}
+                </div>
+            </div>
+
+        </div>
+        <div class="upload-span">
+            <div class="p-l-10">
+                <span>Errors</span>
+                <div class="error-red">
+                    {{jobs.Errors}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--  -->
+    <button class="right-btn" (click)="showviewjob()">
+        <div class="right-arrow">
+            <mat-icon>arrow_forward</mat-icon>
+        </div>
+    </button>
+</div>
