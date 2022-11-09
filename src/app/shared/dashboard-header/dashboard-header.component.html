@@ -8,8 +8,7 @@
     <span class="example-spacer"></span>
     <div class="border-select">
         <label for="selectName" id="org-name">Organisation Name: </label>
-        <div class="custom-select" style="width:200px; 
-            height: 35px;">
+        <div class="custom-select">
             <select>
                 <option value="0">L&T EduTech</option>
                 <option value="1">Adani</option>
@@ -18,24 +17,26 @@
         </div>
     </div>
 
-
+    <!-- Local Storage First name -->
     <span class="rightlog">
         {{username ? '' + username : ''}}
     </span>
+
     <div class="center-code">
     </div>
+    <!-- Logout button -->
     <span matTooltip="Logout" class="logout" (click)="logOut()">
         <img src="assets/images/a083ce591dbe7b95af372eb82032e1c7.svg" alt="logout-img">
     </span>
 </mat-toolbar>
 
+<!-- Logout Pop-up -->
 <ng-template #matDialog>
     <span class="popup-image">
         <img src="../../../assets/images/8121a812e88ceae3fd349443047ed425.svg" alt="popup-image">
     </span>
     <h1 mat-dialog-title class="sure-message">Are you Sure?</h1>
     <h1 class="popupHead" mat-dialog-title>You want to logout from the application</h1>
-    <!-- <div mat-dialog-content>This dialog showcases the title, close, content and actions elements.</div> -->
     <div class="action" mat-dialog-actions>
         <button class="con-btn" mat-button [mat-dialog-close]="true">CANCEL</button>
         <button class="confirm" mat-button (click)="closeDialog($event)">YES </button>

@@ -61,3 +61,130 @@ mat-sidenav-content {
   height: 95vh;
   background-color: #dfe2e3;
 }
+
+// Temprorary upload documents
+// .upload-btn {
+//   float: right;
+//   position: relative;
+//   right: 50px;
+// }
+
+.upload-title {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 13px;
+  padding-left: 20px;
+  padding-right: 20px;
+  .sure-message {
+    font-size: 18px;
+    font-weight: 500;
+    position: relative;
+    bottom: 5px;
+  }
+  .popup-image {
+    height: 12px;
+    width: 12px;
+  }
+}
+.center-line {
+  border: 1px solid;
+  position: relative;
+  bottom: 15px;
+  color: #aaaaaa;
+}
+.uploded-moc {
+  position: relative;
+  width: auto;
+  height: 130px;
+  /* UI Properties */
+  background: #fafafa 0% 0% no-repeat padding-box;
+  border: 0.5px dashed #707070b0;
+  opacity: 1;
+  margin: 0px 80px;
+  /* margin-top: 8px; */
+  position: relative;
+  top: 15px;
+  .common-upload-btn {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 38px;
+  }
+  .common-btn {
+    width: 240px;
+    height: 50px;
+    background: #fafafa 0% 0% no-repeat padding-box;
+    border: 0.5px #707070b0 !important;
+    opacity: 1;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .zip-msg {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    top: 45px;
+    font-weight: 500;
+    font-size: 12px;
+  }
+}
+// .item-reference {
+//   position: relative;
+//   left: 10px;
+// }
+.item-reference img {
+  width: 12px;
+  height: 12px;
+  margin-left: 15px;
+  color: #08558c;
+}
+.item-text {
+  font-weight: 500;
+  font-size: 13px;
+  position: relative;
+  bottom: 1px;
+  left: 4px;
+}
+
+// .add-user-header {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   position: sticky;
+//   top: -14px;
+//   background: $white;
+//   z-index: 999;
+// }
+// button
+
+.upload-btn {
+  display: flex;
+  justify-content: center;
+  padding-top: 45px;
+}
+.cancel {
+  font-size: 14px;
+  cursor: pointer;
+  background: white;
+  border: 1px solid #707070;
+  font-weight: 500;
+  border-radius: 4px;
+  width: 105px;
+  height: 30px;
+  border-radius: 4px;
+}
+.upload {
+  background: #09568c;
+  color: #fff;
+  width: 105px;
+  height: 30px;
+  border: none;
+  border-radius: 4px;
+  margin-left: 25px;
+}
+::ng-deep mat-dialog-container {
+  border-radius: 0px !important;
+  padding: 0 !important;
+}

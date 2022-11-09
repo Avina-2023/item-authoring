@@ -6,7 +6,8 @@ export const APP_CONSTANTS = {
     AUTH: '/auth',
     ADMIN: {
       HOME: '/auth/admin',
-      DASHBOARD: '/auth/admin/dashboard'
+      DASHBOARD: '/auth/admin/dashboard',
+      JOBSLIST: '/auth/admin/jobslist'
     }
   },
   ROUTES: {
@@ -15,7 +16,9 @@ export const APP_CONSTANTS = {
     AUTH: 'auth',
     ADMIN: {
       HOME: 'admin',
-      DASHBOARD: 'dashboard'
+      DASHBOARD: 'dashboard',
+      JOBSLIST: 'jobslist'
+
 
     }
   }

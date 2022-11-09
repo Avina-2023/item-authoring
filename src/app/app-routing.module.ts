@@ -5,6 +5,7 @@ import { IsloggedInGuard } from './guards/islogged-in.guard';
 import { HomedashboardComponent } from './pages/admin/homedashboard/homedashboard.component';
 import { ForgotComponent } from './pages/forgot/forgot.component';
 import { LoginComponent } from './pages/login/login.component';
+import { SetPasswordComponent } from './pages/set-password/set-password.component';
 import { APP_CONSTANTS } from './utils/app-constants.service';
 
 const routes: Routes = [
@@ -13,6 +14,9 @@ const routes: Routes = [
   },
   {
     path: 'forgot', component: ForgotComponent
+  },
+  {
+    path: 'setpass', component: SetPasswordComponent
   },
   {
     path: `${APP_CONSTANTS.ROUTES.AUTH}`, loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),

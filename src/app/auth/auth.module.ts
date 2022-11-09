@@ -4,6 +4,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import { MaterialModule } from '../material/material/material.module';
 import { AuthComponent } from './auth.component';
+
 @NgModule({
     declarations: [
         AuthComponent
@@ -13,6 +14,7 @@ import { AuthComponent } from './auth.component';
         AuthRoutingModule,
         MaterialModule,
         SharedModule,
+
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
     providers: []

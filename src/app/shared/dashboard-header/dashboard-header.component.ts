@@ -22,19 +22,14 @@ export class DashboardHeaderComponent implements OnInit {
 
   logOut() {
     this.matDialogOpen()
-
-
   }
-
   matDialogOpen() {
     const dialogRef = this.dialog.open(this.matDialogRef, {
       width: '448px',
       height: '315px'
 
     });
-
   }
-
   closeDialog(e: any) {
     this.dialog.closeAll();
     this.appConfig.clearLocalData();
