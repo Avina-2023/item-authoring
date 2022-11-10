@@ -1,4 +1,4 @@
-// Job list warppetr
+@import "../../../../themes/theme.scss"; // Job list warppetr
 .upload-btnOne {
   display: flex;
   justify-content: end;
@@ -26,7 +26,7 @@
     justify-content: center;
     align-items: center;
     .jobid-sec {
-      color: #08558c;
+      color: $primary-batch-head;
       font-weight: 500;
     }
   }
@@ -42,6 +42,8 @@
     .jobs-filetag {
       font-weight: 500;
       font-size: 15px;
+      color: black;
+      font-weight: 500;
     }
     .jobs-item {
       font-weight: 500;
@@ -60,7 +62,7 @@
     }
     .upload-span {
       border-left: 2px solid;
-      color: #707070;
+      color: #70707075;
     }
     .p-l-10 {
       padding-left: 10px;
@@ -195,10 +197,6 @@
     font-size: 12px;
   }
 }
-// .item-reference {
-//   position: relative;
-//   left: 10px;
-// }
 .item-reference img {
   width: 12px;
   height: 12px;
@@ -218,4 +216,5 @@
 }
 span {
   font-size: 12px;
+  color: black;
 }

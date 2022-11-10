@@ -15,6 +15,7 @@ import { IsloggedInGuard } from './guards/islogged-in.guard';
 import { ForgotComponent } from './pages/forgot/forgot.component';
 import { SetPasswordComponent } from './pages/set-password/set-password.component';
 import { ToastrModule } from 'ngx-toastr';
+import { AgGridModule } from 'ag-grid-angular';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,7 @@ import { ToastrModule } from 'ngx-toastr';
     RouterModule,
     HttpClientModule,
     SharedModule,
+    AgGridModule,
     ToastrModule.forRoot(
       {
         timeOut: 3000,

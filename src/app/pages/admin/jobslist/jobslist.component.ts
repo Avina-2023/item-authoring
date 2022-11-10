@@ -62,7 +62,7 @@ export class JobslistComponent implements OnInit {
     private dialog: MatDialog,) { }
 
   ngOnInit(): void {
-    console.log(this.jodlist)
+
   }
   showUpload() {
     this.matDialogOpen();

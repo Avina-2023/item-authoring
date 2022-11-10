@@ -6,6 +6,7 @@ import { AdminRoutingModule } from './admin-routing-module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { JobslistComponent } from './jobslist/jobslist.component';
 import { ViewjobComponent } from './viewjob/viewjob.component';
+import { AgGridModule } from 'ag-grid-angular';
 @NgModule({
     declarations: [
         JobslistComponent,
@@ -15,6 +16,7 @@ import { ViewjobComponent } from './viewjob/viewjob.component';
         CommonModule,
         AdminRoutingModule,
         SharedModule,
+        AgGridModule
 
     ]
 })

@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
       if (res.success) {
         this.authConfig.setlocalValue('token', res.token.access_token);
         this.authConfig.setlocalValue('firstname', res.data.attributes.firstName);
-        this.authConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.DASHBOARD)
+        this.authConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.JOBSLIST)
       } else {
         this.toastr.error(res.message);
       }

@@ -1,0 +1,187 @@
+@import "../../../../themes/theme.scss";
+
+.main-section {
+  margin-top: 3%;
+  .outlerback-section {
+    background-color: $primary-back-white;
+    width: 1292px;
+    height: 699px;
+    margin: auto;
+  }
+  .batch-sec {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  .job-id {
+    .jobid-sec {
+      color: $primary-batch-head;
+      font-weight: 500;
+    }
+  }
+  .upload-span {
+    border-left: 2px solid;
+    color: $primary-dull-gray;
+    height: 40px;
+  }
+  .p-l-10 {
+    padding-left: 0px;
+    margin-left: 50%;
+  }
+  .line {
+    border-left: 2px solid;
+
+    height: 40px;
+  }
+  .jobs-item {
+    font-weight: 500;
+    font-size: 15px;
+    color: $primary-common-blue;
+  }
+  .jobs-proc {
+    font-weight: 500;
+    font-size: 15px;
+    color: $primary-common-green;
+  }
+  .error-red {
+    font-weight: 500;
+    font-size: 15px;
+    color: $primary-common-red;
+  }
+  span {
+    font-size: 12px;
+    color: $primary-common-black;
+  }
+}
+
+// Upload excel button
+.upload-btnOne {
+  display: flex;
+  justify-content: end;
+  margin: 11px 6px;
+  .upload-xcel {
+    width: 159px;
+    height: 30px;
+    background-color: $primary-batch-head;
+    border: 0;
+    border-radius: 4px;
+    color: $primary-back-white;
+    cursor: pointer;
+  }
+}
+
+// upload excel popup
+::ng-deep mat-dialog-container {
+  border-radius: 0px !important;
+  padding: 0 !important;
+}
+.upload-title {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 13px;
+  padding-left: 20px;
+  padding-right: 20px;
+  .sure-message {
+    font-size: 18px;
+    font-weight: 500;
+    position: relative;
+    bottom: 5px;
+  }
+  .popup-image {
+    height: 12px;
+    width: 12px;
+  }
+}
+
+// center Line For popup message
+.center-line {
+  border: 1px solid;
+  position: relative;
+  bottom: 15px;
+  color: $primary-common-gray;
+}
+
+.item-reference img {
+  width: 12px;
+  height: 12px;
+  margin-left: 15px;
+  color: $primary-batch-head;
+}
+.item-text {
+  font-weight: 500;
+  font-size: 13px;
+  position: relative;
+  bottom: 1px;
+  left: 4px;
+}
+
+.uploded-moc {
+  position: relative;
+  width: auto;
+  height: 130px;
+  /* UI Properties */
+  background: $primary-back-white 0% 0% no-repeat padding-box;
+  border: 0.5px dashed $primary-common-gray;
+  opacity: 1;
+  margin: 0px 80px;
+  /* margin-top: 8px; */
+  position: relative;
+  top: 15px;
+
+  .common-upload-btn {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 38px;
+  }
+  .common-btn {
+    width: 240px;
+    height: 50px;
+    background: $primary-back-white 0% 0% no-repeat padding-box;
+    border: 0.5px $primary-common-gray !important;
+    opacity: 1;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .zip-msg {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    top: 45px;
+    font-weight: 500;
+    font-size: 12px;
+  }
+}
+
+// popup image cancel and Upload button inside the popup
+.upload-btn {
+  display: flex;
+  justify-content: center;
+  padding-top: 45px;
+  .cancel {
+    font-size: 14px;
+    cursor: pointer;
+    background: $primary-back-white;
+    border: 1px solid $primary-common-gray;
+    font-weight: 500;
+    border-radius: 4px;
+    width: 105px;
+    height: 30px;
+    border-radius: 4px;
+  }
+  .upload {
+    background: $primary-common-blue;
+    color: $primary-back-white;
+    width: 105px;
+    height: 30px;
+    border: none;
+    border-radius: 4px;
+    margin-left: 25px;
+  }
+}
+
+// ag grid css start
