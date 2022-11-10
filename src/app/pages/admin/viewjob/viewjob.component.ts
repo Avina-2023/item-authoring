@@ -12,7 +12,6 @@ export class ViewjobComponent implements OnInit {
   length: any;
   pageSize: any;
   paginationPageSize = 500;
-  // columnDefs: ;
   columnDefs: any = [];
   rowData: any;
   @ViewChild('matDialog', { static: false }) matDialogRef: any;
@@ -24,10 +23,6 @@ export class ViewjobComponent implements OnInit {
       "Errors": 20
     },
   ]
-
-
-
-  // columnDefs: { floatingFilter: boolean; headerName: string; field: string; filter: string; filterParams: { suppressAndOrCondition: boolean; filterOptions: string[]; }; width: number; minWidth: number; maxWidth: number; sortable: boolean; tooltipField: string; }[];
   constructor(
     private appconfig: AppConfigService,
     private dialog: MatDialog

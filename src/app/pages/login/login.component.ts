@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit {
       pass: this.loginForm.value.password
     }
     this.https.register(data).subscribe((res: any) => {
-      // this._loading.setLoading(false, request.url);
       if (res.success) {
         this.authConfig.setlocalValue('token', res.token.access_token);
         this.authConfig.setlocalValue('firstname', res.data.attributes.firstName);

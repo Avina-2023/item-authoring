@@ -32,7 +32,6 @@
   }
   .line {
     border-left: 2px solid;
-
     height: 40px;
   }
   .jobs-item {
@@ -100,7 +99,7 @@
   border: 1px solid;
   position: relative;
   bottom: 15px;
-  color: $primary-common-gray;
+  color: $primary-dull-gry;
 }
 
 .item-reference img {
@@ -121,12 +120,10 @@
   position: relative;
   width: auto;
   height: 130px;
-  /* UI Properties */
-  background: $primary-back-white 0% 0% no-repeat padding-box;
-  border: 0.5px dashed $primary-common-gray;
+  background: $primaryDashed-bg 0% 0% no-repeat padding-box;
+  border: 0.5px dashed $primaryBorder-dashed;
   opacity: 1;
   margin: 0px 80px;
-  /* margin-top: 8px; */
   position: relative;
   top: 15px;
 
@@ -139,8 +136,8 @@
   .common-btn {
     width: 240px;
     height: 50px;
-    background: $primary-back-white 0% 0% no-repeat padding-box;
-    border: 0.5px $primary-common-gray !important;
+    background: $primaryDashed-bg 0% 0% no-repeat padding-box;
+    border-color: $primaryUpload-border;
     opacity: 1;
     display: flex;
     justify-content: space-evenly;

@@ -1,6 +1,5 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 
@@ -14,7 +13,7 @@ export class DashboardHeaderComponent implements OnInit {
   @ViewChild('matDialog', { static: false }) matDialogRef: any;
 
   constructor(private appConfig: AppConfigService,
-    private routes: Router, private dialog: MatDialog,) { }
+    private dialog: MatDialog,) { }
 
   ngOnInit(): void {
     this.username = this.appConfig.getLocalValue('firstname') ? this.appConfig.getLocalValue('firstname') : 'NA';
@@ -35,6 +34,4 @@ export class DashboardHeaderComponent implements OnInit {
     this.appConfig.clearLocalData();
     this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN)
   }
-
-
 }

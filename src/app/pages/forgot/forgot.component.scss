@@ -63,7 +63,6 @@ mat-form-field {
   height: 48px;
 }
 .form-wrapper {
-  // width: 55%;
   @media only screen and (min-width: 1440px) {
     width: 100%;
   }
@@ -95,7 +94,6 @@ label span.mat-form-field-required-marker {
   text-align: end;
   position: relative;
   bottom: 8px;
-  // left: 100px !important;
   right: 45px;
 }
 
@@ -128,7 +126,7 @@ label span.mat-form-field-required-marker {
   transition: ease-out 0.3s;
 }
 
-// Go bacl back
+// Go bac back
 .back-btn a {
   text-decoration: none;
   color: $left-head;

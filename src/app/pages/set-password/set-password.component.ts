@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 
@@ -16,7 +15,6 @@ export class SetPasswordComponent implements OnInit {
   toggleVisibility = false;
   constructor(
     private fb: FormBuilder,
-    private router: Router,
     private authConfig: AppConfigService,
   ) { }
 

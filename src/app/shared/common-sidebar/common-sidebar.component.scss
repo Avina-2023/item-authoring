@@ -1,7 +1,6 @@
 @import "../../../themes/theme.scss";
 
 li {
-  // padding: 20px 12px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -12,69 +11,12 @@ li {
   transition: all 750ms ease-in-out;
   position: relative;
 }
-em {
-  font-size: 21px;
-}
-span:first-child {
-  padding: 0 0px;
-  font-size: 14px;
-}
-span:nth-of-type(2) {
-  padding: 0 0 0 15px;
-  font-size: 14px;
-}
-span:nth-of-type(3) {
-  float: right;
-  font-size: 15px;
-  display: none;
-}
-// li:hover {
-//   background: #fff;
-//   color: #000;
-//   border-image: linear-gradient(to bottom, #41b865, #00bcef) 1 100%;
-//   transition: all 750ms ease-in-out;
-// }
-// .active {
-//   background-color: #fff;
-//   color: #000;
-//   border-image: linear-gradient(to bottom, #41b865, #00bcef) 1 100%;
-//   transition: all 750ms ease-in-out;
-//   span:nth-of-type(3) {
-//     display: block;
-//   }
-// }
-// li.active {
-//   background-color: #fff;
-//   color: #000;
-//   border-left-width: 5px;
-//   border-right-width: 0;
-//   border-style: solid;
-//   border-image: linear-gradient(to bottom, #41b865, #00bcef) 1 100%;
-// }
-
-// Temprorary upload documents
-// .upload-btn {
-//   float: right;
-//   position: relative;
-//   right: 50px;
-// }
-
-// .add-user-header {
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   position: sticky;
-//   top: -14px;
-//   background: $white;
-//   z-index: 999;
-// }
-// button
 
 // new css for side bar
 
 .mat-drawer {
   width: 52px;
-  background: #f1f2f1;
+  background: $primary-sidenav-bg;
 }
 .mat-list-base {
   padding-top: 0px !important;

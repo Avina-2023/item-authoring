@@ -1,3 +1,4 @@
+<!-- Upload Items button and Popup -->
 <div class="upload-btnOne" (click)="showUpload()">
     <button class="upload-xcel" mat-raised-button color="primary">Upload Items</button>
 </div>
@@ -12,7 +13,6 @@
     <div class="center-line">
 
     </div>
-    <!-- <mat-divider></mat-divider> -->
     <div class="item-reference">
         <img src="assets/images/Icon awesome-info-circle.svg" alt="">
         <span class="item-text">Items with same Reference Id will get replaced with the existing one.</span>
@@ -33,19 +33,15 @@
         <button class="cancel" mat-button [mat-dialog-close]=" true">Cancel</button>
         <button class="upload" mat-button (click)="closeDialog($event)">Upload </button>
     </div>
-    <!-- Upload Documents -->
-
 </ng-template>
-<!-- Cut COntent End -->
 
-<!-- job list wrapper -->
+<!-- Batch job id section -->
 <div class="joblist-wrapper" *ngFor="let jobs of jodlist">
     <div class="job-id">
         <div class="jobid-sec">
             {{jobs.JopId}}
         </div>
     </div>
-    <!--  -->
     <div class="file-name">
         <div style="width: 46%;">
             <span>File name</span>
@@ -61,8 +57,6 @@
                     {{jobs.UploadedBy}}
                 </div>
             </div>
-
-
         </div>
         <div class="upload-span">
             <div class="p-l-10">
@@ -101,8 +95,6 @@
 
         </div>
     </div>
-
-    <!--  -->
     <button class="right-btn" (click)="showviewjob()">
         <div class="right-arrow">
             <mat-icon>arrow_forward</mat-icon>

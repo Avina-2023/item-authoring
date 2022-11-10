@@ -16,12 +16,7 @@ export class CommonSidebarComponent implements OnInit {
     private appConfig: AppConfigService,
     private dialog: MatDialog,
   ) { }
-
-
-  ngOnInit(): void {
-
-  }
-
+  ngOnInit(): void { }
   navigateTo(value: any) {
     if (value == 'jobslist') {
       this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.JOBSLIST)
