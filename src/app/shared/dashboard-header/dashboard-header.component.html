@@ -1,6 +1,6 @@
 <mat-toolbar>
     <span class="img-wrapper dash-logo">
-        <img alt="main-login-logo" class="beforeloginimgLT" src="assets/images/Group 21190.svg">
+        <img alt="main-login-logo" class="beforeloginimgLT" src="assets/images/L&T_logo.svg">
     </span>
     <div class="head-title">
         <span>Test Authoring System</span>
@@ -9,7 +9,7 @@
     <div class="border-select">
         <label for="selectName" id="org-name">Organisation Name: </label>
         <div class="custom-select">
-            <select>
+            <select class="selected">
                 <option value="0">L&T EduTech</option>
                 <option value="1">Adani</option>
                 <option value="2">Candidate</option>
@@ -26,14 +26,14 @@
     </div>
     <!-- Logout button -->
     <span matTooltip="Logout" class="logout" (click)="logOut()">
-        <img src="assets/images/a083ce591dbe7b95af372eb82032e1c7.svg" alt="logout-img">
+        <em class="icon-logout"></em>
     </span>
 </mat-toolbar>
 
 <!-- Logout Pop-up -->
 <ng-template #matDialog>
     <span class="popup-image">
-        <img src="../../../assets/images/8121a812e88ceae3fd349443047ed425.svg" alt="popup-image">
+        <em class="icon-popup-warning-ylw"></em>
     </span>
     <h1 mat-dialog-title class="sure-message">Are you Sure?</h1>
     <h1 class="popupHead" mat-dialog-title>You want to logout from the application</h1>

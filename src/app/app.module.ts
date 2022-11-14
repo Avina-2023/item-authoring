@@ -16,6 +16,8 @@ import { ForgotComponent } from './pages/forgot/forgot.component';
 import { SetPasswordComponent } from './pages/set-password/set-password.component';
 import { ToastrModule } from 'ngx-toastr';
 import { AgGridModule } from 'ag-grid-angular';
+import { NgxFileDropModule } from 'ngx-file-drop';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +35,7 @@ import { AgGridModule } from 'ag-grid-angular';
     HttpClientModule,
     SharedModule,
     AgGridModule,
+    NgxFileDropModule,
     ToastrModule.forRoot(
       {
         timeOut: 3000,

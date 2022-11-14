@@ -19,7 +19,7 @@
                                     maxlength="90" required>
                                 <mat-icon matPrefix>
                                     <span class="login-email-icon">
-                                        <img src="../../../assets/images/Path 16503.svg" alt="logout-img">
+                                        <em class="icon-login-email"></em>
                                     </span>
                                 </mat-icon>
                                 <mat-error class="error"
@@ -40,9 +40,8 @@
                                     [ngClass]="{ 'is-invalid': password.touched && password.errors }" required>
 
                                 <mat-icon matPrefix>
-                                    <span class="login-email-icon">
-                                        <img src="../../../assets/images/Icon material-lock-outline.svg"
-                                            alt="logout-img">
+                                    <span class="login-pass-icon">
+                                        <em class="icon-login-lock"></em>
                                     </span>
                                 </mat-icon>
 

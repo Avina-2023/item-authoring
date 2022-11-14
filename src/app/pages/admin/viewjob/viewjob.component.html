@@ -1,3 +1,13 @@
+<!-- View Job heading -->
+
+<div class="viewJob-head">
+    <h1>View Job</h1>
+    <div class="GoJobList ">
+        <mat-icon>arrow_back</mat-icon>
+        <a (click)="GobackJoblist()">Go Back</a>
+    </div>
+</div>
+
 <!-- SG grid Table -->
 <div class="main-section">
     <div class="outlerback-section">
@@ -35,13 +45,15 @@
 
             <!-- Reupload Items file formet -->
             <div class="upload-btnOne" (click)="showUpload()">
-                <button class="upload-xcel" mat-raised-button color="primary">Reupload Items</button>
+                <button class="upload-xcel" mat-raised-button color="primary">
+                    <img src="assets/images/uploadButton-arrow.svg" /> <span>Reupload Items</span>
+                </button>
             </div>
             <ng-template #matDialog mat-dialog-container>
                 <div class="upload-title">
                     <h1 mat-dialog-title class="sure-message">Upload Items</h1>
-                    <span class="popup-image" (click)="closeDialog($event)">
-                        <img src="assets/images/Path 29948.svg" alt="popup-image">
+                    <span class="popup-image" (click)="closePop($event)">
+                        <em class="icon-Popup-close"></em>
                     </span>
                 </div>
                 <div class="center-line">
@@ -49,16 +61,26 @@
                 </div>
 
                 <div class="item-reference">
-                    <img src="assets/images/Icon awesome-info-circle.svg" alt="">
+                    <em class="icon-popup-warning"></em>
                     <span class="item-text">Items with same Reference Id will get replaced with the existing one.</span>
                 </div>
 
                 <div class="uploded-moc">
-                    <div class="common-upload-btn">
+
+                    <!-- <div class="common-upload-btn">
                         <button class="common-btn">
-                            <img src="../../../assets/images/Icon awesome-cloud-upload-alt.svg" alt="sd">
+                            <input matTooltipPostion="after" (click)="getName(name.value)" #name style="display:none"
+                                title="" id="fileInput" type='file' name="profile" accept=".csv, text/csv" />
+                            <em class="icon-popup-cloud-upload"></em>
                             Upload the Items list</button>
-                    </div>
+
+                        <input style="display: none;" #file matTooltipPostion="after" title="Upload the Items list"
+                            id="fileInput" #name type='file' name="profile" accept=".csv, text/csv"
+                            (change)="getFile($event)">
+
+                    </div> -->
+
+                    <input type="file" (change)="getFile($event)" />
                     <div>
                         <span class="zip-msg">(File extension allowed .zip)</span>
                     </div>
@@ -66,14 +88,23 @@
 
                 <div class="upload-btn" mat-dialog-actions align="center">
                     <button class="cancel" mat-button [mat-dialog-close]=" true">Cancel</button>
-                    <button class="upload" mat-button (click)="closeDialog($event)">Upload </button>
+                    <button class="upload" mat-button (click)="uploadDoc()">Upload </button>
                 </div>
             </ng-template>
         </div>
         <!-- Reupload Items file formet End-->
 
         <!-- Ag grid Table section -->
-        <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-alpine" [columnDefs]="columnDefs"
-            [rowData]="rowData" (gridReady)="onGridReady($event)"></ag-grid-angular>
+
+        <div class="aggrid-wrapper">
+            <ag-grid-angular
+                style="width: 100%; height: calc(100vh - 180px) !important; margin:auto !important;padding: 10px;"
+                class="ag-theme-alpine" [columnDefs]="columnDefs" [rowData]="rowData" [paginationPageSize]="500"
+                [defaultColDef]="defaultColDef" [pagination]="true" [suppressRowClickSelection]="true"
+                [cacheBlockSize]="500">
+            </ag-grid-angular>
+        </div>
+
+
     </div>
 </div>

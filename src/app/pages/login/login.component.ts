@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
   submit() {
     let data = {
       email: this.loginForm.value.email,
-      pass: this.loginForm.value.password
+      password: this.loginForm.value.password
     }
     this.https.register(data).subscribe((res: any) => {
       if (res.success) {

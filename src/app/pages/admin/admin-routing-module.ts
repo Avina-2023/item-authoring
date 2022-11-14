@@ -12,9 +12,15 @@ const routes: Routes = [
 
     {
         path: `${APP_CONSTANTS.ROUTES.ADMIN.JOBSLIST}`, component: JobslistComponent,
+        data: {
+            breadcrumb: 'Jobs List'
+        },
     },
     {
         path: `${APP_CONSTANTS.ROUTES.ADMIN.VIEWJOB}`, component: ViewjobComponent,
+        data: {
+            breadcrumb: 'Home'
+        },
     },
 
     {

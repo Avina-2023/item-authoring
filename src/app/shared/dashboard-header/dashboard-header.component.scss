@@ -41,6 +41,17 @@ mat-toolbar {
 .custom-select {
   width: 200px;
   height: 35px;
+  .selected {
+    height: 35px;
+    border: none;
+    outline: none;
+
+    border-right: 8px solid $primary-lite-white;
+    option {
+      border-radius: 0px !important;
+      padding: 20px !important;
+    }
+  }
 }
 .rightlog {
   color: $primary-back-white;
@@ -64,6 +75,7 @@ mat-toolbar {
   position: relative;
   top: 16px;
   cursor: pointer;
+  color: $primary-back-white;
 }
 
 label {
@@ -137,6 +149,9 @@ label {
   position: relative;
   top: 20px;
   margin-top: 24px;
+  em {
+    font-size: 55px;
+  }
 }
 .sure-message {
   text-align: center !important;

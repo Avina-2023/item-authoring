@@ -1,16 +1,13 @@
 <mat-drawer-container class="example-container mat-typography" autosize style="height: 100vh;">
     <mat-drawer #drawer mode="side" disableClose="true" opened="true">
         <mat-nav-list class="mathigh">
-            <mat-list-item (click)="navigateTo('jobslist')">
-                <ng-container>
-                    <li>
-                        <span>
-                            <img matTooltip="Jobs List" src="assets/images/6eebba19df90b99745033c579b20deef.svg" alt=""
-                                srcset="">
-                        </span>
-                    </li>
-                </ng-container>
-            </mat-list-item>
+            <ng-container>
+                <li matTooltip="Jobs List">
+                    <span>
+                        <em class="icon-JobList"> </em>
+                    </span>
+                </li>
+            </ng-container>
         </mat-nav-list>
     </mat-drawer>
 </mat-drawer-container>

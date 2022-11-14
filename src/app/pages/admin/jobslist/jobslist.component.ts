@@ -83,4 +83,6 @@ export class JobslistComponent implements OnInit {
   showviewjob() {
     this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.VIEWJOB)
   }
+
 }
+

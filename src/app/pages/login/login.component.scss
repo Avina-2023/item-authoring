@@ -79,11 +79,17 @@ label span.mat-form-field-required-marker {
 .login-icon-color {
   font-size: 21px;
 }
-.login-email-icon {
-  position: absolute;
-  width: 18px;
-  height: 14px;
-  top: -1px;
+.login-email-icon em {
+  font-size: 13px;
+  position: relative;
+  bottom: 4px;
+  left: 1px;
+}
+.login-pass-icon em {
+  font-size: 18px;
+  left: 1px;
+  position: relative;
+  bottom: 4px;
 }
 // Forgot password css
 .forgot {

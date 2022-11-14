@@ -1,27 +1,31 @@
 <!-- Upload Items button and Popup -->
 <div class="upload-btnOne" (click)="showUpload()">
-    <button class="upload-xcel" mat-raised-button color="primary">Upload Items</button>
+    <h1>Batch Job List</h1>
+    <button class="upload-xcel" mat-raised-button color="primary">
+        <img src="assets/images/uploadButton-arrow.svg" alt="">
+        <span> Upload Items</span>
+    </button>
 </div>
 
 <ng-template #matDialog mat-dialog-container>
     <div class="upload-title">
         <h1 mat-dialog-title class="sure-message">Upload Items</h1>
         <span class="popup-image" (click)="closeDialog($event)">
-            <img src="assets/images/Path 29948.svg" alt="popup-image">
+            <em class="icon-Popup-close"></em>
         </span>
     </div>
     <div class="center-line">
 
     </div>
     <div class="item-reference">
-        <img src="assets/images/Icon awesome-info-circle.svg" alt="">
+        <em class="icon-popup-warning"></em>
         <span class="item-text">Items with same Reference Id will get replaced with the existing one.</span>
     </div>
 
     <div class="uploded-moc">
         <div class="common-upload-btn">
             <button class="common-btn">
-                <img src="../../../assets/images/Icon awesome-cloud-upload-alt.svg" alt="sd">
+                <em class="icon-popup-cloud-upload"></em>
                 Upload the Items list</button>
         </div>
         <div>

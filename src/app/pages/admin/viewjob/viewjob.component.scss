@@ -1,12 +1,37 @@
 @import "../../../../themes/theme.scss";
 
+.viewJob-head {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 12px;
+  margin-top: 25px;
+  h1 {
+    color: $primary-darkBlue;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .GoJobList {
+    display: flex;
+    align-items: center;
+  }
+  mat-icon {
+    font-size: 22px;
+    margin-right: 5px;
+  }
+  a {
+    font-size: 13px;
+    font-weight: 500;
+    margin-right: 3px;
+    cursor: pointer;
+  }
+}
 .main-section {
-  margin-top: 3%;
   .outlerback-section {
     background-color: $primary-back-white;
-    width: 1292px;
-    height: 699px;
-    margin: auto;
+    width: auto;
+    height: 536px;
+    margin: 0px 15px;
+    overflow: hidden;
   }
   .batch-sec {
     display: flex;
@@ -61,6 +86,9 @@
   justify-content: end;
   margin: 11px 6px;
   .upload-xcel {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     width: 159px;
     height: 30px;
     background-color: $primary-batch-head;
@@ -68,6 +96,10 @@
     border-radius: 4px;
     color: $primary-back-white;
     cursor: pointer;
+    span {
+      color: $primary-back-white;
+      font-size: 13px;
+    }
   }
 }
 
@@ -102,7 +134,7 @@
   color: $primary-dull-gry;
 }
 
-.item-reference img {
+.item-reference em {
   width: 12px;
   height: 12px;
   margin-left: 15px;
@@ -142,6 +174,9 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    em {
+      font-size: 19px;
+    }
   }
   .zip-msg {
     display: flex;
@@ -182,3 +217,16 @@
 }
 
 // ag grid css start
+.aggrid-wrapper {
+  width: 100%;
+  padding: 8px;
+  height: 100%;
+}
+
+.ag-theme-alpine {
+  --ag-header-height: 30px;
+  --ag-header-foreground-color: $primary-common-black;
+  --ag-header-background-color: #edededba;
+  font-size: 13px;
+  font-weight: 500;
+}
