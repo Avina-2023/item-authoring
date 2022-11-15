@@ -73,6 +73,11 @@ export class ViewjobComponent implements OnInit {
 
   }
 
+  breadCrumData: any = {
+    previousPage: 'Batch Process >',
+    currentPage: 'Jobs List > View Job',
+    previousUrl: `${APP_CONSTANTS.ROUTES.ADMIN.VIEWJOB}`
+  };
   // Example Json For AG Grid
   rowData: any =
 
@@ -242,7 +247,7 @@ export class ViewjobComponent implements OnInit {
       {
         headerName: 'Category',
 
-        field: 'Subject',
+        field: 'Category',
         minWidth: 120,
         filter: 'agTextColumnFilter',
 
@@ -250,77 +255,89 @@ export class ViewjobComponent implements OnInit {
       {
         headerName: 'Sub-Category',
         filter: 'agTextColumnFilter',
-        field: 'age', minWidth: 120,
-        width: 180
+        field: 'Category', minWidth: 120,
+        width: 180,
+
       },
       {
         headerName: 'Topic',
         minWidth: 120,
-        field: 'country',
+
+        field: 'Topic',
       },
       {
         headerName: 'Difficulty Level',
-        minWidth: 120,
-        field: 'country',
+
+        field: 'DifficultyLevel',
       },
       {
         headerName: 'Question Type',
-        field: 'year',
+
+        field: 'Subject',
         minWidth: 120,
       },
       {
         headerName: 'Compentency',
-        field: 'date',
+
         minWidth: 120,
+        field: 'Subject',
       },
       {
         headerName: 'Skill',
-        field: 'sport',
+
         minWidth: 120,
+        field: 'Subject',
       },
       {
         headerName: 'Area',
-        field: 'gold',
+
         minWidth: 120,
+        field: 'Subject',
       },
       {
         headerName: 'Blooms Classification',
-        field: 'silver',
+
         minWidth: 120,
+        field: 'Subject',
       },
       {
         headerName: 'Sub-Classification',
-        field: 'bronze',
+
         minWidth: 120,
+        field: 'Subject',
       },
       {
         headerName: 'Updated By',
-        field: 'total',
+
         minWidth: 120,
+        field: 'Subject',
 
       },
       {
         headerName: 'Updated On',
-        field: 'total',
+
         minWidth: 120,
+        field: 'Subject',
 
       },
       {
         headerName: 'Version Number',
-        field: 'total', minWidth: 120,
-
+        minWidth: 120,
+        field: 'Subject',
       },
       {
         headerName: 'Status',
-        field: 'total', pinned: 'right',
+        pinned: 'right',
         minWidth: 50,
         width: 100,
+        field: 'Subject',
       },
       {
         headerName: 'Message',
-        field: 'total', pinned: 'right',
+        pinned: 'right',
         minWidth: 120,
         width: 100,
+        field: 'Subject',
       },
     ];
   }

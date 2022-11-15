@@ -6,8 +6,9 @@ export const APP_CONSTANTS = {
     AUTH: '/auth',
     ADMIN: {
       HOME: '/auth/admin',
-      DASHBOARD: '/auth/admin/dashboard',
+      // DASHBOARD: '/auth/admin/dashboard',
       JOBSLIST: '/auth/admin/jobslist',
+
       VIEWJOB: '/auth/admin/viewjob'
     }
   },
@@ -17,7 +18,7 @@ export const APP_CONSTANTS = {
     AUTH: 'auth',
     ADMIN: {
       HOME: 'admin',
-      DASHBOARD: 'dashboard',
+      // DASHBOARD: 'dashboard',
       JOBSLIST: 'jobslist',
       VIEWJOB: 'viewjob'
 

@@ -9,7 +9,6 @@ const routes: Routes = [
         children: [
             {
                 path: `${APP_CONSTANTS.ROUTES.ADMIN.HOME}`, loadChildren: () => import('../pages/admin/admin-module').then(m => m.AdminModule),
-                canActivate: [IsloggedInGuard]
             },
         ],
     }

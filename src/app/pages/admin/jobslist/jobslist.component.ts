@@ -57,9 +57,19 @@ export class JobslistComponent implements OnInit {
       "Processed": 0,
       "Errors": 20
     }
-  ]
+  ];
+
+  breadCrumData: any = {
+    previousPage: 'Batch Process >',
+    currentPage: 'Jobs List',
+    previousUrl: `${APP_CONSTANTS.ROUTES.ADMIN.VIEWJOB}`
+  };
+
+
   constructor(private appConfig: AppConfigService,
-    private dialog: MatDialog,) { }
+    private dialog: MatDialog,) {
+
+  }
 
   ngOnInit(): void {
 

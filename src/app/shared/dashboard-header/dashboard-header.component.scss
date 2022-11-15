@@ -1,4 +1,5 @@
 @import "../../../themes/theme.scss";
+
 mat-toolbar {
   position: relative;
   width: 100%;
@@ -6,22 +7,23 @@ mat-toolbar {
   box-sizing: border-box;
   height: 48px;
   background: $primary-login;
-  background: transparent
-    linear-gradient(90deg, #08558c 0%, #16bef0 51%, #4eba62 100%) 0% 0%
-    no-repeat padding-box;
+  background: transparent linear-gradient(90deg, #08558c 0%, #16bef0 51%, #4eba62 100%) 0% 0% no-repeat padding-box;
   margin-bottom: 0;
   display: flex;
   box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%) !important;
 }
+
 .img-wrapper {
   position: relative;
   top: 0px;
 }
+
 .dash-logo {
   height: inherit;
   background: $primary-back-white 0% 0% no-repeat padding-box;
   width: 131px;
   height: 48px;
+
   .beforeloginimgLT {
     position: absolute;
     width: 73px;
@@ -29,6 +31,7 @@ mat-toolbar {
     top: 8px;
   }
 }
+
 .head-title {
   top: 15px;
   left: 30px;
@@ -38,21 +41,25 @@ mat-toolbar {
   color: $primary-back-white;
   height: 21px;
 }
+
 .custom-select {
   width: 200px;
   height: 35px;
+
   .selected {
     height: 35px;
     border: none;
     outline: none;
 
     border-right: 8px solid $primary-lite-white;
+
     option {
       border-radius: 0px !important;
       padding: 20px !important;
     }
   }
 }
+
 .rightlog {
   color: $primary-back-white;
   font-size: 16px;
@@ -62,13 +69,22 @@ mat-toolbar {
   position: relative;
   right: 75px;
 }
+
 .center-code {
   border: 1px solid $primary-back-white;
   height: 30px;
   position: relative;
-  right: 55px;
+  right: 59px;
   top: 9px;
 }
+
+.admin-user {
+  position: relative;
+  padding-top: 15px;
+  right: 44px;
+  color: $primary-back-white;
+}
+
 .logout {
   height: 15px;
   right: 33px;
@@ -90,6 +106,7 @@ label {
   align-items: center;
   position: relative;
   right: 11%;
+
   select {
     font-size: 0.9rem;
     padding: 2px 5px;
@@ -100,6 +117,7 @@ label {
     color: $primary-common-gray;
   }
 }
+
 // Pop ip Logout
 .popupHead {
   text-align: center !important;
@@ -114,12 +132,14 @@ label {
   position: relative;
   top: 30px;
   margin: 0px 77px;
+
   .confirm {
     background: $primary-batch-head;
     color: $primary-back-white;
     margin-left: 10%;
   }
 }
+
 .con-btn {
   font-size: 14px;
   cursor: pointer;
@@ -131,6 +151,7 @@ label {
   height: 40px;
   border-radius: 4px;
 }
+
 .confirm {
   background-color: $primary-batch-head;
   border: 1px solid $primary-batch-head;
@@ -140,19 +161,23 @@ label {
   cursor: pointer;
   border-radius: 4px;
 }
+
 .example-spacer {
   flex: 1 1 auto;
 }
+
 .popup-image {
   display: flex;
   justify-content: center !important;
   position: relative;
   top: 20px;
   margin-top: 24px;
+
   em {
     font-size: 55px;
   }
 }
+
 .sure-message {
   text-align: center !important;
   position: relative;

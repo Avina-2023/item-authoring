@@ -8,12 +8,14 @@ import { AdminModule } from '../pages/admin/admin-module';
 import { FooterComponent } from './footer/footer.component';
 import { LogincommonsideComponent } from './logincommonside/logincommonside.component';
 import { MaterialModule } from '../material/material/material.module';
+import { BreadcrumComponent } from './breadcrum/breadcrum.component';
 @NgModule({
     declarations: [
         DashboardHeaderComponent,
         CommonSidebarComponent,
         FooterComponent,
         LogincommonsideComponent,
+        BreadcrumComponent,
     ],
     imports: [
         CommonModule,
@@ -26,7 +28,8 @@ import { MaterialModule } from '../material/material/material.module';
         CommonSidebarComponent,
         FooterComponent,
         LogincommonsideComponent,
-        MaterialModule
+        MaterialModule,
+        BreadcrumComponent
 
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],

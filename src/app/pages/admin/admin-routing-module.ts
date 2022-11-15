@@ -1,31 +1,34 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { IsloggedInGuard } from 'src/app/guards/islogged-in.guard';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
-import { HomedashboardComponent } from './homedashboard/homedashboard.component';
 import { JobslistComponent } from './jobslist/jobslist.component';
 import { ViewjobComponent } from './viewjob/viewjob.component';
 
 const routes: Routes = [
-    {
-        path: `${APP_CONSTANTS.ROUTES.ADMIN.DASHBOARD}`, component: HomedashboardComponent,
-    },
-
+    // {
+    //     path: `${APP_CONSTANTS.ROUTES.ADMIN.DASHBOARD}`, component: HomedashboardComponent,
+    // canActivate: [IsloggedInGuard],
+    // },
     {
         path: `${APP_CONSTANTS.ROUTES.ADMIN.JOBSLIST}`, component: JobslistComponent,
+        // canActivate: [IsloggedInGuard],
         data: {
-            breadcrumb: 'Jobs List'
+            breadcrumb: 'JobsList'
         },
+
     },
     {
         path: `${APP_CONSTANTS.ROUTES.ADMIN.VIEWJOB}`, component: ViewjobComponent,
+        canActivate: [IsloggedInGuard],
         data: {
-            breadcrumb: 'Home'
+            breadcrumb: 'ViewJob'
         },
     },
 
     {
         path: '',
-        redirectTo: `${APP_CONSTANTS.ROUTES.ADMIN.DASHBOARD}`,
+        redirectTo: `${APP_CONSTANTS.ROUTES.ADMIN.JOBSLIST}`,
         pathMatch: 'full',
     }
 ]

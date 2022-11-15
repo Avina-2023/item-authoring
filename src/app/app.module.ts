@@ -17,6 +17,7 @@ import { SetPasswordComponent } from './pages/set-password/set-password.componen
 import { ToastrModule } from 'ngx-toastr';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgxFileDropModule } from 'ngx-file-drop';
+import { LogoutGuard } from './guards/logout.guard';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { NgxFileDropModule } from 'ngx-file-drop';
     ),
   ],
 
-  providers: [IsAccessGuard, IsloggedInGuard],
+  providers: [IsAccessGuard, IsloggedInGuard, LogoutGuard],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

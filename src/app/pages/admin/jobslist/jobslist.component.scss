@@ -1,14 +1,19 @@
 @import "../../../../themes/theme.scss";
+
+
+// End BreadCrumb
 .upload-btnOne {
   display: flex;
   justify-content: space-between;
-  margin-top: 25px;
+  margin-top: 0px;
   padding: 0px 12px;
+
   h1 {
     color: $primary-darkBlue;
     font-size: 20px;
     font-weight: 500;
   }
+
   .upload-xcel {
     display: flex;
     justify-content: space-evenly;
@@ -21,31 +26,37 @@
     color: $primary-back-white;
     cursor: pointer;
   }
+
   .upload-xcel img {
     padding: 2px;
   }
+
   span {
     color: $primary-back-white;
     font-size: 13px;
   }
 }
+
 .upload-title {
   display: flex;
   justify-content: space-between;
   padding-top: 13px;
   padding-left: 20px;
   padding-right: 20px;
+
   .sure-message {
     font-size: 18px;
     font-weight: 500;
     position: relative;
     bottom: 5px;
   }
+
   .popup-image {
     height: 12px;
     width: 12px;
   }
 }
+
 .center-line {
   border: 1px solid;
   position: relative;
@@ -58,6 +69,7 @@
   justify-content: space-evenly;
   padding: 3px;
   margin: 0px 5px;
+
   .job-id {
     height: 70px;
     width: 204px;
@@ -65,11 +77,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     .jobid-sec {
       color: $primary-batch-head;
       font-weight: 500;
     }
   }
+
   .file-name {
     padding-left: 15px;
     padding-right: 15px;
@@ -79,43 +93,52 @@
     align-items: center;
     justify-content: space-between;
     background-color: $primary-back-white;
+
     .jobs-filetag {
       font-weight: 500;
       font-size: 15px;
       color: $primary-common-black;
       font-weight: 500;
     }
+
     .jobs-item {
       font-weight: 500;
       font-size: 15px;
       color: $primary-common-blue;
     }
+
     .jobs-proc {
       font-weight: 500;
       font-size: 15px;
       color: $primary-common-green;
     }
+
     .error-red {
       font-weight: 500;
       font-size: 15px;
       color: $primary-common-red;
     }
+
     .upload-span {
       border-left: 2px solid;
       color: $primary-dull-gray;
     }
+
     .p-l-10 {
       padding-left: 10px;
     }
+
     .line {
       border-left: 2px solid;
       height: 40px;
     }
   }
+
   .right-btn {
     border: 0;
     outline: none;
   }
+
   .right-arrow {
     display: flex;
     align-items: center;
@@ -133,6 +156,7 @@
   justify-content: center;
   padding-top: 45px;
 }
+
 .cancel {
   font-size: 14px;
   cursor: pointer;
@@ -144,6 +168,7 @@
   height: 30px;
   border-radius: 4px;
 }
+
 .upload {
   background: $primary-common-blue;
   color: $primary-back-white;
@@ -153,6 +178,7 @@
   border-radius: 4px;
   margin-left: 25px;
 }
+
 ::ng-deep mat-dialog-container {
   border-radius: 0px !important;
   padding: 0 !important;
@@ -164,12 +190,14 @@
   padding-top: 13px;
   padding-left: 20px;
   padding-right: 20px;
+
   .sure-message {
     font-size: 18px;
     font-weight: 500;
     position: relative;
     bottom: 5px;
   }
+
   .popup-image {
     height: 12px;
     width: 12px;
@@ -186,12 +214,14 @@
   margin: 0px 80px;
   position: relative;
   top: 15px;
+
   .common-upload-btn {
     display: flex;
     justify-content: center;
     position: relative;
     top: 38px;
   }
+
   .common-btn {
     padding: 20px;
     width: 240px;
@@ -202,10 +232,12 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+
     em {
       font-size: 19px;
     }
   }
+
   .zip-msg {
     display: flex;
     text-align: center;
@@ -216,12 +248,14 @@
     font-size: 12px;
   }
 }
+
 .item-reference em {
   width: 12px;
   height: 12px;
   margin-left: 15px;
   color: $primary-batch-head;
 }
+
 .item-text {
   font-weight: 500;
   font-size: 13px;
@@ -233,6 +267,7 @@
 .d-flex {
   display: flex;
 }
+
 span {
   font-size: 12px;
   color: $primary-common-black;

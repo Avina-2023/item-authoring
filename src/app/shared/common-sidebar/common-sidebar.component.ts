@@ -21,7 +21,7 @@ export class CommonSidebarComponent implements OnInit {
     if (value == 'jobslist') {
       this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.JOBSLIST)
     } else {
-      this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.DASHBOARD)
+      this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.JOBSLIST)
     }
   }
 
