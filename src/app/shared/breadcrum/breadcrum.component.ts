@@ -17,6 +17,7 @@ export class BreadcrumComponent implements OnInit {
   ngOnInit(): void {
   }
   navigate(url: any) {
+
     this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.JOBSLIST)
   }
 }

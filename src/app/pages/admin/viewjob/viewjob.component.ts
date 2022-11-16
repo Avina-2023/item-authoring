@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ColDef, ColumnApi, GridApi, SideBarDef } from 'ag-grid-community';
+// import { AgChartThemeOverrides, ColDef, ColSpanParams, GridApi, IColumnToolPanel, SideBarDef } from '@ag-grid-enterprise/all-modules';
 import { NgxFileDropEntry } from 'ngx-file-drop';
+import { ColDef, GridReadyEvent, SideBarDef } from '@ag-grid-community/core';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
+import { GridApi } from '@ag-grid-enterprise/all-modules';
 
 @Component({
   selector: 'app-viewjob',
@@ -11,33 +13,37 @@ import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
   styleUrls: ['./viewjob.component.scss']
 })
 export class ViewjobComponent implements OnInit {
-  public defaultColDef;
+  public gridColumnApi: any;
+  private gridApi!: GridApi;
   // upload doc
-
+  fileName: any;
+  fileSize: any;
+  newFile: any;
   file: any;
   name: string = '';
-  selectedCSVFile: File | undefined;
-  csvFileName: string | undefined;
-  csvRows: any = [];
-  showCsvFileInformation: boolean | undefined;
-  // sideBar = true;
   validFile = false;
+  url = null;
   showSizeError = {
     image: false,
     size: false
   };
-  signatureData: any;
+  dateFormatExist: boolean | undefined;
   selectedImage: any;
-  fileName: any;
-  fileSize: any;
-
-  // 
+  // Ag grid Variables
   length: any;
   pageSize: any;
   paginationPageSize = 500;
   columnDefs: any;
-
-
+  public defaultColDef = {
+    flex: 1,
+    minWidth: 100,
+    enableValue: true,
+    enableRowGroup: true,
+    enablePivot: true,
+    sortable: true,
+    filter: true,
+  };
+  public sideBar = 'filters';
 
   @ViewChild('matDialog', { static: false }) matDialogRef: any;
   batchList: any = [
@@ -49,30 +55,19 @@ export class ViewjobComponent implements OnInit {
     },
   ]
   toaster: any;
+
   constructor(
     private appconfig: AppConfigService,
     private dialog: MatDialog
-
-
   ) {
-    this.defaultColDef = {
-      flex: 1,
-      enableRowGroup: true,
-      enablePivot: true,
-      sortable: true,
-      resizable: true,
-      filter: true,
-      enableFilter: true,
-      minWidth: 220,
-      sideBar: 'filter',
-    };
+
   }
 
   ngOnInit(): void {
     this.tableview();
 
   }
-
+  // BreadCrumb Routing
   breadCrumData: any = {
     previousPage: 'Batch Process >',
     currentPage: 'Jobs List > View Job',
@@ -255,8 +250,9 @@ export class ViewjobComponent implements OnInit {
       {
         headerName: 'Sub-Category',
         filter: 'agTextColumnFilter',
-        field: 'Category', minWidth: 120,
-        width: 180,
+        field: 'SubCategory',
+        minWidth: 140,
+
 
       },
       {
@@ -267,62 +263,62 @@ export class ViewjobComponent implements OnInit {
       },
       {
         headerName: 'Difficulty Level',
-
+        minWidth: 150,
         field: 'DifficultyLevel',
       },
       {
         headerName: 'Question Type',
 
-        field: 'Subject',
-        minWidth: 120,
+        field: 'QuestionType',
+        minWidth: 140,
       },
       {
         headerName: 'Compentency',
 
-        minWidth: 120,
-        field: 'Subject',
+        minWidth: 140,
+        field: 'Compentency',
       },
       {
         headerName: 'Skill',
 
         minWidth: 120,
-        field: 'Subject',
+        field: 'Skill',
       },
       {
         headerName: 'Area',
 
         minWidth: 120,
-        field: 'Subject',
+        field: 'Area',
       },
       {
         headerName: 'Blooms Classification',
 
-        minWidth: 120,
+        minWidth: 200,
         field: 'Subject',
       },
       {
         headerName: 'Sub-Classification',
 
-        minWidth: 120,
+        minWidth: 180,
         field: 'Subject',
       },
       {
         headerName: 'Updated By',
 
-        minWidth: 120,
+        minWidth: 140,
         field: 'Subject',
 
       },
       {
         headerName: 'Updated On',
 
-        minWidth: 120,
+        minWidth: 140,
         field: 'Subject',
 
       },
       {
         headerName: 'Version Number',
-        minWidth: 120,
+        minWidth: 160,
         field: 'Subject',
       },
       {
@@ -330,14 +326,30 @@ export class ViewjobComponent implements OnInit {
         pinned: 'right',
         minWidth: 50,
         width: 100,
-        field: 'Subject',
+        field: 'Status',
+        cellRenderer: (params: any) => {
+          if (params.value == 'Processed') {
+            return `<span style="color:yellow">` + params.value + `</span>`;
+          } else {
+            return `<span style="color:red">` + params.value + `</span>`;
+          }
+
+        }
       },
       {
         headerName: 'Message',
         pinned: 'right',
-        minWidth: 120,
+        minWidth: 200,
         width: 100,
-        field: 'Subject',
+        field: 'Message',
+        cellRenderer: (params: any) => {
+          if (params.value == 'Item Insterted') {
+            return `<span style="color:red">` + params.value + `</span>`;
+          } else {
+            return params.value;
+          }
+
+        }
       },
     ];
   }
@@ -359,33 +371,42 @@ export class ViewjobComponent implements OnInit {
     this.dialog.closeAll();
   }
 
-  onGridReady(e: any) {
 
-  }
   GobackJoblist() {
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.JOBSLIST)
   }
 
-  // async onSelectFile(event: any) {
-  //   this.validFile = false;
-  //   if (event.target.files && event.target.files[0].name.includes('.csv')) {
-  //     console.log(event.target.files)
-
-  //   } else {
-  //     alert("no")
-  //   }
-  // }
-
-
-  getFile(event: any) {
-    this.file = event.target.files[0];
+  async onSelectFile(event: any) {
+    this.validFile = false;
+    if (event.target.files && event.target.files[0].name.includes('.zip')) {
+      this.showSizeError.size = false;
+      if (event.target.files[0].size < 2000000) {
+        this.fileName = event.target.files[0]['name'];
+        this.fileSize = (Number(event.target.files[0]['size']) / 1024).toFixed(2);
+        this.selectedImage = event.target.files[0];
+      }
+      else {
+        alert("no")
+      }
+    }
   }
   uploadDoc() {
-    let formData = new FormData();
-    formData.set("name", this.name);
-    formData.set("file", this.file);
-    console.log(this.file);
 
+    alert('Uploaded Successfully..!!!')
+
+  }
+  delete() {
+    this.showSizeError.image = false;
+    this.showSizeError.size = false;
+    this.validFile = false;
+    this.dateFormatExist = false;
+    this.url = null;
+  }
+
+  onGridReady(params: any) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.gridApi.closeToolPanel();
   }
 }
 

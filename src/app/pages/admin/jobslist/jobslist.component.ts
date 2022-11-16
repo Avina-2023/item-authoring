@@ -62,7 +62,7 @@ export class JobslistComponent implements OnInit {
   breadCrumData: any = {
     previousPage: 'Batch Process >',
     currentPage: 'Jobs List',
-    previousUrl: `${APP_CONSTANTS.ROUTES.ADMIN.VIEWJOB}`
+    previousUrl: `${APP_CONSTANTS.ROUTES.ADMIN.JOBSLIST}`
   };
 
 

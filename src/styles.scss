@@ -1,26 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../src/themes/theme.scss";
-@import "ag-grid-community/dist/styles/ag-grid.css";
-@import "ag-grid-community/dist/styles/ag-theme-alpine.css";
-@import "ag-grid-community/styles/ag-grid.css";
-@import "ag-grid-community/styles/ag-theme-alpine.css";
+@import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
+@import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
 @import "../src/assets/fonts/font.scss";
+
 * {
   padding: 0%;
   margin: 0%;
   box-sizing: border-box;
 }
+
 body {
   font-family: "Roboto", sans-serif !important;
   font-size: 14px;
   overflow-y: hidden;
 }
+
 html,
 body {
   height: 100%;
   overflow: hidden;
   overflow-y: hidden !important;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;

@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="upload-span">
-                <div class="p-l-10">
+                <div class="p-l-10 uniq-process">
                     <span>Processed</span>
                     <div class="jobs-proc">
                         {{batch.Processed}}
@@ -65,31 +65,38 @@
                     <em class="icon-popup-warning"></em>
                     <span class="item-text">Items with same Reference Id will get replaced with the existing one.</span>
                 </div>
-
+                <!-- Main Upload Document Formet -->
                 <div class="uploded-moc">
-
-                    <!-- <div class="common-upload-btn">
-                        <button class="common-btn">
-                            <input matTooltipPostion="after" (click)="getName(name.value)" #name style="display:none"
-                                title="" id="fileInput" type='file' name="profile" accept=".csv, text/csv" />
+                    <div class="common-upload-btn" for="fileInput" *ngIf="!fileName">
+                        <button (click)="file.click()" class="common-btn">
                             <em class="icon-popup-cloud-upload"></em>
                             Upload the Items list</button>
 
-                        <input style="display: none;" #file matTooltipPostion="after" title="Upload the Items list"
-                            id="fileInput" #name type='file' name="profile" accept=".csv, text/csv"
-                            (change)="getFile($event)">
+                        <input #file style="display:none" [matTooltip]="url ? '' : 'No File Chosen'"
+                            matTooltipPostion="after" class="common-btn" id="fileInput" type='file' name="profile"
+                            accept=".zip, text/zip" (change)="onSelectFile($event)" Upload the Items list />
 
-                    </div> -->
-
-                    <input type="file" (change)="getFile($event)" />
-                    <div>
-                        <span class="zip-msg">(File extension allowed .zip)</span>
                     </div>
+                    <div class="common-upload-btn" *ngIf="fileName">
+                        <div class="list">
+                            <span class="urlSpan" matTooltipPosition="after"
+                                matTooltip="{{fileName}} ({{fileSize}} kb)">({{fileName}} ({{fileSize}} kb)</span>
+                            <span><img (click)="delete()" src="/assets/images/upload-delete.svg" alt=""></span>
+                        </div>
+                    </div>
+                    <div class="text">
+                        <span>*</span> (file extension allowed .zip)
+                    </div>
+                    <div *ngIf="showSizeError['size']" class="error">Maximum file size limit is 2 MB</div>
+                    <div *ngIf="showSizeError['image']" class="error">Accept only .zip files</div>
+                    <div *ngIf="validFile" class="error">Please upload file with correct headers</div>
+                    <div *ngIf="dateFormatExist" class="error">Data should not be in the date format</div>
                 </div>
-
+                <!-- Main Upload Document Formet End-->
                 <div class="upload-btn" mat-dialog-actions align="center">
-                    <button class="cancel" mat-button [mat-dialog-close]=" true">Cancel</button>
-                    <button class="upload" mat-button (click)="uploadDoc()">Upload </button>
+                    <button class="cancel" (click)="delete()" mat-button [mat-dialog-close]=" true">Cancel</button>
+                    <button class="upload" mat-button (click)="uploadDoc()">Upload
+                    </button>
                 </div>
             </ng-template>
         </div>
@@ -101,8 +108,8 @@
             <ag-grid-angular
                 style="width: 100%; height: calc(100vh - 180px) !important; margin:auto !important;padding: 10px;"
                 class="ag-theme-alpine" [columnDefs]="columnDefs" [rowData]="rowData" [paginationPageSize]="500"
-                [defaultColDef]="defaultColDef" [pagination]="true" [suppressRowClickSelection]="true"
-                [cacheBlockSize]="500">
+                [defaultColDef]="defaultColDef" (gridReady)="onGridReady($event)" [sideBar]="sideBar"
+                [pagination]="true" [suppressRowClickSelection]="true" [cacheBlockSize]="500">
             </ag-grid-angular>
         </div>
 
