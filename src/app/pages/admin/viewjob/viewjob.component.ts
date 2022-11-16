@@ -75,7 +75,6 @@ export class ViewjobComponent implements OnInit {
   };
   // Example Json For AG Grid
   rowData: any =
-
     [{
       "ReferenceId": "9899805",
       "Subject": "Quantitative",
@@ -88,7 +87,7 @@ export class ViewjobComponent implements OnInit {
       "Skill": "GET Drive",
       "Area": "Flow Chart",
       "Status": "Processed",
-      "Message": "Item Insterted"
+      "Message": "Item Updated"
     },
     {
       "ReferenceId": "9899805",
@@ -143,7 +142,7 @@ export class ViewjobComponent implements OnInit {
       "Compentency": "Software Developer",
       "Skill": "GET Drive",
       "Area": "Flow Chart",
-      "Status": "In Progress",
+      "Status": "Processed",
       "Message": "Question type is missing"
     },
     {
@@ -157,7 +156,7 @@ export class ViewjobComponent implements OnInit {
       "Compentency": "Software Developer",
       "Skill": "GET Drive",
       "Area": "Flow Chart",
-      "Status": "Processed",
+      "Status": " In Processed",
       "Message": "Item Insterted"
     },
     {
@@ -172,20 +171,6 @@ export class ViewjobComponent implements OnInit {
       "Skill": "GET Drive",
       "Area": "Flow Chart",
       "Status": "In Progress",
-      "Message": "Question type is missing"
-    },
-    {
-      "ReferenceId": "9899805",
-      "Subject": "Quantitative",
-      "Category": "Aptitude",
-      "SubCategory": "Analytics",
-      "Topic": "Assesment",
-      "DifficultyLevel": "Low",
-      "QuestionType": "Numerical",
-      "Compentency": "Software Developer",
-      "Skill": "GET Drive",
-      "Area": "Flow Chart",
-      "Status": "Processed",
       "Message": "Item Insterted"
     },
     {
@@ -199,8 +184,22 @@ export class ViewjobComponent implements OnInit {
       "Compentency": "Software Developer",
       "Skill": "GET Drive",
       "Area": "Flow Chart",
-      "Status": "Processed",
-      "Message": "Item Insterted"
+      "Status": "In Processed",
+      "Message": "Area field is missing"
+    },
+    {
+      "ReferenceId": "9899805",
+      "Subject": "Quantitative",
+      "Category": "Aptitude",
+      "SubCategory": "Analytics",
+      "Topic": "Assesment",
+      "DifficultyLevel": "Low",
+      "QuestionType": "Numerical",
+      "Compentency": "Software Developer",
+      "Skill": "GET Drive",
+      "Area": "Flow Chart",
+      "Status": "In Processed",
+      "Message": "skill field is missing"
     },
     {
       "ReferenceId": "9899805",
@@ -214,7 +213,21 @@ export class ViewjobComponent implements OnInit {
       "Skill": "GET Drive",
       "Area": "Flow Chart",
       "Status": "Processed",
-      "Message": "Item Insterted"
+      "Message": "Item already exists"
+    },
+    {
+      "ReferenceId": "9899805",
+      "Subject": "Quantitative",
+      "Category": "Aptitude",
+      "SubCategory": "Analytics",
+      "Topic": "Assesment",
+      "DifficultyLevel": "Low",
+      "QuestionType": "Numerical",
+      "Compentency": "Software Developer",
+      "Skill": "GET Drive",
+      "Area": "Flow Chart",
+      "Status": "Processed",
+      "Message": "subject filed is missing"
     },
     ];
   // json End
@@ -324,14 +337,14 @@ export class ViewjobComponent implements OnInit {
       {
         headerName: 'Status',
         pinned: 'right',
-        minWidth: 50,
+        minWidth: 120,
         width: 100,
         field: 'Status',
         cellRenderer: (params: any) => {
           if (params.value == 'Processed') {
-            return `<span style="color:yellow">` + params.value + `</span>`;
+            return `<span style="color:green">` + params.value + `</span>`;
           } else {
-            return `<span style="color:red">` + params.value + `</span>`;
+            return `<span style="color:yellow">` + params.value + `</span>`;
           }
 
         }
@@ -343,10 +356,10 @@ export class ViewjobComponent implements OnInit {
         width: 100,
         field: 'Message',
         cellRenderer: (params: any) => {
-          if (params.value == 'Item Insterted') {
-            return `<span style="color:red">` + params.value + `</span>`;
+          if (params.value == 'Item Insterted' || params.value == 'Item Updated') {
+            return `<span style="color:black">` + params.value + `</span>`;
           } else {
-            return params.value;
+            return `<img src="/assets/images/Icon material-error-outline.svg"></img> <span style="color:#C02222">` + params.value + `</span>`;
           }
 
         }

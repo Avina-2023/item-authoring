@@ -273,6 +273,29 @@
   }
 }
 
+// Upload successfully the popup has show css
+.greentic-popup em {
+  font-size: 65px;
+  padding-top: 11px;
+  display: flex;
+  justify-content: center;
+}
+
+.batch-process {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  padding-top: 20px;
+}
+
+.batch {
+  position: relative;
+  text-align: center;
+  top: 15px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
 // ag grid css start
 .aggrid-wrapper {
   width: 100%;
