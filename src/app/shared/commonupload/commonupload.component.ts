@@ -50,7 +50,8 @@ export class CommonuploadComponent implements OnInit {
     fd.append('uploadFile', this.selectedImage);
     this.http.uploaded(fd).subscribe((response: any) => {
       if (response.success == true) {
-        this.fileName = response;
+        // this.fileName = response;
+        this.newFile = response;
       } else {
         this.toastr.error(response.message);
       }
