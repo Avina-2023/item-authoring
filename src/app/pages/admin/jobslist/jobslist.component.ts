@@ -9,7 +9,6 @@ import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
   styleUrls: ['./jobslist.component.scss']
 })
 export class JobslistComponent implements OnInit {
-  @ViewChild('matDialog', { static: false }) matDialogRef: any;
 
   jodlist: any = [
     {
@@ -73,22 +72,6 @@ export class JobslistComponent implements OnInit {
 
   ngOnInit(): void {
 
-  }
-  showUpload() {
-    this.matDialogOpen();
-  }
-  matDialogOpen() {
-    const dialogRef = this.dialog.open(this.matDialogRef, {
-      width: '550px',
-      height: '325px'
-
-    });
-  }
-  closeDialog(e: any) {
-    this.dialog.closeAll();
-  }
-  closepopup() {
-    this.dialog.closeAll();
   }
   showviewjob() {
     this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.VIEWJOB)

@@ -1,67 +1,17 @@
 @import "../../../../themes/theme.scss";
 
-
-// End BreadCrumb
-.upload-btnOne {
+.batch-job-list {
   display: flex;
   justify-content: space-between;
-  margin-top: 0px;
-  padding: 0px 12px;
+  padding: 0px 6px;
+  margin-top: -5px;
 
   h1 {
     color: $primary-darkBlue;
+    padding-left: 5px;
     font-size: 20px;
     font-weight: 500;
   }
-
-  .upload-xcel {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 136px;
-    height: 35px;
-    background-color: $primary-batch-head;
-    border: 0;
-    border-radius: 4px;
-    color: $primary-back-white;
-    cursor: pointer;
-  }
-
-  .upload-xcel img {
-    padding: 2px;
-  }
-
-  span {
-    color: $primary-back-white;
-    font-size: 13px;
-  }
-}
-
-.upload-title {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 13px;
-  padding-left: 20px;
-  padding-right: 20px;
-
-  .sure-message {
-    font-size: 18px;
-    font-weight: 500;
-    position: relative;
-    bottom: 5px;
-  }
-
-  .popup-image {
-    height: 12px;
-    width: 12px;
-  }
-}
-
-.center-line {
-  border: 1px solid;
-  position: relative;
-  bottom: 15px;
-  color: $primary-dull-gry;
 }
 
 .joblist-wrapper {
@@ -149,119 +99,6 @@
     cursor: pointer;
     background-color: $primary-back-white;
   }
-}
-
-.upload-btn {
-  display: flex;
-  justify-content: center;
-  padding-top: 45px;
-}
-
-.cancel {
-  font-size: 14px;
-  cursor: pointer;
-  background: $primary-back-white;
-  border: 1px solid $primary-common-gray;
-  font-weight: 500;
-  border-radius: 4px;
-  width: 105px;
-  height: 30px;
-  border-radius: 4px;
-}
-
-.upload {
-  background: $primary-common-blue;
-  color: $primary-back-white;
-  width: 105px;
-  height: 30px;
-  border: none;
-  border-radius: 4px;
-  margin-left: 25px;
-}
-
-::ng-deep mat-dialog-container {
-  border-radius: 0px !important;
-  padding: 0 !important;
-}
-
-.upload-title {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 13px;
-  padding-left: 20px;
-  padding-right: 20px;
-
-  .sure-message {
-    font-size: 18px;
-    font-weight: 500;
-    position: relative;
-    bottom: 5px;
-  }
-
-  .popup-image {
-    height: 12px;
-    width: 12px;
-  }
-}
-
-.uploded-moc {
-  position: relative;
-  width: auto;
-  height: 130px;
-  background: $primaryDashed-bg 0% 0% no-repeat padding-box;
-  border: 0.5px dashed $primaryBorder-dashed;
-  opacity: 1;
-  margin: 0px 80px;
-  position: relative;
-  top: 15px;
-
-  .common-upload-btn {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    top: 38px;
-  }
-
-  .common-btn {
-    padding: 20px;
-    width: 240px;
-    height: 50px;
-    background: $primaryDashed-bg 0% 0% no-repeat padding-box;
-    border-color: $primaryUpload-border;
-    opacity: 1;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-
-    em {
-      font-size: 19px;
-    }
-  }
-
-  .zip-msg {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    position: relative;
-    top: 45px;
-    font-weight: 500;
-    font-size: 12px;
-  }
-}
-
-.item-reference em {
-  width: 12px;
-  height: 12px;
-  margin-left: 15px;
-  color: $primary-batch-head;
-}
-
-.item-text {
-  font-weight: 500;
-  font-size: 13px;
-  position: relative;
-  bottom: 1px;
-  left: 4px;
 }
 
 .d-flex {

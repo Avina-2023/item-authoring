@@ -1,0 +1,197 @@
+@import '../../../themes/theme.scss';
+
+// Upload excel button
+.upload-btnOne {
+    display: flex;
+    justify-content: end;
+    margin: 11px 6px;
+
+    .upload-xcel {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 159px;
+        height: 30px;
+        background-color: $primary-batch-head;
+        border: 0;
+        border-radius: 4px;
+        color: $primary-back-white;
+        cursor: pointer;
+
+        span {
+            color: $primary-back-white;
+            font-size: 13px;
+        }
+    }
+}
+
+// upload excel popup
+::ng-deep mat-dialog-container {
+    border-radius: 0px !important;
+    padding: 0 !important;
+}
+
+.upload-title {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 13px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    .sure-message {
+        font-size: 18px;
+        font-weight: 500;
+        position: relative;
+        bottom: 5px;
+    }
+
+    .popup-image {
+        height: 12px;
+        width: 12px;
+        cursor: pointer;
+    }
+}
+
+// center Line For popup message
+.center-line {
+    border: 1px solid;
+    position: relative;
+    bottom: 15px;
+    color: $primary-dull-gry;
+}
+
+.item-reference em {
+    width: 12px;
+    height: 12px;
+    margin-left: 15px;
+    color: $primary-batch-head;
+}
+
+.item-text {
+    font-weight: 500;
+    font-size: 13px;
+    position: relative;
+    bottom: 1px;
+    left: 4px;
+}
+
+.uploded-moc {
+    position: relative;
+    width: auto;
+    height: 130px;
+    background: $primaryDashed-bg 0% 0% no-repeat padding-box;
+    border: 0.5px dashed $primaryBorder-dashed;
+    opacity: 1;
+    margin: 0px 80px;
+    position: relative;
+    top: 15px;
+
+    .common-upload-btn {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        top: 38px;
+    }
+
+    .common-btn {
+        width: 240px;
+        height: 50px;
+        background-color: $primaryDashed-bg;
+        border-color: $primaryUpload-border;
+        opacity: 1;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        cursor: pointer;
+
+        em {
+            font-size: 19px;
+        }
+    }
+
+
+    .text {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        position: relative;
+        top: 50px;
+        font-weight: 500;
+        font-size: 12px;
+
+        span {
+            color: $primary-field;
+        }
+    }
+
+    .list {
+        cursor: pointer;
+        width: 255px;
+        height: 29px;
+        margin-top: 12px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        font-size: 13px;
+        background-color: $primary-filename;
+
+        img {
+            position: relative;
+            top: 3px;
+            cursor: pointer;
+        }
+    }
+}
+
+// popup image cancel and Upload button inside the popup
+.upload-btn {
+    display: flex;
+    justify-content: center;
+    padding-top: 45px;
+
+    .cancel {
+        font-size: 14px;
+        cursor: pointer;
+        background: $primary-back-white;
+        border: 1px solid $primary-common-gray;
+        font-weight: 500;
+        border-radius: 4px;
+        width: 105px;
+        height: 30px;
+        border-radius: 4px;
+    }
+
+    .upload {
+        background: $primary-common-blue;
+        color: $primary-back-white;
+        width: 105px;
+        height: 30px;
+        border: none;
+        border-radius: 4px;
+        margin-left: 25px;
+        cursor: pointer;
+    }
+}
+
+// Upload successfully the popup has show css
+.greentic-popup em {
+    font-size: 65px;
+    padding-top: 11px;
+    display: flex;
+    justify-content: center;
+}
+
+.batch-process {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    padding-top: 20px;
+}
+
+.batch {
+    position: relative;
+    text-align: center;
+    top: 15px;
+    font-size: 18px;
+    font-weight: 500;
+}

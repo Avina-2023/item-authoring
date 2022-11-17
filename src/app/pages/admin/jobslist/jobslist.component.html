@@ -1,47 +1,10 @@
 <!-- BreadCrumb Child to parent -->
 <app-breadcrum [breadCrumData]="breadCrumData"></app-breadcrum>
-
-
-<!-- Upload Items button and Popup -->
-<div class="upload-btnOne" (click)="showUpload()">
+<div class="batch-job-list">
     <h1>Batch Job List</h1>
-    <button class="upload-xcel" mat-raised-button color="primary">
-        <img src="assets/images/uploadButton-arrow.svg" alt="">
-        <span> Upload Items</span>
-    </button>
+    <app-commonupload></app-commonupload>
 </div>
 
-<ng-template #matDialog mat-dialog-container>
-    <div class="upload-title">
-        <h1 mat-dialog-title class="sure-message">Upload Items</h1>
-        <span class="popup-image" (click)="closeDialog($event)">
-            <em class="icon-Popup-close"></em>
-        </span>
-    </div>
-    <div class="center-line">
-
-    </div>
-    <div class="item-reference">
-        <em class="icon-popup-warning"></em>
-        <span class="item-text">Items with same Reference Id will get replaced with the existing one.</span>
-    </div>
-
-    <div class="uploded-moc">
-        <div class="common-upload-btn">
-            <button class="common-btn">
-                <em class="icon-popup-cloud-upload"></em>
-                Upload the Items list</button>
-        </div>
-        <div>
-            <span class="zip-msg">(File extension allowed .zip)</span>
-        </div>
-    </div>
-
-    <div class="upload-btn" mat-dialog-actions align="center">
-        <button class="cancel" mat-button [mat-dialog-close]=" true">Cancel</button>
-        <button class="upload" mat-button (click)="closeDialog($event)">Upload </button>
-    </div>
-</ng-template>
 
 <!-- Batch job id section -->
 <div class="joblist-wrapper" *ngFor="let jobs of jodlist">

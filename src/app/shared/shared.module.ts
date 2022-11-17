@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LogincommonsideComponent } from './logincommonside/logincommonside.component';
 import { MaterialModule } from '../material/material/material.module';
 import { BreadcrumComponent } from './breadcrum/breadcrum.component';
+import { CommonuploadComponent } from './commonupload/commonupload.component';
 @NgModule({
     declarations: [
         DashboardHeaderComponent,
@@ -16,6 +17,7 @@ import { BreadcrumComponent } from './breadcrum/breadcrum.component';
         FooterComponent,
         LogincommonsideComponent,
         BreadcrumComponent,
+        CommonuploadComponent,
     ],
     imports: [
         CommonModule,
@@ -29,7 +31,8 @@ import { BreadcrumComponent } from './breadcrum/breadcrum.component';
         FooterComponent,
         LogincommonsideComponent,
         MaterialModule,
-        BreadcrumComponent
+        BreadcrumComponent,
+        CommonuploadComponent,
 
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],

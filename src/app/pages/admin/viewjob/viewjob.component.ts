@@ -1,8 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-// import { AgChartThemeOverrides, ColDef, ColSpanParams, GridApi, IColumnToolPanel, SideBarDef } from '@ag-grid-enterprise/all-modules';
-import { NgxFileDropEntry } from 'ngx-file-drop';
-import { ColDef, GridReadyEvent, SideBarDef } from '@ag-grid-community/core';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { GridApi } from '@ag-grid-enterprise/all-modules';
@@ -15,21 +12,6 @@ import { GridApi } from '@ag-grid-enterprise/all-modules';
 export class ViewjobComponent implements OnInit {
   public gridColumnApi: any;
   private gridApi!: GridApi;
-  // upload doc
-  fileName: any;
-  fileSize: any;
-  newFile: any;
-  file: any;
-  name: string = '';
-  validFile = false;
-  url = null;
-  showSizeError = {
-    image: false,
-    size: false
-  };
-  dateFormatExist: boolean | undefined;
-  selectedImage: any;
-  // Ag grid Variables
   length: any;
   pageSize: any;
   paginationPageSize = 500;
@@ -44,8 +26,6 @@ export class ViewjobComponent implements OnInit {
     filter: true,
   };
   public sideBar = 'filters';
-
-  @ViewChild('matDialog', { static: false }) matDialogRef: any;
   batchList: any = [
     {
       "JopId": "Batch Jop Id - 121",
@@ -342,9 +322,9 @@ export class ViewjobComponent implements OnInit {
         field: 'Status',
         cellRenderer: (params: any) => {
           if (params.value == 'Processed') {
-            return `<span style="color:green">` + params.value + `</span>`;
+            return `<span style="color:#5CB646">` + params.value + `</span>`;
           } else {
-            return `<span style="color:yellow">` + params.value + `</span>`;
+            return `<span style="color:#FFCE00">` + params.value + `</span>`;
           }
 
         }
@@ -357,7 +337,7 @@ export class ViewjobComponent implements OnInit {
         field: 'Message',
         cellRenderer: (params: any) => {
           if (params.value == 'Item Insterted' || params.value == 'Item Updated') {
-            return `<span style="color:black">` + params.value + `</span>`;
+            return `<span style="color:#000000">` + params.value + `</span>`;
           } else {
             return `<img src="/assets/images/Icon material-error-outline.svg"></img> <span style="color:#C02222">` + params.value + `</span>`;
           }
@@ -367,53 +347,8 @@ export class ViewjobComponent implements OnInit {
     ];
   }
 
-  showUpload() {
-    this.matDialogOpen();
-  }
-  matDialogOpen() {
-    const dialogRef = this.dialog.open(this.matDialogRef, {
-      width: '550px',
-      height: '325px'
-
-    });
-  }
-  closePop(e: any) {
-    this.dialog.closeAll();
-  }
-  closepopup() {
-    this.dialog.closeAll();
-  }
-
-
   GobackJoblist() {
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.JOBSLIST)
-  }
-
-  async onSelectFile(event: any) {
-    this.validFile = false;
-    if (event.target.files && event.target.files[0].name.includes('.zip')) {
-      this.showSizeError.size = false;
-      if (event.target.files[0].size < 2000000) {
-        this.fileName = event.target.files[0]['name'];
-        this.fileSize = (Number(event.target.files[0]['size']) / 1024).toFixed(2);
-        this.selectedImage = event.target.files[0];
-      }
-      else {
-        alert("no")
-      }
-    }
-  }
-  uploadDoc() {
-
-    alert('Uploaded Successfully..!!!')
-
-  }
-  delete() {
-    this.showSizeError.image = false;
-    this.showSizeError.size = false;
-    this.validFile = false;
-    this.dateFormatExist = false;
-    this.url = null;
   }
 
   onGridReady(params: any) {
