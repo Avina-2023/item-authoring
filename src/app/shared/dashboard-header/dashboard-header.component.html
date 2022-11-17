@@ -1,0 +1,48 @@
+<mat-toolbar>
+    <span class="img-wrapper dash-logo">
+        <img alt="main-login-logo" class="beforeloginimgLT" src="assets/images/L&T_logo.svg">
+    </span>
+    <div class="head-title">
+        <span>Test Authoring System</span>
+    </div>
+    <span class="example-spacer"></span>
+    <div class="border-select">
+        <label for="selectName" id="org-name">Organisation Name: </label>
+        <div class="custom-select">
+            <select class="selected">
+                <option value="0">L&T EduTech</option>
+                <option value="1">Adani</option>
+                <option value="2">Candidate</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Local Storage First name -->
+    <span class="rightlog">
+        {{username ? '' + username : ''}}
+    </span>
+
+    <div class="center-code">
+    </div>
+
+    <div class="admin-user">
+        <span>Admin</span>
+    </div>
+    <!-- Logout button -->
+    <span matTooltip="Logout" class="logout" (click)="logOut()">
+        <em class="icon-logout"></em>
+    </span>
+</mat-toolbar>
+
+<!-- Logout Pop-up -->
+<ng-template #matDialog>
+    <span class="popup-image">
+        <em class="icon-popup-warning-ylw"></em>
+    </span>
+    <h1 mat-dialog-title class="sure-message">Are you Sure?</h1>
+    <h1 class="popupHead" mat-dialog-title>You want to logout from the application</h1>
+    <div class="action" mat-dialog-actions>
+        <button class="con-btn" mat-button [mat-dialog-close]="true">CANCEL</button>
+        <button class="confirm" mat-button (click)="closeDialog($event)">YES </button>
+    </div>
+</ng-template>

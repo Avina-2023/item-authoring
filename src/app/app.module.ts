@@ -1,22 +1,57 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
+import { BrowserModule } from '@angular/platform-browser';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginpageComponent } from './login/loginpage/loginpage.component';
-import { SignupComponent } from './login/signup/signup.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material/material.module';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { IsAccessGuard } from './guards/is-access.guard';
+import { LoginComponent } from './pages/login/login.component';
+import { SharedModule } from './shared/shared.module';
+import { IsloggedInGuard } from './guards/islogged-in.guard';
+import { ForgotComponent } from './pages/forgot/forgot.component';
+import { SetPasswordComponent } from './pages/set-password/set-password.component';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxFileDropModule } from 'ngx-file-drop';
+import { LogoutGuard } from './guards/logout.guard';
+import { AgGridModule } from 'ag-grid-angular';
+import 'ag-grid-enterprise';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginpageComponent,
-    SignupComponent
+    LoginComponent,
+    ForgotComponent,
+    SetPasswordComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    RouterModule,
+    HttpClientModule,
+    SharedModule,
+    AgGridModule,
+    NgxFileDropModule,
+    ToastrModule.forRoot(
+      {
+        timeOut: 3000,
+        preventDuplicates: true,
+        maxOpened: 1,
+        autoDismiss: true,
+        progressBar: true,
+        progressAnimation: 'increasing',
+        closeButton: true
+      }
+    ),
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+
+  providers: [IsAccessGuard, IsloggedInGuard, LogoutGuard],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
 export class AppModule { }

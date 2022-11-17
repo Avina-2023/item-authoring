@@ -1,0 +1,97 @@
+<!-- BreadCrumb Child to parent -->
+<app-breadcrum [breadCrumData]="breadCrumData"></app-breadcrum>
+<div class="batch-job-list">
+    <h1>Batch Job List</h1>
+    <!-- <app-commonupload></app-commonupload> -->
+    <div class="upload-btnOne" (click)="showUpload()">
+        <button class="upload-xcel" mat-raised-button color="primary">
+            <img src="assets/images/uploadButton-arrow.svg" /> <span>Upload Items</span>
+        </button>
+    </div>
+    <ng-template #matDialog mat-dialog-container>
+        <div class="upload-title">
+            <h1 mat-dialog-title class="sure-message">Upload Items</h1>
+            <span class="popup-image" (click)="closePop($event)">
+                <em class="icon-Popup-close"></em>
+            </span>
+        </div>
+        <div class="center-line">
+
+        </div>
+
+        <div class="item-reference">
+            <em class="icon-popup-warning"></em>
+            <span class="item-text">Items with same Reference Id will get replaced with the existing one.</span>
+        </div>
+        <app-commonupload></app-commonupload>
+
+    </ng-template>
+
+</div>
+
+<!-- Batch job id section -->
+<div class="joblist-wrapper" *ngFor="let jobs of jodlist">
+    <div class="job-id">
+        <div class="jobid-sec">
+            {{jobs.JopId}}
+        </div>
+    </div>
+    <div class="file-name">
+        <div style="width: 46%;">
+            <span>File name</span>
+            <div class="jobs-filetag">
+                {{jobs.FileName}}
+            </div>
+        </div>
+
+        <div class="upload-span">
+            <div class="p-l-10">
+                <span>Uploaded By</span>
+                <div class="jobs-filetag">
+                    {{jobs.UploadedBy}}
+                </div>
+            </div>
+        </div>
+        <div class="upload-span">
+            <div class="p-l-10">
+                <span>Uploaded On</span>
+                <div class="jobs-filetag">
+                    {{jobs.UploadedOn}}
+                </div>
+            </div>
+
+        </div>
+        <div class="upload-span">
+            <div class="p-l-10">
+                <span>Total Items Count</span>
+                <div class="jobs-item">
+                    {{jobs.TotalItemsCount}}
+                </div>
+            </div>
+
+        </div>
+        <div class="upload-span">
+            <div class="p-l-10">
+                <span>Processed</span>
+                <div class="jobs-proc">
+                    {{jobs.Processed}}
+                </div>
+            </div>
+
+        </div>
+        <div class="upload-span">
+            <div class="p-l-10">
+                <span>Errors</span>
+                <div class="error-red">
+                    {{jobs.Errors}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <button class="right-btn" (click)="showviewjob()">
+        <div class="right-arrow">
+            <mat-icon>arrow_forward</mat-icon>
+        </div>
+    </button>
+</div>
