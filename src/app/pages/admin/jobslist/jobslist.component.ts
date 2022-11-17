@@ -9,7 +9,7 @@ import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
   styleUrls: ['./jobslist.component.scss']
 })
 export class JobslistComponent implements OnInit {
-
+  @ViewChild('matDialog', { static: false }) matDialogRef: any;
   jodlist: any = [
     {
       "JopId": "Batch Jop Id - 121",
@@ -75,6 +75,20 @@ export class JobslistComponent implements OnInit {
   }
   showviewjob() {
     this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.VIEWJOB)
+  }
+
+  showUpload() {
+    this.matDialogOpen();
+  }
+  matDialogOpen() {
+    const dialogRef = this.dialog.open(this.matDialogRef, {
+      width: '530px',
+      height: '325px'
+
+    });
+  }
+  closePop(e: any) {
+    this.dialog.closeAll();
   }
 
 }

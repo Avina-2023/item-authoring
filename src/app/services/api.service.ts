@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 export class ApiService {
 
   BASE_URL = environment.API_BASE_URL;
+  BASE_UPLOAD_URL = environment.API_UPLOAD_URL;
   constructor(
     private http: HttpClient,
   ) { }
@@ -19,6 +20,10 @@ export class ApiService {
 
   login(data: any) {
     return this.http.post(`${this.BASE_URL}/login`, data);
+  }
+
+  uploaded(file: any) {
+    return this.http.post(`${this.BASE_UPLOAD_URL}/uploadQuestion`, file);
   }
 
 }

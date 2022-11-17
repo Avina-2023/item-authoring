@@ -1,60 +1,39 @@
-<div class="upload-btnOne" (click)="showUpload()">
-    <button class="upload-xcel" mat-raised-button color="primary">
-        <img src="assets/images/uploadButton-arrow.svg" /> <span>Reupload Items</span>
+<div class="uploded-moc">
+    <div class="common-upload-btn" for="fileInput" *ngIf="!fileName">
+        <button (click)="file.click()" class="common-btn">
+            <em class="icon-popup-cloud-upload"></em>
+            Upload the Items list</button>
+
+        <input #file style="display:none" [matTooltip]="url ? '' : 'No File Chosen'" matTooltipPostion="after"
+            class="common-btn" id="fileInput" type='file' name="profile" accept=".zip, text/zip"
+            (change)="onSelectFile($event)" Upload the Items list />
+
+    </div>
+    <div class="common-upload-btn" *ngIf="fileName">
+        <div class="list">
+            <span class="urlSpan" matTooltipPosition="after" matTooltip="{{fileName}} ({{fileSize}} kb)">{{fileName}}
+                ({{fileSize}} kb)</span>
+            <span><img (click)="delete()" src="/assets/images/upload-delete.svg" alt=""></span>
+        </div>
+    </div>
+    <div class="text">
+        <span>*</span> (file extension allowed .zip)
+    </div>
+    <div *ngIf="showSizeError['size']" class="error">Maximum file size limit is 2 MB</div>
+    <div *ngIf="showSizeError['image']" class="error">Accept only .zip files</div>
+    <div *ngIf="validFile" class="error">Please upload file with correct headers</div>
+    <div *ngIf="dateFormatExist" class="error">Data should not be in the date format</div>
+</div>
+
+<!-- Main Upload Document Formet End-->
+<div class="upload-btn" mat-dialog-actions align="center">
+    <button class="cancel" (click)="delete()" mat-button [mat-dialog-close]=" true">Cancel</button>
+    <button class="upload" mat-button (click)="uploadDoc()">Upload
     </button>
 </div>
-<ng-template #matDialog mat-dialog-container>
-    <div class="upload-title">
-        <h1 mat-dialog-title class="sure-message">Upload Items</h1>
-        <span class="popup-image" (click)="closePop($event)">
-            <em class="icon-Popup-close"></em>
-        </span>
-    </div>
-    <div class="center-line">
-
-    </div>
-
-    <div class="item-reference">
-        <em class="icon-popup-warning"></em>
-        <span class="item-text">Items with same Reference Id will get replaced with the existing one.</span>
-    </div>
-    <!-- Main Upload Document Formet -->
-    <div class="uploded-moc">
-        <div class="common-upload-btn" for="fileInput" *ngIf="!fileName">
-            <button (click)="file.click()" class="common-btn">
-                <em class="icon-popup-cloud-upload"></em>
-                Upload the Items list</button>
-
-            <input #file style="display:none" [matTooltip]="url ? '' : 'No File Chosen'" matTooltipPostion="after"
-                class="common-btn" id="fileInput" type='file' name="profile" accept=".zip, text/zip"
-                (change)="onSelectFile($event)" Upload the Items list />
-
-        </div>
-        <div class="common-upload-btn" *ngIf="fileName">
-            <div class="list">
-                <span class="urlSpan" matTooltipPosition="after"
-                    matTooltip="{{fileName}} ({{fileSize}} kb)">({{fileName}} ({{fileSize}} kb)</span>
-                <span><img (click)="delete()" src="/assets/images/upload-delete.svg" alt=""></span>
-            </div>
-        </div>
-        <div class="text">
-            <span>*</span> (file extension allowed .zip)
-        </div>
-        <div *ngIf="showSizeError['size']" class="error">Maximum file size limit is 2 MB</div>
-        <div *ngIf="showSizeError['image']" class="error">Accept only .zip files</div>
-        <div *ngIf="validFile" class="error">Please upload file with correct headers</div>
-        <div *ngIf="dateFormatExist" class="error">Data should not be in the date format</div>
-    </div>
-
-    <!-- Main Upload Document Formet End-->
-    <div class="upload-btn" mat-dialog-actions align="center">
-        <button class="cancel" (click)="delete()" mat-button [mat-dialog-close]=" true">Cancel</button>
-        <button class="upload" mat-button (click)="uploadDoc()">Upload
-        </button>
-    </div>
 
 
-    <!-- <div class="greentic-popup">
+<!-- <div class="greentic-popup">
                     <em class="icon-popup-greenTic"></em>
                     <div class="batch-process">
                         <span>Uploaded Items Successfully moved to Batch Process.</span>
@@ -70,5 +49,3 @@
                         </button>
                     </div>
                 </div> -->
-
-</ng-template>

@@ -1,12 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { AppConfigService } from 'src/app/utils/app-config.service';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-commonupload',
   templateUrl: './commonupload.component.html',
   styleUrls: ['./commonupload.component.scss']
 })
+
 export class CommonuploadComponent implements OnInit {
   fileName: any;
   fileSize: any;
@@ -21,33 +22,12 @@ export class CommonuploadComponent implements OnInit {
   };
   dateFormatExist: boolean | undefined;
   selectedImage: any;
-
-  @ViewChild('matDialog', { static: false }) matDialogRef: any;
   constructor(
-    private appconfig: AppConfigService,
-    private dialog: MatDialog
+    private http: ApiService,
+    public toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
-  }
-
-
-
-  showUpload() {
-    this.matDialogOpen();
-  }
-  matDialogOpen() {
-    const dialogRef = this.dialog.open(this.matDialogRef, {
-      width: '550px',
-      height: '325px'
-
-    });
-  }
-  closePop(e: any) {
-    this.dialog.closeAll();
-  }
-  closepopup() {
-    this.dialog.closeAll();
   }
 
   async onSelectFile(event: any) {
@@ -65,16 +45,21 @@ export class CommonuploadComponent implements OnInit {
     }
   }
   uploadDoc() {
-
-    alert('Uploaded Successfully..!!!')
-
+    const fd = new FormData();
+    fd.append('fileName', this.fileName);
+    fd.append('uploadFile', this.selectedImage);
+    this.http.uploaded(fd).subscribe((response: any) => {
+      if (response.success == true) {
+        this.fileName = response;
+      } else {
+        this.toastr.error(response.message);
+      }
+    })
   }
+
   delete() {
-    this.showSizeError.image = false;
-    this.showSizeError.size = false;
-    this.validFile = false;
-    this.dateFormatExist = false;
-    this.url = null;
+    this.fileName = false;
+    this.selectedImage = false;
   }
 
 }

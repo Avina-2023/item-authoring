@@ -35,7 +35,7 @@ export class ViewjobComponent implements OnInit {
     },
   ]
   toaster: any;
-
+  @ViewChild('matDialog', { static: false }) matDialogRef: any;
   constructor(
     private appconfig: AppConfigService,
     private dialog: MatDialog
@@ -346,6 +346,20 @@ export class ViewjobComponent implements OnInit {
       },
     ];
   }
+  showUpload() {
+    this.matDialogOpen();
+  }
+  matDialogOpen() {
+    const dialogRef = this.dialog.open(this.matDialogRef, {
+      width: '680px',
+      height: '325px'
+
+    });
+  }
+  closePop(e: any) {
+    this.dialog.closeAll();
+  }
+
 
   GobackJoblist() {
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.JOBSLIST)
