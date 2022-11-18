@@ -1,6 +1,11 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+import { ViewjobComponent } from 'src/app/pages/admin/viewjob/viewjob.component';
 import { ApiService } from 'src/app/services/api.service';
+import { AppConfigService } from 'src/app/utils/app-config.service';
+import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 
 @Component({
   selector: 'app-commonupload',
@@ -9,6 +14,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 
 export class CommonuploadComponent implements OnInit {
+  dialogTitle: any;
   fileName: any;
   fileSize: any;
   newFile: any;
@@ -22,12 +28,24 @@ export class CommonuploadComponent implements OnInit {
   };
   dateFormatExist: boolean | undefined;
   selectedImage: any;
+  @Input() commontitle: string | undefined;
+
   constructor(
+    private fb: FormBuilder,
     private http: ApiService,
     public toastr: ToastrService,
-  ) { }
+    private appConfig: AppConfigService,
+    private dialog: MatDialog
+  ) {
+  }
 
   ngOnInit(): void {
+    if (this.commontitle == 'View Job') {
+      this.dialogTitle = "Clear the errors and upload the file here. Items with same Reference Id will get replaced with the existing one.";
+    }
+    if (this.commontitle == 'View Job List') {
+      this.dialogTitle = "Items with same Reference Id will get replaced with the existing one.";
+    }
   }
 
   async onSelectFile(event: any) {
@@ -40,7 +58,8 @@ export class CommonuploadComponent implements OnInit {
         this.selectedImage = event.target.files[0];
       }
       else {
-        alert("no")
+        this.showSizeError.image = false;
+        this.showSizeError.size = true;
       }
     }
   }
@@ -49,12 +68,7 @@ export class CommonuploadComponent implements OnInit {
     fd.append('fileName', this.fileName);
     fd.append('uploadFile', this.selectedImage);
     this.http.uploaded(fd).subscribe((response: any) => {
-      if (response.success == true) {
-        // this.fileName = response;
-        this.newFile = response;
-      } else {
-        this.toastr.error(response.message);
-      }
+      this.newFile = response;
     })
   }
 
@@ -63,4 +77,10 @@ export class CommonuploadComponent implements OnInit {
     this.selectedImage = false;
   }
 
+  returnUpload() {
+    this.newFile = false
+    this.fileName = "";
+    this.fileSize = "";
+    this.selectedImage = {};
+  }
 }

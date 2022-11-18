@@ -19,28 +19,31 @@
 
         </div>
 
-        <div class="item-reference">
+        <!-- <div class="item-reference">
             <em class="icon-popup-warning"></em>
             <span class="item-text">Items with same Reference Id will get replaced with the existing one.</span>
-        </div>
-        <app-commonupload></app-commonupload>
+        </div> -->
+        <app-commonupload [commontitle]="callFromJob"></app-commonupload>
 
     </ng-template>
 
 </div>
 
 <!-- Batch job id section -->
-<div class="joblist-wrapper" *ngFor="let jobs of jodlist">
+<div class="joblist-wrapper" *ngFor="let jobs of Joblist">
     <div class="job-id">
         <div class="jobid-sec">
-            {{jobs.JopId}}
+            <span>Batch job id - </span>
+            {{jobs.batchId}}
+            {{jobs.batchStatus == false ? 'red' : 'green'}}
         </div>
     </div>
     <div class="file-name">
         <div style="width: 46%;">
             <span>File name</span>
             <div class="jobs-filetag">
-                {{jobs.FileName}}
+                {{jobs.fileName
+                }}
             </div>
         </div>
 
@@ -48,7 +51,7 @@
             <div class="p-l-10">
                 <span>Uploaded By</span>
                 <div class="jobs-filetag">
-                    {{jobs.UploadedBy}}
+                    {{jobs.createdBy}}
                 </div>
             </div>
         </div>
@@ -56,7 +59,8 @@
             <div class="p-l-10">
                 <span>Uploaded On</span>
                 <div class="jobs-filetag">
-                    {{jobs.UploadedOn}}
+                    {{jobs.updatedAt
+                    }}
                 </div>
             </div>
 
@@ -65,7 +69,7 @@
             <div class="p-l-10">
                 <span>Total Items Count</span>
                 <div class="jobs-item">
-                    {{jobs.TotalItemsCount}}
+                    {{jobs.totalCount}}
                 </div>
             </div>
 
@@ -74,7 +78,7 @@
             <div class="p-l-10">
                 <span>Processed</span>
                 <div class="jobs-proc">
-                    {{jobs.Processed}}
+                    {{jobs.processedCount}}
                 </div>
             </div>
 
@@ -83,7 +87,7 @@
             <div class="p-l-10">
                 <span>Errors</span>
                 <div class="error-red">
-                    {{jobs.Errors}}
+                    {{jobs.errorCount}}
                 </div>
             </div>
 

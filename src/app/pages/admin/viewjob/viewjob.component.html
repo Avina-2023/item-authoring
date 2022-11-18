@@ -3,9 +3,9 @@
 <!-- View Job heading -->
 <div class="viewJob-head">
     <h1>View Job</h1>
-    <div class="GoJobList ">
+    <div class="GoJobList" (click)="GobackJoblist()">
         <mat-icon>arrow_back</mat-icon>
-        <a (click)="GobackJoblist()">Go Back</a>
+        <span>Go Back</span>
     </div>
 </div>
 
@@ -63,20 +63,19 @@
                 </div>
 
                 <div class="item-reference">
-                    <em class="icon-popup-warning"></em>
-                    <span class="item-text">Clear the errors and upload the file here. Items with same Reference Id will
-                        get replaced with the existing one.</span>
+                    <!-- <em class="icon-popup-warning"></em>
+                    <span class="item-text">Clear the errors and upload the file here. Items with same Reference Id will get replaced with the existing one.</span> -->
                 </div>
+                <app-commonupload [commontitle]="callFrom"></app-commonupload>
             </ng-template>
         </div>
 
         <!-- Ag grid Table section -->
         <div class="aggrid-wrapper">
-            <ag-grid-angular
-                style="width: 100%; height: calc(100vh - 180px) !important; margin:auto !important;padding: 10px;"
-                class="ag-theme-alpine" [columnDefs]="columnDefs" [rowData]="rowData" [paginationPageSize]="500"
-                [defaultColDef]="defaultColDef" (gridReady)="onGridReady($event)" [sideBar]="sideBar"
-                [pagination]="true" [suppressRowClickSelection]="true" [cacheBlockSize]="500">
+            <ag-grid-angular style="width: 100%; height: calc(100vh - 180px) !important;" class="ag-theme-alpine"
+                [columnDefs]="columnDefs" [rowData]="rowData" [paginationPageSize]="500" [defaultColDef]="defaultColDef"
+                (gridReady)="onGridReady($event)" [sideBar]="sideBar" [pagination]="true"
+                [suppressRowClickSelection]="true" [cacheBlockSize]="500">
             </ag-grid-angular>
         </div>
     </div>

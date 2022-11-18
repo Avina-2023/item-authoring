@@ -3,7 +3,7 @@
 .upload-btnOne {
   display: flex;
   justify-content: end;
-  margin: 11px 6px;
+  margin: 4px 6px;
 
   .upload-xcel {
     display: flex;
@@ -51,20 +51,7 @@
   }
 }
 
-.item-reference em {
-  width: 12px;
-  height: 12px;
-  margin-left: 15px;
-  color: $primary-batch-head;
-}
 
-.item-text {
-  font-weight: 500;
-  font-size: 13px;
-  position: relative;
-  bottom: 1px;
-  left: 4px;
-}
 
 // center Line For popup message
 .center-line {

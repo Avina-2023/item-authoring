@@ -1,6 +1,13 @@
+<div class="item-reference" *ngIf="!newFile">
+    <em class="icon-popup-warning"></em>
+    <span class="item-text">
+        {{dialogTitle}}</span>
+</div>
+
+<!-- <form class="form" [formGroup]="bulkscheduleForm" novalidate> -->
 <div class="uploded-moc" *ngIf="!newFile">
     <div class="common-upload-btn" for="fileInput" *ngIf="!fileName">
-        <button (click)="file.click()" class="common-btn">
+        <button (click)="file.click()" class="common-btn" formControlName="showSizeError">
             <em class="icon-popup-cloud-upload"></em>
             Upload the Items list</button>
 
@@ -25,15 +32,15 @@
     <div *ngIf="dateFormatExist" class="error">Data should not be in the date format</div>
 
     <div class="upload-btn" mat-dialog-actions align="center">
-        <button class="cancel" (click)="delete()" mat-button [mat-dialog-close]=" true">Cancel</button>
-        <button class="upload" mat-button (click)="uploadDoc()">Upload
+        <button class="cancel" [ngStyle]="{'opacity': fileName ? '0.5' :'1.0'}" [disabled]="fileName ? false : true"
+            (click)="delete()" mat-button>Cancel</button>
+        <button [disabled]="fileName ? false :true" [disabled]="true" class="upload" mat-button
+            (click)="uploadDoc()">Upload
         </button>
     </div>
 </div>
-
+<!-- </form> -->
 <!-- Main Upload Document Formet End-->
-
-
 
 <div class="greentic-popup" *ngIf="newFile">
     <em class="icon-popup-greenTic"></em>
@@ -45,8 +52,7 @@
             Batch Job Id - 120
         </span>
     </div>
-    <div class="upload-btn" mat-dialog-actions align="center">
-        <button class="cancel" mat-button>Upload Items</button>
-        <button class="upload" mat-button>View Job List</button>
+    <div class="upload-btnItems" mat-dialog-actions align="center">
+        <button class="cancelItessms" (click)="returnUpload()" mat-button>Upload Items</button>
     </div>
 </div>

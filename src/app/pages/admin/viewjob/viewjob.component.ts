@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { GridApi } from '@ag-grid-enterprise/all-modules';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-viewjob',
@@ -10,12 +11,14 @@ import { GridApi } from '@ag-grid-enterprise/all-modules';
   styleUrls: ['./viewjob.component.scss']
 })
 export class ViewjobComponent implements OnInit {
+  newList: any;
+  callFrom: any = 'View Job';
   public gridColumnApi: any;
   private gridApi!: GridApi;
   length: any;
   pageSize: any;
   paginationPageSize = 500;
-  columnDefs: any;
+  columnDefs: any = [];
   public defaultColDef = {
     flex: 1,
     minWidth: 100,
@@ -28,24 +31,28 @@ export class ViewjobComponent implements OnInit {
   public sideBar = 'filters';
   batchList: any = [
     {
-      "JopId": "Batch Jop Id - 121",
+      "JopId": "Batch Job Id - 121",
       "TotalItemsCount": 180,
       "Processed": 0,
       "Errors": 20
     },
   ]
   toaster: any;
+  commontitle: any = [
+    "test1"
+  ];
   @ViewChild('matDialog', { static: false }) matDialogRef: any;
   constructor(
     private appconfig: AppConfigService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private http: ApiService,
   ) {
 
   }
 
   ngOnInit(): void {
     this.tableview();
-
+    this.viewJobDetails();
   }
   // BreadCrumb Routing
   breadCrumData: any = {
@@ -54,199 +61,38 @@ export class ViewjobComponent implements OnInit {
     previousUrl: `${APP_CONSTANTS.ROUTES.ADMIN.VIEWJOB}`
   };
   // Example Json For AG Grid
-  rowData: any =
-    [{
-      "ReferenceId": "9899805",
-      "Subject": "Quantitative",
-      "Category": "Aptitude",
-      "SubCategory": "Analytics",
-      "Topic": "Assesment",
-      "DifficultyLevel": "High",
-      "QuestionType": "MCQ",
-      "Compentency": "Software Developer",
-      "Skill": "GET Drive",
-      "Area": "Flow Chart",
-      "Status": "Processed",
-      "Message": "Item Updated"
-    },
-    {
-      "ReferenceId": "9899805",
-      "Subject": "Quantitative",
-      "Category": "Aptitude",
-      "SubCategory": "Analytics",
-      "Topic": "Assesment",
-      "DifficultyLevel": "Low",
-      "QuestionType": "True/False",
-      "Compentency": "Software Developer",
-      "Skill": "GET Drive",
-      "Area": "Flow Chart",
-      "Status": "Processed",
-      "Message": "Item Insterted"
-    },
-    {
-      "ReferenceId": "9899805",
-      "Subject": "Quantitative",
-      "Category": "Aptitude",
-      "SubCategory": "Analytics",
-      "Topic": "Assesment",
-      "DifficultyLevel": "High",
-      "QuestionType": "Short Answer",
-      "Compentency": "Software Developer",
-      "Skill": "GET Drive",
-      "Area": "Flow Chart",
-      "Status": "In Progress",
-      "Message": "Question type is missing"
-    },
-    {
-      "ReferenceId": "9899805",
-      "Subject": "Quantitative",
-      "Category": "Aptitude",
-      "SubCategory": "Analytics",
-      "Topic": "Assesment",
-      "DifficultyLevel": "Low",
-      "QuestionType": "Numerical",
-      "Compentency": "Software Developer",
-      "Skill": "GET Drive",
-      "Area": "Flow Chart",
-      "Status": "Processed",
-      "Message": "Item Insterted"
-    },
-    {
-      "ReferenceId": "9899805",
-      "Subject": "Quantitative",
-      "Category": "Aptitude",
-      "SubCategory": "Analytics",
-      "Topic": "Assesment",
-      "DifficultyLevel": "High",
-      "QuestionType": "Short Answer",
-      "Compentency": "Software Developer",
-      "Skill": "GET Drive",
-      "Area": "Flow Chart",
-      "Status": "Processed",
-      "Message": "Question type is missing"
-    },
-    {
-      "ReferenceId": "9899805",
-      "Subject": "Quantitative",
-      "Category": "Aptitude",
-      "SubCategory": "Analytics",
-      "Topic": "Assesment",
-      "DifficultyLevel": "Low",
-      "QuestionType": "Numerical",
-      "Compentency": "Software Developer",
-      "Skill": "GET Drive",
-      "Area": "Flow Chart",
-      "Status": " In Processed",
-      "Message": "Item Insterted"
-    },
-    {
-      "ReferenceId": "9899805",
-      "Subject": "Quantitative",
-      "Category": "Aptitude",
-      "SubCategory": "Analytics",
-      "Topic": "Assesment",
-      "DifficultyLevel": "High",
-      "QuestionType": "Short Answer",
-      "Compentency": "Software Developer",
-      "Skill": "GET Drive",
-      "Area": "Flow Chart",
-      "Status": "In Progress",
-      "Message": "Item Insterted"
-    },
-    {
-      "ReferenceId": "9899805",
-      "Subject": "Quantitative",
-      "Category": "Aptitude",
-      "SubCategory": "Analytics",
-      "Topic": "Assesment",
-      "DifficultyLevel": "Low",
-      "QuestionType": "Numerical",
-      "Compentency": "Software Developer",
-      "Skill": "GET Drive",
-      "Area": "Flow Chart",
-      "Status": "In Processed",
-      "Message": "Area field is missing"
-    },
-    {
-      "ReferenceId": "9899805",
-      "Subject": "Quantitative",
-      "Category": "Aptitude",
-      "SubCategory": "Analytics",
-      "Topic": "Assesment",
-      "DifficultyLevel": "Low",
-      "QuestionType": "Numerical",
-      "Compentency": "Software Developer",
-      "Skill": "GET Drive",
-      "Area": "Flow Chart",
-      "Status": "In Processed",
-      "Message": "skill field is missing"
-    },
-    {
-      "ReferenceId": "9899805",
-      "Subject": "Quantitative",
-      "Category": "Aptitude",
-      "SubCategory": "Analytics",
-      "Topic": "Assesment",
-      "DifficultyLevel": "Low",
-      "QuestionType": "Numerical",
-      "Compentency": "Software Developer",
-      "Skill": "GET Drive",
-      "Area": "Flow Chart",
-      "Status": "Processed",
-      "Message": "Item already exists"
-    },
-    {
-      "ReferenceId": "9899805",
-      "Subject": "Quantitative",
-      "Category": "Aptitude",
-      "SubCategory": "Analytics",
-      "Topic": "Assesment",
-      "DifficultyLevel": "Low",
-      "QuestionType": "Numerical",
-      "Compentency": "Software Developer",
-      "Skill": "GET Drive",
-      "Area": "Flow Chart",
-      "Status": "Processed",
-      "Message": "subject filed is missing"
-    },
-    ];
+  rowData: any;
   // json End
 
   tableview() {
     this.columnDefs = [
       {
-
-        headerName: 'Reference ID',
+        headerName: 'Reference Id',
         width: 130,
         minWidth: 120,
         pinned: 'left',
-        // floatingFilter: true,
         sortable: true,
-        field: 'ReferenceId',
+        field: 'queId',
         filter: 'agTextColumnFilter',
+        tooltipField: 'queId',
       },
       {
         headerName: 'Subject',
         minWidth: 120,
-        field: 'Subject',
-        // floatingFilter: true,
+        field: 'Topic',
         filter: 'agTextColumnFilter',
       },
       {
         headerName: 'Category',
-
-        field: 'Category',
+        field: 'Section',
         minWidth: 120,
         filter: 'agTextColumnFilter',
-
       },
       {
         headerName: 'Sub-Category',
         filter: 'agTextColumnFilter',
-        field: 'SubCategory',
+        field: 'SubTopic',
         minWidth: 140,
-
-
       },
       {
         headerName: 'Topic',
@@ -262,64 +108,64 @@ export class ViewjobComponent implements OnInit {
       {
         headerName: 'Question Type',
 
-        field: 'QuestionType',
+        field: 'queType',
         minWidth: 140,
       },
       {
         headerName: 'Compentency',
 
         minWidth: 140,
-        field: 'Compentency',
+        field: 'Topic',
       },
       {
         headerName: 'Skill',
 
         minWidth: 120,
-        field: 'Skill',
+        field: 'Topic',
       },
       {
         headerName: 'Area',
 
         minWidth: 120,
-        field: 'Area',
+        field: 'Topic',
       },
       {
         headerName: 'Blooms Classification',
 
         minWidth: 200,
-        field: 'Subject',
+        field: 'BloomsLavel',
       },
       {
         headerName: 'Sub-Classification',
 
         minWidth: 180,
-        field: 'Subject',
+        field: 'BloomsLavel',
       },
       {
         headerName: 'Updated By',
 
         minWidth: 140,
-        field: 'Subject',
+        field: 'BloomsLavel',
 
       },
       {
         headerName: 'Updated On',
 
         minWidth: 140,
-        field: 'Subject',
+        field: 'BloomsLavel',
 
       },
       {
         headerName: 'Version Number',
         minWidth: 160,
-        field: 'Subject',
+        field: 'BloomsLavel',
       },
       {
         headerName: 'Status',
         pinned: 'right',
         minWidth: 120,
         width: 100,
-        field: 'Status',
+        field: 'status',
         cellRenderer: (params: any) => {
           if (params.value == 'Processed') {
             return `<span style="color:#5CB646">` + params.value + `</span>`;
@@ -334,7 +180,7 @@ export class ViewjobComponent implements OnInit {
         pinned: 'right',
         minWidth: 200,
         width: 100,
-        field: 'Message',
+        field: 'message',
         cellRenderer: (params: any) => {
           if (params.value == 'Item Insterted' || params.value == 'Item Updated') {
             return `<span style="color:#000000">` + params.value + `</span>`;
@@ -351,11 +197,14 @@ export class ViewjobComponent implements OnInit {
   }
   matDialogOpen() {
     const dialogRef = this.dialog.open(this.matDialogRef, {
+      data: { type: "view" },
       width: '680px',
       height: '325px'
 
     });
   }
+
+
   closePop(e: any) {
     this.dialog.closeAll();
   }
@@ -369,6 +218,16 @@ export class ViewjobComponent implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.gridApi.closeToolPanel();
+  }
+
+  viewJobDetails() {
+    let viewJob = {
+      batchId: 33
+    }
+    this.http.jobDetails(viewJob).subscribe((data: any) => {
+      this.newList = data.queId;
+      console.log(this.newList, "response is");
+    })
   }
 }
 
