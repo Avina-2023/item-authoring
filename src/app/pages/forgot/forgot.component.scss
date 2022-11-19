@@ -1,9 +1,11 @@
 @import "../../../themes/theme.scss";
+
 .main-wrapper-login {
   overflow: hidden;
   display: flex;
   justify-content: center;
   height: 100%;
+
   .sub-wrapper {
     padding: 0;
     display: flex;
@@ -14,13 +16,16 @@
     box-sizing: border-box;
   }
 }
+
 .container-reg200 {
   width: 100%;
   height: 100%;
   display: flex;
+
   @media only screen and (min-width: 576px) and (max-width: 767px) {
     margin: 60px 0;
   }
+
   .right {
     display: flex;
     width: 100%;
@@ -35,15 +40,17 @@
 .login-email-icon em {
   font-size: 13px;
   position: relative;
-  bottom: 4px;
+  bottom: 0px;
   left: 1px;
 }
+
 .sign-head h1 {
   position: relative;
   bottom: 25px;
   font-weight: 500;
   font-size: 24px;
 }
+
 .footer-logo {
   position: absolute;
   bottom: 20px;
@@ -51,23 +58,26 @@
   color: $sign-head;
   left: 15%;
 }
+
 .wrap-reg {
   width: max-content;
   display: flex;
   justify-content: center;
 }
+
 .label-color {
   color: $primary-lable;
 }
-:host
-  ::ng-deep.mat-form-field-appearance-outline
-  .mat-form-field-outline-thick {
+
+:host ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline-thick {
   color: $primary-field !important;
 }
+
 mat-form-field {
   width: 365px;
   height: 48px;
 }
+
 .form-wrapper {
   @media only screen and (min-width: 1440px) {
     width: 100%;
@@ -77,6 +87,7 @@ mat-form-field {
 ::ng-deep .mat-form-field-required-marker {
   color: $primary-field;
 }
+
 label span.mat-form-field-required-marker {
   color: $primary-field;
 }
@@ -84,6 +95,7 @@ label span.mat-form-field-required-marker {
 .login-icon-color {
   font-size: 22px;
 }
+
 .login-email-icon {
   position: absolute;
   width: 18px;
@@ -96,6 +108,7 @@ label span.mat-form-field-required-marker {
   cursor: pointer;
   font-size: 13px;
 }
+
 .forgot-div {
   text-align: end;
   position: relative;
@@ -118,16 +131,16 @@ label span.mat-form-field-required-marker {
   padding: 12px 10px;
   margin-top: 60px;
   background: $primary-login;
-  background: transparent
-    linear-gradient(90deg, #27bbee 0%, #40bbbd 48%, #88ba2f 100%) 0% 0%
-    no-repeat padding-box;
+  background: transparent linear-gradient(90deg, #27bbee 0%, #40bbbd 48%, #88ba2f 100%) 0% 0% no-repeat padding-box;
   color: $primary-text;
   cursor: pointer;
   border-radius: 50px !important;
 }
+
 .center {
   text-align: center;
 }
+
 .btn:hover {
   transition: ease-out 0.3s;
 }

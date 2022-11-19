@@ -79,7 +79,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0px 12px;
-  margin-top: -5px;
+  margin-top: -10px;
 
   h1 {
     color: $primary-darkBlue;
@@ -97,10 +97,11 @@
   mat-icon {
     font-size: 22px;
     margin-right: 5px;
+    cursor: pointer;
   }
 
-  a {
-    font-size: 13px;
+  span {
+    font-size: 14px;
     font-weight: 500;
     margin-right: 3px;
     cursor: pointer;
@@ -128,6 +129,13 @@
     .jobid-sec {
       color: $primary-batch-head;
       font-weight: 500;
+
+      .batchJobId {
+        color: $primary-batch-head;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+      }
     }
   }
 

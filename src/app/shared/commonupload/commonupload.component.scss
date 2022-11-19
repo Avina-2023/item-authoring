@@ -2,6 +2,20 @@
 
 // Upload excel button
 
+.item-reference em {
+    width: 12px;
+    height: 12px;
+    margin-left: 15px;
+    color: $primary-batch-head;
+}
+
+.item-text {
+    font-weight: 500;
+    font-size: 13px;
+    position: relative;
+    bottom: 1px;
+    left: 4px;
+}
 
 .uploded-moc {
     position: relative;
@@ -98,6 +112,25 @@
         border-radius: 4px;
         margin-left: 25px;
         cursor: pointer;
+    }
+}
+
+.upload-btnItems {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+
+    .cancelItessms {
+        font-size: 14px;
+        color: $primary-common-blue;
+        cursor: pointer;
+        background: $primary-back-white;
+        border: 1px solid $primary-common-blue;
+        font-weight: 500;
+        border-radius: 4px;
+        width: 105px;
+        height: 30px;
+        border-radius: 4px;
     }
 }
 
