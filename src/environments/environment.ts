@@ -3,8 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: true,
+  API_BASE_URL: 'https://authedgeservicedev.lntedutech.com',
+  API_UPLOAD_URL: 'https://authedgeservicedev.lntedutech.com',
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -1,0 +1,82 @@
+<!-- breadCrumb child to parent Calling -->
+<app-breadcrum [breadCrumData]="breadCrumData"></app-breadcrum>
+<!-- View Job heading -->
+<div class="viewJob-head">
+    <h1>View Job</h1>
+    <div class="GoJobList ">
+        <mat-icon>arrow_back</mat-icon>
+        <a (click)="GobackJoblist()">Go Back</a>
+    </div>
+</div>
+
+<!-- SG grid Table -->
+<div class="main-section">
+    <div class="outlerback-section">
+        <div class="batch-sec" *ngFor="let batch of batchList">
+            <div class="job-id">
+                <div class="jobid-sec">
+                    {{batch.JopId}}
+                </div>
+            </div>
+
+            <div class="p-l-10">
+                <span>Total Items Count</span>
+                <div class="jobs-item">
+                    {{batch.TotalItemsCount}}
+                </div>
+            </div>
+            <div class="upload-span">
+                <div class="p-l-10 uniq-process">
+                    <span>Processed</span>
+                    <div class="jobs-proc">
+                        {{batch.Processed}}
+                    </div>
+                </div>
+
+            </div>
+            <div class="upload-span">
+                <div class="p-l-10">
+                    <span>Errors</span>
+                    <div class="error-red">
+                        {{batch.Errors}}
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Reupload Items file formet -->
+            <!-- <app-commonupload></app-commonupload> -->
+            <div class="upload-btnOne" (click)="showUpload()">
+                <button class="upload-xcel" mat-raised-button color="primary">
+                    <img src="assets/images/uploadButton-arrow.svg" /> <span>Reupload Items</span>
+                </button>
+            </div>
+            <ng-template #matDialog mat-dialog-container>
+                <div class="upload-title">
+                    <h1 mat-dialog-title class="sure-message">Upload Items</h1>
+                    <span class="popup-image" (click)="closePop($event)">
+                        <em class="icon-Popup-close"></em>
+                    </span>
+                </div>
+                <div class="center-line">
+
+                </div>
+
+                <div class="item-reference">
+                    <em class="icon-popup-warning"></em>
+                    <span class="item-text">Clear the errors and upload the file here. Items with same Reference Id will
+                        get replaced with the existing one.</span>
+                </div>
+            </ng-template>
+        </div>
+
+        <!-- Ag grid Table section -->
+        <div class="aggrid-wrapper">
+            <ag-grid-angular
+                style="width: 100%; height: calc(100vh - 180px) !important; margin:auto !important;padding: 10px;"
+                class="ag-theme-alpine" [columnDefs]="columnDefs" [rowData]="rowData" [paginationPageSize]="500"
+                [defaultColDef]="defaultColDef" (gridReady)="onGridReady($event)" [sideBar]="sideBar"
+                [pagination]="true" [suppressRowClickSelection]="true" [cacheBlockSize]="500">
+            </ag-grid-angular>
+        </div>
+    </div>

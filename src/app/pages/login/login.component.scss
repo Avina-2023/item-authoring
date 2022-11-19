@@ -1,0 +1,152 @@
+@import "../../../themes/theme.scss";
+
+.main-wrapper-login {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+
+  .sub-wrapper {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+.container-reg200 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  @media only screen and (min-width: 576px) and (max-width: 767px) {
+    margin: 60px 0;
+  }
+
+  // Right Login Component
+  .right {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: $right-login-bg;
+  }
+}
+
+// login
+.sign-head h1 {
+  position: relative;
+  bottom: 25px;
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.footer-logo {
+  position: absolute;
+  bottom: 20px;
+  font-size: 14px;
+  color: $sign-head;
+}
+
+.wrap-reg {
+  width: max-content;
+  display: flex;
+  justify-content: center;
+}
+
+.label-color {
+  color: $primary-lable;
+}
+
+:host ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: $primary-field !important;
+}
+
+::ng-deep .mat-focused .mat-form-field-required-marker {
+  color: $primary-field !important;
+
+}
+
+mat-form-field {
+  width: 80%;
+}
+
+.form-wrapper {
+
+  // width: 55%;
+  @media only screen and (min-width: 1440px) {
+    width: 100%;
+  }
+}
+
+::ng-deep .mat-form-field-required-marker {
+  color: $primary-field;
+}
+
+label span.mat-form-field-required-marker {
+  color: $primary-field;
+}
+
+.login-icon-color {
+  font-size: 21px;
+}
+
+.login-email-icon em {
+  font-size: 13px;
+  position: relative;
+  bottom: 4px;
+  left: 1px;
+}
+
+.login-pass-icon em {
+  font-size: 18px;
+  left: 1px;
+  position: relative;
+  bottom: 4px;
+}
+
+// Forgot password css
+.forgot {
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.forgot-div {
+  text-align: end;
+  position: relative;
+  bottom: 8px;
+  right: 45px;
+}
+
+.forgot:hover {
+  transition: ease-out 0.3s;
+  text-decoration: none;
+  color: $forgot;
+}
+
+.btn {
+  font-size: 16px;
+  border: none;
+  border-radius: 50px !important;
+  width: 186px;
+  height: 47px;
+  padding: 12px 10px;
+  margin-top: 40px;
+  background: $primary-login;
+  background: transparent linear-gradient(90deg, #27bbee 0%, #40bbbd 48%, #88ba2f 100%) 0% 0% no-repeat padding-box;
+  color: $primary-text;
+  cursor: pointer;
+  border-radius: 50px !important;
+}
+
+.center {
+  text-align: center;
+}
+
+.btn:hover {
+  transition: ease-out 0.3s;
+}
