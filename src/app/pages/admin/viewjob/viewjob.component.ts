@@ -4,6 +4,7 @@ import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { GridApi } from '@ag-grid-enterprise/all-modules';
 import { ApiService } from 'src/app/services/api.service';
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-viewjob',
@@ -19,6 +20,8 @@ export class ViewjobComponent implements OnInit {
   pageSize: any;
   paginationPageSize = 500;
   columnDefs: any = [];
+  batchId: any = ""
+
   public defaultColDef = {
     flex: 1,
     minWidth: 100,
@@ -30,40 +33,47 @@ export class ViewjobComponent implements OnInit {
   };
   public sideBar = 'filters';
   batchList: any = [
-    {
-      "JopId": "Batch Job Id - 121",
-      "TotalItemsCount": 180,
-      "Processed": 0,
-      "Errors": 20
-    },
+
   ]
   toaster: any;
   commontitle: any = [
     "test1"
   ];
   @ViewChild('matDialog', { static: false }) matDialogRef: any;
+  batchInfo: any;
   constructor(
     private appconfig: AppConfigService,
     private dialog: MatDialog,
     private http: ApiService,
+    private route: ActivatedRoute
   ) {
 
   }
 
   ngOnInit(): void {
+    this.getRouterPath()
     this.tableview();
     this.viewJobDetails();
   }
+
   // BreadCrumb Routing
   breadCrumData: any = {
-    previousPage: 'Batch Process >',
-    currentPage: 'Jobs List > View Job',
+    previousPage: 'Batch Process > Jobs List >',
+    currentPage: 'View Job',
     previousUrl: `${APP_CONSTANTS.ROUTES.ADMIN.VIEWJOB}`
   };
   // Example Json For AG Grid
   rowData: any;
   // json End
-
+  getRouterPath() {
+    this.route.params.subscribe(params => {
+      if (params['id']) {
+        this.batchId = params['id'];
+      } else {
+        this.GobackJoblist()
+      }
+    });
+  }
   tableview() {
     this.columnDefs = [
       {
@@ -72,93 +82,103 @@ export class ViewjobComponent implements OnInit {
         minWidth: 120,
         pinned: 'left',
         sortable: true,
-        field: 'queId',
+        field: 'queReferance',
         filter: 'agTextColumnFilter',
-        tooltipField: 'queId',
+        tooltipField: 'queReferance',
       },
       {
         headerName: 'Subject',
         minWidth: 120,
         field: 'Topic',
         filter: 'agTextColumnFilter',
+        tooltipField: 'Topic',
       },
       {
         headerName: 'Category',
         field: 'Section',
         minWidth: 120,
         filter: 'agTextColumnFilter',
+        tooltipField: 'Section',
       },
       {
         headerName: 'Sub-Category',
         filter: 'agTextColumnFilter',
         field: 'SubTopic',
         minWidth: 140,
+        tooltipField: 'SubTopic',
       },
       {
         headerName: 'Topic',
         minWidth: 120,
 
         field: 'Topic',
+        tooltipField: 'Topic',
       },
       {
         headerName: 'Difficulty Level',
         minWidth: 150,
         field: 'DifficultyLevel',
+        tooltipField: 'DifficultyLevel',
       },
       {
         headerName: 'Question Type',
 
         field: 'queType',
         minWidth: 140,
+        tooltipField: 'queType',
       },
       {
         headerName: 'Compentency',
 
         minWidth: 140,
-        field: 'Topic',
+        field: 'competency',
+        tooltipField: 'competency',
       },
       {
         headerName: 'Skill',
 
         minWidth: 120,
-        field: 'Topic',
+        field: 'skill',
+        tooltipField: 'skill',
       },
       {
         headerName: 'Area',
 
         minWidth: 120,
-        field: 'Topic',
+        field: 'area',
+        tooltipField: 'area',
       },
       {
         headerName: 'Blooms Classification',
-
         minWidth: 200,
         field: 'BloomsLavel',
+        tooltipField: 'BloomsLavel',
       },
       {
         headerName: 'Sub-Classification',
 
         minWidth: 180,
-        field: 'BloomsLavel',
+        field: 'subClassification',
+        tooltipField: 'subClassification',
       },
       {
         headerName: 'Updated By',
 
         minWidth: 140,
-        field: 'BloomsLavel',
-
+        field: '',
+        tooltipField: '',
       },
       {
         headerName: 'Updated On',
-
         minWidth: 140,
-        field: 'BloomsLavel',
-
+        field: '',
+        tooltipField: '',
       },
       {
         headerName: 'Version Number',
         minWidth: 160,
-        field: 'BloomsLavel',
+        field: 'version',
+        tooltipField: 'version',
       },
       {
         headerName: 'Status',
@@ -166,11 +186,12 @@ export class ViewjobComponent implements OnInit {
         minWidth: 120,
         width: 100,
         field: 'status',
+        tooltipField: 'status',
         cellRenderer: (params: any) => {
-          if (params.value == 'Processed') {
-            return `<span style="color:#5CB646">` + params.value + `</span>`;
+          if (params.value == true) {
+            return `<span style="color:#5CB646"> Processed </span>`;
           } else {
-            return `<span style="color:#FFCE00">` + params.value + `</span>`;
+            return `<span style="color:#FFCE00"> In Progress </span>`;
           }
 
         }
@@ -181,6 +202,7 @@ export class ViewjobComponent implements OnInit {
         minWidth: 200,
         width: 100,
         field: 'message',
+        tooltipField: 'message',
         cellRenderer: (params: any) => {
           if (params.value == 'Item Insterted' || params.value == 'Item Updated') {
             return `<span style="color:#000000">` + params.value + `</span>`;
@@ -203,12 +225,9 @@ export class ViewjobComponent implements OnInit {
 
     });
   }
-
-
   closePop(e: any) {
     this.dialog.closeAll();
   }
-
 
   GobackJoblist() {
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.JOBSLIST)
@@ -222,12 +241,17 @@ export class ViewjobComponent implements OnInit {
 
   viewJobDetails() {
     let viewJob = {
-      batchId: 33
+      batchId: +this.batchId
     }
     this.http.jobDetails(viewJob).subscribe((data: any) => {
-      this.newList = data.queId;
-      console.log(this.newList, "response is");
+      if (data.success) {
+        this.newList = data.data[0].Questions;
+        this.batchInfo = data.data[0];
+      } else {
+        this.toaster.error('Something went wrong, please try after sometime')
+      }
     })
+
   }
 }
 

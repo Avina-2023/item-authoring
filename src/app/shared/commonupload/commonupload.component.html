@@ -4,7 +4,6 @@
         {{dialogTitle}}</span>
 </div>
 
-<!-- <form class="form" [formGroup]="bulkscheduleForm" novalidate> -->
 <div class="uploded-moc" *ngIf="!newFile">
     <div class="common-upload-btn" for="fileInput" *ngIf="!fileName">
         <button (click)="file.click()" class="common-btn" formControlName="showSizeError">
@@ -34,8 +33,8 @@
     <div class="upload-btn" mat-dialog-actions align="center">
         <button class="cancel" [ngStyle]="{'opacity': fileName ? '0.5' :'1.0'}" [disabled]="fileName ? false : true"
             (click)="delete()" mat-button>Cancel</button>
-        <button [disabled]="fileName ? false :true" [disabled]="true" class="upload" mat-button
-            (click)="uploadDoc()">Upload
+        <button [ngStyle]="{'opacity': fileName ? '1.0':'0.5'}" [disabled]="fileName ? false :true" [disabled]="true"
+            class="upload" mat-button (click)="uploadDoc()">Upload
         </button>
     </div>
 </div>

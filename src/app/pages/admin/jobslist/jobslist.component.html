@@ -33,9 +33,15 @@
 <div class="joblist-wrapper" *ngFor="let jobs of Joblist">
     <div class="job-id">
         <div class="jobid-sec">
-            <span>Batch job id - </span>
-            {{jobs.batchId}}
-            {{jobs.batchStatus == false ? 'red' : 'green'}}
+            <span>Batch Job Id - </span>
+            <span>{{jobs.batchId}}
+                <div *ngIf="jobs.batchStatus === true; else failStatus">
+                    <img src="/assets/images/warning-true.svg" alt="">
+                </div>
+                <ng-template #failStatus>
+                    <em class="icon-warning-red"></em>
+                </ng-template>
+            </span>
         </div>
     </div>
     <div class="file-name">
@@ -93,7 +99,7 @@
 
         </div>
     </div>
-    <button class="right-btn" (click)="showviewjob()">
+    <button class="right-btn" (click)="showviewjob(jobs.batchId)">
         <div class="right-arrow">
             <mat-icon>arrow_forward</mat-icon>
         </div>

@@ -41,6 +41,8 @@ export class LoginComponent implements OnInit {
     }
     this.https.register(data).subscribe((res: any) => {
       if (res.success) {
+        var userObject = res.data.attributes
+        this.authConfig.setlocalValue('userDetails', JSON.stringify(userObject));
         this.authConfig.setlocalValue('token', res.token.access_token);
         this.authConfig.setlocalValue('firstname', res.data.attributes.firstName);
         this.authConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.JOBSLIST)

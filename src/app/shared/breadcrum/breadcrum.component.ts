@@ -16,8 +16,10 @@ export class BreadcrumComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  navigate(url: any) {
+  navigate(previusPage: any, currentPage: any, event: any) {
+    if (event.target.innerText === 'Batch Process > Jobs List >') {
+      this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.JOBSLIST)
+    }
 
-    this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.JOBSLIST)
   }
 }

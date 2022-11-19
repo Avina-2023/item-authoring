@@ -89,9 +89,34 @@
     justify-content: center;
     align-items: center;
 
+
+
     .jobid-sec {
       color: $primary-batch-head;
       font-weight: 500;
+      display: flex;
+      align-items: center;
+
+      img {
+        font-size: 20px;
+        position: relative;
+        left: 20px;
+        top: 2px;
+      }
+
+      em {
+        font-size: 16px;
+        position: relative;
+        left: 20px;
+        top: -1px;
+      }
+
+      span {
+        color: $primary-batch-head;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+      }
     }
   }
 

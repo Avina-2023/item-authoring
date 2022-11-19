@@ -12,24 +12,27 @@
 <!-- SG grid Table -->
 <div class="main-section">
     <div class="outlerback-section">
-        <div class="batch-sec" *ngFor="let batch of batchList">
+        <div class="batch-sec">
             <div class="job-id">
                 <div class="jobid-sec">
-                    {{batch.JopId}}
+                    <span class="batchJobId">
+                        Batch Job Id
+                        {{batchInfo.batchId}}
+                    </span>
                 </div>
             </div>
 
             <div class="p-l-10">
                 <span>Total Items Count</span>
                 <div class="jobs-item">
-                    {{batch.TotalItemsCount}}
+                    {{batchInfo.totalCount}}
                 </div>
             </div>
             <div class="upload-span">
                 <div class="p-l-10 uniq-process">
                     <span>Processed</span>
                     <div class="jobs-proc">
-                        {{batch.Processed}}
+                        {{batchInfo.processedCount}}
                     </div>
                 </div>
 
@@ -38,7 +41,7 @@
                 <div class="p-l-10">
                     <span>Errors</span>
                     <div class="error-red">
-                        {{batch.Errors}}
+                        {{batchInfo.errorCount}}
                     </div>
                 </div>
 
@@ -73,7 +76,7 @@
         <!-- Ag grid Table section -->
         <div class="aggrid-wrapper">
             <ag-grid-angular style="width: 100%; height: calc(100vh - 180px) !important;" class="ag-theme-alpine"
-                [columnDefs]="columnDefs" [rowData]="rowData" [paginationPageSize]="500" [defaultColDef]="defaultColDef"
+                [columnDefs]="columnDefs" [rowData]="newList" [paginationPageSize]="500" [defaultColDef]="defaultColDef"
                 (gridReady)="onGridReady($event)" [sideBar]="sideBar" [pagination]="true"
                 [suppressRowClickSelection]="true" [cacheBlockSize]="500">
             </ag-grid-angular>

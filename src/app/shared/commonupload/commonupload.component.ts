@@ -1,12 +1,8 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { ViewjobComponent } from 'src/app/pages/admin/viewjob/viewjob.component';
 import { ApiService } from 'src/app/services/api.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
-import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
-
 @Component({
   selector: 'app-commonupload',
   templateUrl: './commonupload.component.html',
@@ -34,8 +30,7 @@ export class CommonuploadComponent implements OnInit {
     private fb: FormBuilder,
     private http: ApiService,
     public toastr: ToastrService,
-    private appConfig: AppConfigService,
-    private dialog: MatDialog
+    private authConfig: AppConfigService,
   ) {
   }
 
@@ -48,6 +43,7 @@ export class CommonuploadComponent implements OnInit {
     }
   }
 
+  //  File Upload Functionality
   async onSelectFile(event: any) {
     this.validFile = false;
     if (event.target.files && event.target.files[0].name.includes('.zip')) {
@@ -64,9 +60,13 @@ export class CommonuploadComponent implements OnInit {
     }
   }
   uploadDoc() {
+    var userDetails: any = this.authConfig.getLocalValue('userDetails');
+    var userDetailsobj = JSON.parse(userDetails)
+    var orgId = userDetailsobj.organisations[0].orgId
     const fd = new FormData();
     fd.append('fileName', this.fileName);
     fd.append('uploadFile', this.selectedImage);
+    fd.append('orgId', orgId ? orgId : 1);
     this.http.uploaded(fd).subscribe((response: any) => {
       this.newFile = response;
     })
