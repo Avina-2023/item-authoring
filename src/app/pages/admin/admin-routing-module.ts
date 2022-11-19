@@ -19,7 +19,7 @@ const routes: Routes = [
 
     },
     {
-        path: `${APP_CONSTANTS.ROUTES.ADMIN.VIEWJOB}`, component: ViewjobComponent,
+        path: `${APP_CONSTANTS.ROUTES.ADMIN.VIEWJOB}/:id`, component: ViewjobComponent,
         canActivate: [IsloggedInGuard],
         data: {
             breadcrumb: 'ViewJob'

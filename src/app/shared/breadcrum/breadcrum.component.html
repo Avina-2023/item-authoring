@@ -1,8 +1,9 @@
 <div class="breadcrum">
 
-    <h1>{{breadCrumData.previousPage}}</h1>
+    <h1 (click)="navigate(breadCrumData.previousPage, breadCrumData.currentPage, $event)">{{breadCrumData.previousPage}}
+    </h1>
 
-    <a (click)="navigate(breadCrumData.previousUrl)">
+    <a (click)="navigate(breadCrumData.previousPage, breadCrumData.currentPage, $event)">
         <span>{{breadCrumData.currentPage}}</span>
     </a>
 </div>

@@ -13,6 +13,7 @@ export class IsloggedInGuard implements CanActivate {
 
   }
   canActivate(
+
     route: ActivatedRouteSnapshot,
 
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {

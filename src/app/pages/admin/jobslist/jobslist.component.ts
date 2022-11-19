@@ -1,63 +1,22 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ApiService } from 'src/app/services/api.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
+import { PlatformLocation } from '@angular/common'
 
 @Component({
   selector: 'app-jobslist',
   templateUrl: './jobslist.component.html',
-  styleUrls: ['./jobslist.component.scss']
+  styleUrls: ['./jobslist.component.scss'],
+
 })
 export class JobslistComponent implements OnInit {
   @ViewChild('matDialog', { static: false }) matDialogRef: any;
-  jodlist: any = [
-    {
-      "JopId": "Batch Jop Id - 121",
-      "FileName": "Aptitude_Assesment_01_09_2022_09_30_45_09.zip",
-      "UploadedBy": "Prabu",
-      "UploadedOn": "01 Sep 2022",
-      "TotalItemsCount": 200,
-      "Processed": 0,
-      "Errors": 20
-    },
-    {
-      "JopId": "Batch Jop Id - 120",
-      "FileName": "English_QP_01_09_2022_09_30_45_09.zip",
-      "UploadedBy": "Prabu",
-      "UploadedOn": "01 Sep 2022",
-      "TotalItemsCount": 200,
-      "Processed": 100,
-      "Errors": 20
-    },
-    {
-      "JopId": "Batch Jop Id - 119",
-      "FileName": "CSE_QP_Model_Paper_01_09_2022_09_30_45_09.zip",
-      "UploadedBy": "Prabu",
-      "UploadedOn": "20 Aug 2022",
-      "TotalItemsCount": 150,
-      "Processed": 150,
-      "Errors": 0
-    },
-    {
-      "JopId": "Batch Jop Id - 118",
-      "FileName": "CSE_QP_Model_Paper_01_09_2022_09_30_45_09.zip",
-      "UploadedBy": "Prabu",
-      "UploadedOn": "20 Aug 2022",
-      "TotalItemsCount": 200,
-      "Processed": 0,
-      "Errors": 20
-    },
-    {
-      "JopId": "Batch Jop Id - 117",
-      "FileName": "CSE_QP_Model_Paper_01_09_2022_09_30_45_09.zip",
-      "UploadedBy": "Prabu",
-      "UploadedOn": "19 Aug 2022",
-      "TotalItemsCount": 200,
-      "Processed": 0,
-      "Errors": 20
-    }
-  ];
-
+  callFromJob: any = 'View Job List';
+  Joblist: any = '';
+  id: any;
   breadCrumData: any = {
     previousPage: 'Batch Process >',
     currentPage: 'Jobs List',
@@ -66,15 +25,26 @@ export class JobslistComponent implements OnInit {
 
 
   constructor(private appConfig: AppConfigService,
-    private dialog: MatDialog,) {
+    private dialog: MatDialog,
+    private http: ApiService,
+    private authConfig: AppConfigService,
+    location: PlatformLocation
+  ) {
+    location.onPopState(() => {
 
+    });
   }
 
   ngOnInit(): void {
-
+    this.batchData();
   }
-  showviewjob() {
-    this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.VIEWJOB)
+  httpParams = new HttpParams({
+    fromObject: {
+      batchid: 12
+    }
+  })
+  showviewjob(batchId: any) {
+    this.appConfig.routeNavigationParams(APP_CONSTANTS.ENDPOINTS.ADMIN.VIEWJOB, batchId)
   }
 
   showUpload() {
@@ -89,6 +59,14 @@ export class JobslistComponent implements OnInit {
   }
   closePop(e: any) {
     this.dialog.closeAll();
+  }
+
+  batchData() {
+    let listid = this.Joblist;
+    this.http.Joblist(listid).subscribe((response: any) => {
+      this.Joblist = response.data;
+    })
+
   }
 
 }

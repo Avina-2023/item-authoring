@@ -15,7 +15,9 @@ export class AppConfigService {
   routeNavigation(path: any) {
     return this.route.navigate([path]);
   }
-
+  routeNavigationParams(path: any, params: any) {
+    return this.route.navigate([path, params]);
+  }
 
   setlocalValue(key: string, value: string) {
     return localStorage.setItem(key, value);
