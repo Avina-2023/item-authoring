@@ -5,8 +5,6 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AppConfigService {
-
-
   constructor(
     private route: Router
   ) { }

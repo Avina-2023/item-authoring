@@ -2,7 +2,6 @@
 <app-breadcrum [breadCrumData]="breadCrumData"></app-breadcrum>
 <div class="batch-job-list">
     <h1>Batch Job List</h1>
-    <!-- <app-commonupload></app-commonupload> -->
     <div class="upload-btnOne" (click)="showUpload()">
         <button class="upload-xcel" mat-raised-button color="primary">
             <img src="assets/images/uploadButton-arrow.svg" /> <span>Upload Items</span>
@@ -18,25 +17,18 @@
         <div class="center-line">
 
         </div>
-
-        <!-- <div class="item-reference">
-            <em class="icon-popup-warning"></em>
-            <span class="item-text">Items with same Reference Id will get replaced with the existing one.</span>
-        </div> -->
         <app-commonupload [commontitle]="callFromJob"></app-commonupload>
-
     </ng-template>
-
 </div>
 
 <!-- Batch job id section -->
 <div class="joblist-wrapper" *ngFor="let jobs of Joblist">
     <div class="job-id">
         <div class="jobid-sec">
-            <span>Batch Job Id - </span>
-            <span>{{jobs.batchId}}
+            <span>Batch Job Id -
+                {{ jobs.batchId}}
                 <div *ngIf="jobs.batchStatus === true; else failStatus">
-                    <img src="/assets/images/warning-true.svg" alt="">
+                    <em class="icon-warning-green"></em>
                 </div>
                 <ng-template #failStatus>
                     <em class="icon-warning-red"></em>
@@ -48,11 +40,9 @@
         <div style="width: 46%;">
             <span>File name</span>
             <div class="jobs-filetag">
-                {{jobs.fileName
-                }}
+                {{jobs.fileName}}
             </div>
         </div>
-
         <div class="upload-span">
             <div class="p-l-10">
                 <span>Uploaded By</span>
@@ -65,8 +55,7 @@
             <div class="p-l-10">
                 <span>Uploaded On</span>
                 <div class="jobs-filetag">
-                    {{jobs.updatedAt
-                    }}
+                    {{jobs.updatedAt}}
                 </div>
             </div>
 

@@ -16,22 +16,18 @@ export class JobslistComponent implements OnInit {
   @ViewChild('matDialog', { static: false }) matDialogRef: any;
   callFromJob: any = 'View Job List';
   Joblist: any = '';
-  id: any;
   breadCrumData: any = {
     previousPage: 'Batch Process >',
     currentPage: 'Jobs List',
     previousUrl: `${APP_CONSTANTS.ROUTES.ADMIN.JOBSLIST}`
   };
 
-
   constructor(private appConfig: AppConfigService,
     private dialog: MatDialog,
     private http: ApiService,
-    private authConfig: AppConfigService,
     location: PlatformLocation
   ) {
     location.onPopState(() => {
-
     });
   }
 
@@ -66,8 +62,6 @@ export class JobslistComponent implements OnInit {
     this.http.Joblist(listid).subscribe((response: any) => {
       this.Joblist = response.data;
     })
-
   }
-
 }
 

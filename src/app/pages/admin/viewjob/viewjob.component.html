@@ -16,8 +16,8 @@
             <div class="job-id">
                 <div class="jobid-sec">
                     <span class="batchJobId">
-                        Batch Job Id
-                        {{batchInfo.batchId}}
+                        Batch Job Id -
+                        {{batchInfo?.batchId}}
                     </span>
                 </div>
             </div>
@@ -25,14 +25,14 @@
             <div class="p-l-10">
                 <span>Total Items Count</span>
                 <div class="jobs-item">
-                    {{batchInfo.totalCount}}
+                    {{batchInfo?.totalCount}}
                 </div>
             </div>
             <div class="upload-span">
                 <div class="p-l-10 uniq-process">
                     <span>Processed</span>
                     <div class="jobs-proc">
-                        {{batchInfo.processedCount}}
+                        {{batchInfo?.processedCount}}
                     </div>
                 </div>
 
@@ -41,14 +41,11 @@
                 <div class="p-l-10">
                     <span>Errors</span>
                     <div class="error-red">
-                        {{batchInfo.errorCount}}
+                        {{batchInfo?.errorCount}}
                     </div>
                 </div>
-
             </div>
-
             <!-- Reupload Items file formet -->
-            <!-- <app-commonupload></app-commonupload> -->
             <div class="upload-btnOne" (click)="showUpload()">
                 <button class="upload-xcel" mat-raised-button color="primary">
                     <img src="assets/images/uploadButton-arrow.svg" /> <span>Reupload Items</span>
@@ -66,8 +63,6 @@
                 </div>
 
                 <div class="item-reference">
-                    <!-- <em class="icon-popup-warning"></em>
-                    <span class="item-text">Clear the errors and upload the file here. Items with same Reference Id will get replaced with the existing one.</span> -->
                 </div>
                 <app-commonupload [commontitle]="callFrom"></app-commonupload>
             </ng-template>

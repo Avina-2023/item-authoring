@@ -8,7 +8,7 @@ const routes: Routes = [
         path: '', component: AuthComponent,
         children: [
             {
-                path: `${APP_CONSTANTS.ROUTES.ADMIN.HOME}`, loadChildren: () => import('../pages/admin/admin-module').then(m => m.AdminModule),
+                path: `${APP_CONSTANTS.ROUTES.ADMIN.HOME}`, loadChildren: () => import('../pages/admin/admin-module').then(m => m.AdminModule)
             },
         ],
     }

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IsAccessGuard } from './guards/is-access.guard';
 import { IsloggedInGuard } from './guards/islogged-in.guard';
 import { LogoutGuard } from './guards/logout.guard';
 import { ForgotComponent } from './pages/forgot/forgot.component';

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 
@@ -10,7 +9,7 @@ import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 })
 export class BreadcrumComponent implements OnInit {
   @Input() breadCrumData: any
-  constructor(private router: Router,
+  constructor(
     private appConfig: AppConfigService
   ) { }
 
@@ -20,6 +19,5 @@ export class BreadcrumComponent implements OnInit {
     if (event.target.innerText === 'Batch Process > Jobs List >') {
       this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.JOBSLIST)
     }
-
   }
 }

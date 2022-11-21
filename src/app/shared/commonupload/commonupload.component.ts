@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
@@ -27,7 +26,6 @@ export class CommonuploadComponent implements OnInit {
   @Input() commontitle: string | undefined;
 
   constructor(
-    private fb: FormBuilder,
     private http: ApiService,
     public toastr: ToastrService,
     private authConfig: AppConfigService,
@@ -67,8 +65,10 @@ export class CommonuploadComponent implements OnInit {
     fd.append('fileName', this.fileName);
     fd.append('uploadFile', this.selectedImage);
     fd.append('orgId', orgId ? orgId : 1);
+    // fd.append('firstname', .data.attributes.firstName);
     this.http.uploaded(fd).subscribe((response: any) => {
       this.newFile = response;
+
     })
   }
 

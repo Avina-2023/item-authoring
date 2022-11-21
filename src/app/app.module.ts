@@ -15,7 +15,6 @@ import { IsloggedInGuard } from './guards/islogged-in.guard';
 import { ForgotComponent } from './pages/forgot/forgot.component';
 import { SetPasswordComponent } from './pages/set-password/set-password.component';
 import { ToastrModule } from 'ngx-toastr';
-import { NgxFileDropModule } from 'ngx-file-drop';
 import { LogoutGuard } from './guards/logout.guard';
 import { AgGridModule } from 'ag-grid-angular';
 import 'ag-grid-enterprise';
@@ -36,7 +35,6 @@ import 'ag-grid-enterprise';
     HttpClientModule,
     SharedModule,
     AgGridModule,
-    NgxFileDropModule,
     ToastrModule.forRoot(
       {
         timeOut: 3000,
