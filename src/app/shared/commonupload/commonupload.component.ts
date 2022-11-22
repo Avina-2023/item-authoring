@@ -64,7 +64,7 @@ export class CommonuploadComponent implements OnInit {
     var userDetails: any = this.authConfig.getLocalValue('userDetails');
     var userName: any = this.authConfig.getLocalValue('firstname');
     var userDetailsobj = JSON.parse(userDetails)
-    var orgId = userDetailsobj.organisations[0].orgId
+    var orgId = userDetailsobj?.organisations[0].orgId
     const fd = new FormData();
     fd.append('fileName', this.fileName);
     fd.append('uploadFile', this.selectedImage);
@@ -81,12 +81,10 @@ export class CommonuploadComponent implements OnInit {
       }
     })
   }
-
   delete() {
     this.fileName = false;
     this.selectedImage = false;
   }
-
   returnUpload() {
     this.newFile = false
     this.fileName = "";

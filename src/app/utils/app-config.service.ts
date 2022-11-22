@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class AppConfigService {
   constructor(
-    private route: Router
+    private route: Router,
   ) { }
 
   // Navigations
@@ -29,6 +30,9 @@ export class AppConfigService {
   clearLocalData() {
     return localStorage.clear();
   }
-
+  logout() {
+    this.clearLocalData();
+    return this.routeNavigation('/');
+  }
 
 }

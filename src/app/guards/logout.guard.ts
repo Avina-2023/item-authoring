@@ -14,11 +14,10 @@ export class LogoutGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.appConfig.getLocalValue('token')) {
-      return false;
-    } else {
       return true;
+    } else {
+      this.appConfig.logout();
+      return false;
     }
-
   }
-
 }

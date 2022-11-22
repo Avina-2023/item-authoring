@@ -9,7 +9,7 @@ import { APP_CONSTANTS } from './utils/app-constants.service';
 
 const routes: Routes = [
   {
-    path: `${APP_CONSTANTS.ENDPOINTS.LOGIN}`, component: LoginComponent, canActivate: [LogoutGuard]
+    path: `${APP_CONSTANTS.ENDPOINTS.LOGIN}`, component: LoginComponent, canActivate: [IsloggedInGuard]
   },
   {
     path: 'forgot', component: ForgotComponent
@@ -18,12 +18,12 @@ const routes: Routes = [
     path: 'setpass', component: SetPasswordComponent
   },
   {
-    path: `${APP_CONSTANTS.ROUTES.AUTH}`, loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule), canActivate: [IsloggedInGuard]
+    path: `${APP_CONSTANTS.ROUTES.AUTH}`, loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule), canActivate: [LogoutGuard]
   },
   {
-    path: `**`,
+    path: '',
     pathMatch: 'full',
-    component: LoginComponent
+    component: LoginComponent, canActivate: [IsloggedInGuard]
   }
 ];
 
