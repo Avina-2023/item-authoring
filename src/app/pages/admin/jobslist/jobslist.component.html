@@ -17,11 +17,17 @@
         <div class="center-line">
 
         </div>
-        <app-commonupload [commontitle]="callFromJob"></app-commonupload>
+        <app-commonupload (refresh)="batchData()" [commontitle]="callFromJob"></app-commonupload>
     </ng-template>
 </div>
 
 <!-- Batch job id section -->
+<div class="Card-message" *ngIf="nodata">
+    <div class="card-inside">
+        <span>{{nodata}}</span>
+    </div>
+</div>
+
 <div class="joblist-wrapper" *ngFor="let jobs of Joblist">
     <div class="job-id">
         <div class="jobid-sec">

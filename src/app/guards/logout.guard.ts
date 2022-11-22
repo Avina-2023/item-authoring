@@ -18,6 +18,7 @@ export class LogoutGuard implements CanActivate {
     } else {
       return true;
     }
+
   }
 
 }

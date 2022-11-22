@@ -5,6 +5,7 @@ import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { GridApi } from '@ag-grid-enterprise/all-modules';
 import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router'
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-viewjob',
@@ -23,7 +24,6 @@ export class ViewjobComponent implements OnInit {
   columnDefs: any = [];
   batchId: any = ""
   public sideBar = 'filters';
-  toaster: any;
   batchInfo: any;
   public defaultColDef = {
     flex: 1,
@@ -42,7 +42,8 @@ export class ViewjobComponent implements OnInit {
     private appconfig: AppConfigService,
     private dialog: MatDialog,
     private http: ApiService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public toastr: ToastrService,
   ) {
 
   }
@@ -243,7 +244,7 @@ export class ViewjobComponent implements OnInit {
         this.newList = data.data[0].Questions;
         this.batchInfo = data.data[0];
       } else {
-        this.toaster.error('Something went wrong, please try after sometime')
+        this.toastr.error('Something went wrong, please try after sometime')
       }
     })
   }

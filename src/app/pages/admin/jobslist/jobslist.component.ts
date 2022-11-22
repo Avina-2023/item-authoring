@@ -16,6 +16,7 @@ export class JobslistComponent implements OnInit {
   @ViewChild('matDialog', { static: false }) matDialogRef: any;
   callFromJob: any = 'View Job List';
   Joblist: any = '';
+  nodata: any;
   breadCrumData: any = {
     previousPage: 'Batch Process >',
     currentPage: 'Jobs List',
@@ -60,7 +61,12 @@ export class JobslistComponent implements OnInit {
   batchData() {
     let listid = this.Joblist;
     this.http.Joblist(listid).subscribe((response: any) => {
-      this.Joblist = response.data;
+      if (response.data == undefined) {
+        this.nodata = response.message
+      }
+      else {
+        this.Joblist = response.data;
+      }
     })
   }
 }
