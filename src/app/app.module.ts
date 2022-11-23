@@ -18,6 +18,7 @@ import { LogoutGuard } from './guards/logout.guard';
 import { AgGridModule } from 'ag-grid-angular';
 import 'ag-grid-enterprise';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +50,7 @@ import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.compone
     ),
   ],
 
-  providers: [IsloggedInGuard, LogoutGuard],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, IsloggedInGuard, LogoutGuard],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

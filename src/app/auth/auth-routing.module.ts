@@ -10,6 +10,11 @@ const routes: Routes = [
             {
                 path: `${APP_CONSTANTS.ROUTES.ADMIN.HOME}`, loadChildren: () => import('../pages/admin/admin-module').then(m => m.AdminModule)
             },
+            {
+                path: '',
+                redirectTo: `${APP_CONSTANTS.ENDPOINTS.ADMIN.HOME}`,
+                pathMatch: 'full',
+            }
         ],
     }
 ];

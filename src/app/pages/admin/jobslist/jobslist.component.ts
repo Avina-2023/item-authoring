@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
-import { PlatformLocation } from '@angular/common'
 
 @Component({
   selector: 'app-jobslist',
@@ -26,11 +25,8 @@ export class JobslistComponent implements OnInit {
   constructor(private appConfig: AppConfigService,
     private dialog: MatDialog,
     private http: ApiService,
-    location: PlatformLocation
-  ) {
-    location.onPopState(() => {
-    });
-  }
+
+  ) { }
 
   ngOnInit(): void {
     this.batchData();
