@@ -62,10 +62,12 @@ export class JobslistComponent implements OnInit {
     let listid = this.Joblist;
     this.http.Joblist(listid).subscribe((response: any) => {
       if (response.data == undefined) {
-        this.nodata = response.message
+        this.nodata = response.message;
+        this.Joblist = [];
       }
       else {
         this.Joblist = response.data;
+        this.nodata = "";
       }
     })
   }

@@ -90,6 +90,13 @@ mat-toolbar {
   top: 16px;
   cursor: pointer;
   color: $primary-back-white;
+
+  img {
+    height: 16px;
+    position: relative;
+    left: 4px;
+    // top: 1px;
+  }
 }
 
 label {
