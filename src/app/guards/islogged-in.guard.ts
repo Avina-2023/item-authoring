@@ -15,14 +15,14 @@ export class IsloggedInGuard implements CanActivate {
   canActivate(
 
     route: ActivatedRouteSnapshot,
-
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     if (this.appConfig.getLocalValue('token')) {
-      return true;
-    } else {
-      this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
+      this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.JOBSLIST);
       return false;
+    } else {
+      // this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
+      return true;
     }
   }
 

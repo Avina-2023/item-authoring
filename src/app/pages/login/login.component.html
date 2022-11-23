@@ -8,7 +8,7 @@
                     <div class="wrap-reg">
                         <form [formGroup]="loginForm" class="form-wrapper" (ngSubmit)="submit()">
                             <div class="sign-head">
-                                <h1 class="signIn">Sign-in to your account</h1>
+                                <h1 class="signIn">Sign in to your account</h1>
                                 <div class="footer-logo">
                                     <span> © {{currentYear}} L&T EduTech. All Rights Reserved</span>
                                 </div>
@@ -26,7 +26,7 @@
                                     *ngIf="!loginForm.get('email').hasError('required') && loginForm.get('email').hasError('maxlength')">
                                     {{'100 Characters only allowed'}}</mat-error>
                                 <mat-error class="error" *ngIf="loginForm.get('email').hasError('required')">
-                                    {{'Email is required'}}</mat-error>
+                                    {{'Email is Required'}}</mat-error>
                                 <mat-error class="error" *ngIf="loginForm.get('email').hasError('pattern')">
                                     {{'Please enter a valid email address'}}</mat-error>
                             </mat-form-field>
@@ -53,7 +53,7 @@
                                         'visibility_off'}}</i>
                                 </div>
                                 <mat-error class="error" *ngIf="password.touched && password.errors?.required">
-                                    {{'Password is required' }}
+                                    {{'Password is Required' }}
                                 </mat-error>
                                 <mat-error class="error" *ngIf="password.touched && password.errors?.maxlength">
                                     {{'30 Characters only allowed'
@@ -71,12 +71,9 @@
                                     mat-raised-button [disabled]="loginForm.invalid" type="submit">
                                     {{'SIGN IN'}}</button>
                             </div>
-
                         </form>
-
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup | any;
   toggleVisibility = false;
   disableLogin = false;
-  capsOn: any;
   constructor(
     private fb: FormBuilder,
     private router: Router,

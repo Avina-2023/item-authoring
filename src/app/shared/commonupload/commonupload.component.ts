@@ -1,5 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
@@ -16,6 +15,7 @@ export class CommonuploadComponent implements OnInit {
   newFile: any;
   file: any;
   name: string = '';
+  batchId: any;
   validFile = false;
   url = null;
   showSizeError = {
@@ -24,13 +24,14 @@ export class CommonuploadComponent implements OnInit {
   };
   dateFormatExist: boolean | undefined;
   selectedImage: any;
+  @Output() refresh = new EventEmitter<string>();
   @Input() commontitle: string | undefined;
 
   constructor(
-    private fb: FormBuilder,
     private http: ApiService,
     public toastr: ToastrService,
     private authConfig: AppConfigService,
+
   ) {
   }
 
@@ -61,22 +62,29 @@ export class CommonuploadComponent implements OnInit {
   }
   uploadDoc() {
     var userDetails: any = this.authConfig.getLocalValue('userDetails');
+    var userName: any = this.authConfig.getLocalValue('firstname');
     var userDetailsobj = JSON.parse(userDetails)
-    var orgId = userDetailsobj.organisations[0].orgId
+    var orgId = userDetailsobj?.organisations[0].orgId
     const fd = new FormData();
     fd.append('fileName', this.fileName);
     fd.append('uploadFile', this.selectedImage);
     fd.append('orgId', orgId ? orgId : 1);
+    fd.append('firstName', userName);
     this.http.uploaded(fd).subscribe((response: any) => {
-      this.newFile = response;
+      if (response.success) {
+        this.newFile = response.message
+        this.batchId = response.batchId;
+        this.refresh.next('refresh');
+      }
+      else {
+        this.toastr.error(response.message);
+      }
     })
   }
-
   delete() {
     this.fileName = false;
     this.selectedImage = false;
   }
-
   returnUpload() {
     this.newFile = false
     this.fileName = "";

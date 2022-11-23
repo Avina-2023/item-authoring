@@ -37,7 +37,6 @@ mat-toolbar {
   left: 30px;
   font-size: 18px;
   position: relative;
-  width: 184px;
   color: $primary-back-white;
   height: 21px;
 }
@@ -71,10 +70,10 @@ mat-toolbar {
 
 .center-code {
   border: 1px solid $primary-back-white;
-  height: 30px;
+  height: 26px;
   position: relative;
   right: 59px;
-  top: 9px;
+  top: 12px;
 }
 
 .admin-user {
@@ -91,6 +90,13 @@ mat-toolbar {
   top: 16px;
   cursor: pointer;
   color: $primary-back-white;
+
+  img {
+    height: 16px;
+    position: relative;
+    left: 4px;
+    // top: 1px;
+  }
 }
 
 label {

@@ -11,67 +11,36 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
-import { LoadingService } from '../services/loading.service';
 import { AppConfigService } from '../utils/app-config.service';
 
 @Injectable()
 export class InterceptorService implements HttpInterceptor {
-
-
   constructor(
-    private _loading: LoadingService,
     private toastr: ToastrService,
     public appConfig: AppConfigService
   ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
     const clone = request.clone({
-      // Overwriting
       headers: new HttpHeaders({
         'Accept': 'application/json',
-        // 'Authorization': request.url.includes('/api/chat/') ? 'Bearer ' + this.appConfig.getLocalStorage('Proctor_token') : 'Bearer aqSkKT6qguVyANMPtR6qqWaiCLUTRNpS7aki0COQm6WEg9WE8VWiopu9rF5oQank2AdWyM3UKr62WUu9l1R1BfaO9CzM16Vi89ecAX6ADPfhGBzpAEXze1do0SqtMkdQ5oGqFqtXphoc4DZL4hb6wRdg09RWzEJcnYJLtvska9HfvQiywtu1LZvDt1AD104ypzLaIRV6dGtKWHrhYgxVn7D3Q9mkTS3oejbVX8z81RwN3Ely6g59t5RRU88BVJiv'
       })
-      // Without overwriting
-      // headers: request.headers.set('Content-Type', 'application/json'),
-      // .set('header2', 'header 2 value')
-      // .set('header3', 'header 3 value')
+
     });
     if (request.reportProgress) {
-    } else {
-      this._loading.setLoading(true, request.url);
-
     }
-
     return next.handle(clone).pipe(
       map((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
-          this._loading.setLoading(false, request.url);
+
         }
         return event;
       }),
       retry(3),
-      // return next.handle(request).pipe(
-      //   map((event: HttpEvent<any>) => {
-      //     if (!request.headers.has('Content-Type')) {
-      //       // request = request.clone({ headers: request.headers.set('Content-Type', 'multipart/form-data') });
-      //       request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
-      //     }
 
-      //     if (event instanceof HttpResponse) {
-      //       // this.appConfig.hideLoader();
-      //       return event;
-      //     }
-      //     // this.appConfig.hideLoader();
-      //     return event;
-      //   }),
-      //   retry(3),
       catchError((error: HttpErrorResponse) => {
-        this._loading.setLoading(false, request.url);
-        if (error && error['status'] !== 200) {
 
-          console.log(error ? error : '');
+        if (error && error['status'] !== 200) {
         }
 
         if (error.status === 0) {

@@ -14,6 +14,7 @@ body {
   font-family: "Roboto", sans-serif !important;
   font-size: 14px;
   overflow-y: hidden;
+  margin: 0;
 }
 
 html,
@@ -21,9 +22,4 @@ body {
   height: 100%;
   overflow: hidden;
   overflow-y: hidden !important;
-}
-
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
 }

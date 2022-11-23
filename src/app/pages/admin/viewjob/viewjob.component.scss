@@ -2,7 +2,7 @@
 
 .upload-btnOne {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin: 11px 6px;
 
   .upload-xcel {
@@ -195,7 +195,7 @@
 .ag-theme-alpine {
   --ag-header-height: 30px;
   --ag-header-foreground-color: $primary-common-black;
-  --ag-header-background-color: #edededba;
+  --ag-header-background-color: #ededed;
   font-size: 13px;
   font-weight: 500;
 }
