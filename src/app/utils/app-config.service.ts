@@ -32,7 +32,7 @@ export class AppConfigService {
   }
   logout() {
     this.clearLocalData();
-    return this.routeNavigation('/login');
+    return this.routeNavigation('/');
   }
 
 }
