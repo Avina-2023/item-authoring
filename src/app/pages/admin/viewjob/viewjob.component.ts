@@ -5,6 +5,7 @@ import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { GridApi } from '@ag-grid-enterprise/all-modules';
 import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router'
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-viewjob',
@@ -19,9 +20,11 @@ export class ViewjobComponent implements OnInit {
   length: any;
   pageSize: any;
   paginationPageSize = 500;
+  rowData: any;
   columnDefs: any = [];
   batchId: any = ""
-
+  public sideBar = 'filters';
+  batchInfo: any;
   public defaultColDef = {
     flex: 1,
     minWidth: 100,
@@ -31,21 +34,16 @@ export class ViewjobComponent implements OnInit {
     sortable: true,
     filter: true,
   };
-  public sideBar = 'filters';
-  batchList: any = [
-
-  ]
-  toaster: any;
   commontitle: any = [
     "test1"
   ];
   @ViewChild('matDialog', { static: false }) matDialogRef: any;
-  batchInfo: any;
   constructor(
     private appconfig: AppConfigService,
     private dialog: MatDialog,
     private http: ApiService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public toastr: ToastrService,
   ) {
 
   }
@@ -62,9 +60,7 @@ export class ViewjobComponent implements OnInit {
     currentPage: 'View Job',
     previousUrl: `${APP_CONSTANTS.ROUTES.ADMIN.VIEWJOB}`
   };
-  // Example Json For AG Grid
-  rowData: any;
-  // json End
+
   getRouterPath() {
     this.route.params.subscribe(params => {
       if (params['id']) {
@@ -248,10 +244,9 @@ export class ViewjobComponent implements OnInit {
         this.newList = data.data[0].Questions;
         this.batchInfo = data.data[0];
       } else {
-        this.toaster.error('Something went wrong, please try after sometime')
+        this.toastr.error('Something went wrong, please try after sometime')
       }
     })
-
   }
 }
 

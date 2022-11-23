@@ -47,9 +47,10 @@
 
 .footer-logo {
   position: absolute;
-  bottom: 20px;
+  bottom: 32px;
   font-size: 14px;
   color: $sign-head;
+  left: 50px;
 }
 
 .wrap-reg {
@@ -75,14 +76,6 @@ mat-form-field {
   width: 80%;
 }
 
-.form-wrapper {
-
-  // width: 55%;
-  @media only screen and (min-width: 1440px) {
-    width: 100%;
-  }
-}
-
 ::ng-deep .mat-form-field-required-marker {
   color: $primary-field;
 }
@@ -93,6 +86,7 @@ label span.mat-form-field-required-marker {
 
 .login-icon-color {
   font-size: 21px;
+  cursor: pointer;
 }
 
 .login-email-icon em {

@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 
@@ -14,7 +13,6 @@ export class CommonSidebarComponent implements OnInit {
 
   constructor(
     private appConfig: AppConfigService,
-    private dialog: MatDialog,
   ) { }
   ngOnInit(): void { }
   navigateTo(value: any) {
@@ -24,7 +22,5 @@ export class CommonSidebarComponent implements OnInit {
       this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.JOBSLIST)
     }
   }
-
-
 
 }
