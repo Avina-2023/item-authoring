@@ -19,6 +19,7 @@ export class CommonuploadComponent implements OnInit {
   validFile = false;
   url = null;
   showSizeError = {
+    default: true,
     image: false,
     size: false
   };
@@ -53,11 +54,17 @@ export class CommonuploadComponent implements OnInit {
         this.fileName = event.target.files[0]['name'];
         this.fileSize = (Number(event.target.files[0]['size']) / 1024).toFixed(2);
         this.selectedImage = event.target.files[0];
+        this.showSizeError.default = true
       }
       else {
+        this.showSizeError.default = false
         this.showSizeError.image = false;
         this.showSizeError.size = true;
       }
+    } else {
+      this.showSizeError.default = false
+      this.showSizeError.image = true;
+      this.showSizeError.size = false;
     }
   }
   uploadDoc() {
@@ -78,6 +85,7 @@ export class CommonuploadComponent implements OnInit {
       }
       else {
         this.toastr.error(response.message);
+        // this.toastr.error("Minimum file is 2mb");
       }
     })
   }
