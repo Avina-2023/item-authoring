@@ -31,7 +31,6 @@ export class DashboardHeaderComponent implements OnInit {
   }
   closeDialog(e: any) {
     this.dialog.closeAll();
-    this.appConfig.clearLocalData();
-    this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN)
+    this.appConfig.logout();
   }
 }
