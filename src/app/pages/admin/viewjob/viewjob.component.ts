@@ -157,19 +157,19 @@ export class ViewjobComponent implements OnInit {
         field: 'subClassification',
         tooltipField: 'subClassification',
       },
-      {
-        headerName: 'Updated By',
+      // {
+      //   headerName: 'Updated By',
 
-        minWidth: 140,
-        field: '',
-        tooltipField: '',
-      },
-      {
-        headerName: 'Updated On',
-        minWidth: 140,
-        field: '',
-        tooltipField: '',
-      },
+      //   minWidth: 140,
+      //   field: '',
+      //   tooltipField: '',
+      // },
+      // {
+      //   headerName: 'Updated On',
+      //   minWidth: 140,
+      //   field: '',
+      //   tooltipField: '',
+      // },
       {
         headerName: 'Version Number',
         minWidth: 160,
