@@ -8,7 +8,7 @@ import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
   styleUrls: ['./common-sidebar.component.scss']
 })
 export class CommonSidebarComponent implements OnInit {
-
+  check = "empdashboard";
   isExpanded = false;
 
   constructor(
@@ -22,5 +22,17 @@ export class CommonSidebarComponent implements OnInit {
       this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.JOBSLIST)
     }
   }
+  // validateClick(value: any) {
+  //   this.check = value;
+  //   if (value == "empdashboard") {
+  //     this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.DASHBOARD);
+  //   }
+  // }
 
+  // profile(value: any) {
+  //   this.check = value;
+  //   if (value == "empprofile") {
+  //     this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.JOBSLIST);
+  //   }
+  // }
 }

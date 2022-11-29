@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
+import { LoadingService } from 'src/app/services/loading.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 @Component({
   selector: 'app-commonupload',
@@ -32,7 +33,7 @@ export class CommonuploadComponent implements OnInit {
     private http: ApiService,
     public toastr: ToastrService,
     private authConfig: AppConfigService,
-
+    public loading: LoadingService,
   ) {
   }
 
@@ -68,6 +69,7 @@ export class CommonuploadComponent implements OnInit {
     }
   }
   uploadDoc() {
+    this.loading.setLoading(true);
     var userDetails: any = this.authConfig.getLocalValue('userDetails');
     var userName: any = this.authConfig.getLocalValue('firstname');
     var userDetailsobj = JSON.parse(userDetails)
@@ -79,13 +81,14 @@ export class CommonuploadComponent implements OnInit {
     fd.append('firstName', userName);
     this.http.uploaded(fd).subscribe((response: any) => {
       if (response.success) {
+        this.loading.setLoading(false);
         this.newFile = response.message
-        this.batchId = response.batchId;
+        this.batchId = response.data[0].batchId;
         this.refresh.next('refresh');
       }
       else {
         this.toastr.error(response.message);
-        // this.toastr.error("Minimum file is 2mb");
+        this.loading.setLoading(false);
       }
     })
   }

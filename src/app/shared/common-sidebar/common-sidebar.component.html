@@ -2,11 +2,19 @@
     <mat-drawer #drawer mode="side" disableClose="true" opened="true">
         <mat-nav-list class="mathigh">
             <ng-container>
-                <li matTooltip="Jobs List">
-                    <span>
+                <!-- <mat-list-item (click)="validateClick('empdashboard')"
+                    [ngClass]="[check === 'empdashboard' ? 'selected' : 'notSelected']">
+                    <span matTooltip="Dashboard" routerLinkActive="active">
+                        <img src="/assets/images/dashboard-logo.svg" alt="">
+                    </span>
+                </mat-list-item> -->
+
+                <mat-list-item [ngClass]="[check === 'empprofile' ? 'selected' : 'notSelected']">
+                    <span matTooltip="Jobs List" routerLinkActive="active">
                         <img src="/assets/images/Job list.svg" alt="">
                     </span>
-                </li>
+                </mat-list-item>
+
             </ng-container>
         </mat-nav-list>
     </mat-drawer>
