@@ -83,7 +83,7 @@ export class CommonuploadComponent implements OnInit {
       if (response.success) {
         this.loading.setLoading(false);
         this.newFile = response.message
-        this.batchId = response.batchId;
+        this.batchId = response.data[0].batchId;
         this.refresh.next('refresh');
       }
       else {
