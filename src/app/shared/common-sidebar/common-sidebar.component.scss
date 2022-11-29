@@ -1,6 +1,6 @@
 @import "../../../themes/theme.scss";
 
-li {
+mat-list-item {
   background-color: $primary-lite-white;
   cursor: pointer;
   display: flex;
@@ -9,14 +9,12 @@ li {
   border-left-width: 5px;
   border-style: solid;
   border-color: transparent;
-  transition: all 750ms ease-in-out;
   padding: 10px 12px;
   border-image: linear-gradient(to bottom, #41b865, #00bcef) 1 100%;
   position: relative;
 
   img {
     position: relative;
-    left: 2px;
     top: 3px;
   }
 }

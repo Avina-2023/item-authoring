@@ -26,7 +26,7 @@
         <span>*</span> (file extension allowed .zip)
     </div>
 
-    <div *ngIf="showSizeError['size']" class="text"> <span>*</span> Maximum file size limit is 2 MB</div>
+    <div *ngIf="showSizeError['size']" class="textlimit"> <span>*</span> Maximum file size limit is 2 MB</div>
     <div *ngIf="showSizeError['image']" class="error">Accept only .zip files</div>
     <div *ngIf="validFile" class="error">Please upload file with correct headers</div>
     <div *ngIf="dateFormatExist" class="error">Data should not be in the date format</div>

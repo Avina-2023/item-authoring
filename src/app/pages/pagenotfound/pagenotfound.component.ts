@@ -18,7 +18,8 @@ export class PagenotfoundComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  routeToHome() {
-    this.authConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
+  goHome() {
+    this.authConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.JOBSLIST);
   }
+
 }

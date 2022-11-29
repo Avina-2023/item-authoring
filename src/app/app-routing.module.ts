@@ -4,6 +4,7 @@ import { IsloggedInGuard } from './guards/islogged-in.guard';
 import { LogoutGuard } from './guards/logout.guard';
 import { ForgotComponent } from './pages/forgot/forgot.component';
 import { LoginComponent } from './pages/login/login.component';
+import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 import { SetPasswordComponent } from './pages/set-password/set-password.component';
 import { APP_CONSTANTS } from './utils/app-constants.service';
 
@@ -24,6 +25,16 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     component: LoginComponent, canActivate: [IsloggedInGuard]
+  },
+  {
+    path: `error`,
+    pathMatch: 'full',
+    component: PagenotfoundComponent
+  },
+  {
+    path: `**`,
+    pathMatch: 'full',
+    component: PagenotfoundComponent
   }
 ];
 
