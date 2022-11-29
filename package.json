@@ -24,8 +24,6 @@
     "ag-grid-angular": "^26.0.0",
     "ag-grid-community": "^26.0.0",
     "ag-grid-enterprise": "^26.0.1",
-    "apexcharts": "^3.36.3",
-    "ng-apexcharts": "^1.5.4",
     "ngx-toastr": "^15.2.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
