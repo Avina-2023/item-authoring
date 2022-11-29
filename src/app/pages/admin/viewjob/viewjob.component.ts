@@ -6,6 +6,7 @@ import { GridApi } from '@ag-grid-enterprise/all-modules';
 import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router'
 import { ToastrService } from 'ngx-toastr';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-viewjob',
@@ -44,6 +45,7 @@ export class ViewjobComponent implements OnInit {
     private http: ApiService,
     private route: ActivatedRoute,
     public toastr: ToastrService,
+    private loading: LoadingService
   ) {
 
   }
@@ -205,7 +207,6 @@ export class ViewjobComponent implements OnInit {
           } else {
             return `<img src="/assets/images/Icon material-error-outline.svg"></img> <span style="color:#C02222">` + params.value + `</span>`;
           }
-
         }
       },
     ];
@@ -241,6 +242,7 @@ export class ViewjobComponent implements OnInit {
     }
     this.http.jobDetails(viewJob).subscribe((data: any) => {
       if (data.success) {
+        this.loading.setLoading(false);
         this.newList = data.data[0].Questions;
         this.batchInfo = data.data[0];
       } else {

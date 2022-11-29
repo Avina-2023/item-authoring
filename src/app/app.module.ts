@@ -19,6 +19,8 @@ import { AgGridModule } from 'ag-grid-angular';
 import 'ag-grid-enterprise';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
+// import {ApexCharts} from 'apexcharts'
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +39,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     HttpClientModule,
     SharedModule,
     AgGridModule,
+
     ToastrModule.forRoot(
       {
         timeOut: 3000,

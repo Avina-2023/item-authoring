@@ -2,6 +2,7 @@ import { HttpParams } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
+import { LoadingService } from 'src/app/services/loading.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 
@@ -25,7 +26,7 @@ export class JobslistComponent implements OnInit {
   constructor(private appConfig: AppConfigService,
     private dialog: MatDialog,
     private http: ApiService,
-
+    public loader: LoadingService
   ) { }
 
   ngOnInit(): void {
@@ -58,6 +59,7 @@ export class JobslistComponent implements OnInit {
     let listid = this.Joblist;
     this.http.Joblist(listid).subscribe((response: any) => {
       if (response.data == undefined) {
+        this.loader.setLoading(false);
         this.nodata = response.message;
         this.Joblist = [];
       }
