@@ -41,6 +41,7 @@ export class ViewjobComponent implements OnInit {
     "test1"
   ];
   @ViewChild('matDialog', { static: false }) matDialogRef: any;
+  singlelock: boolean = true;
   constructor(
     private appconfig: AppConfigService,
     private dialog: MatDialog,
@@ -240,9 +241,15 @@ export class ViewjobComponent implements OnInit {
     })
   }
   movetotav() {
-    let batchId = { "batchId": this.batchId };
+    this.singlelock = true
+    let batchId = { "batchId": +this.batchId };
     this.http.toa(batchId).subscribe((response: any) => {
-      this.gettao = response;
+      if(response.success){
+        this.viewJobDetails()
+        this.toastr.success(response.message)
+      }else{
+        this.toastr.error(response.message)
+      }
       this.loading.setLoading(false);
     })
   }
