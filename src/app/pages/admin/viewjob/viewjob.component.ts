@@ -240,7 +240,7 @@ export class ViewjobComponent implements OnInit {
     })
   }
   movetotav() {
-    let batchId = this.taobatch;
+    let batchId = { "batchId": this.batchId };
     this.http.toa(batchId).subscribe((response: any) => {
       this.gettao = response;
       this.loading.setLoading(false);

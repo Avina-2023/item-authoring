@@ -40,6 +40,7 @@ export class ApiService {
   }
 
   toa(data: any) {
+    console.log(data)
     return this.http.post(`${this.TAO_URL}/createXMLFolder`, data)
   }
 }
