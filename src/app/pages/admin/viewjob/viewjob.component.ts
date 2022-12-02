@@ -20,12 +20,14 @@ export class ViewjobComponent implements OnInit {
   private gridApi!: GridApi;
   length: any;
   pageSize: any;
+  taobatch: any;
   paginationPageSize = 500;
   rowData: any;
   columnDefs: any = [];
   batchId: any = ""
   public sideBar = 'filters';
   batchInfo: any;
+  gettao: any;
   public defaultColDef = {
     flex: 1,
     minWidth: 100,
@@ -159,19 +161,6 @@ export class ViewjobComponent implements OnInit {
         field: 'subClassification',
         tooltipField: 'subClassification',
       },
-      // {
-      //   headerName: 'Updated By',
-
-      //   minWidth: 140,
-      //   field: '',
-      //   tooltipField: '',
-      // },
-      // {
-      //   headerName: 'Updated On',
-      //   minWidth: 140,
-      //   field: '',
-      //   tooltipField: '',
-      // },
       {
         headerName: 'Version Number',
         minWidth: 160,
@@ -248,6 +237,13 @@ export class ViewjobComponent implements OnInit {
       } else {
         this.toastr.error('Something went wrong, please try after sometime')
       }
+    })
+  }
+  movetotav() {
+    let batchId = this.taobatch;
+    this.http.toa(batchId).subscribe((response: any) => {
+      this.gettao = response;
+      this.loading.setLoading(false);
     })
   }
 }

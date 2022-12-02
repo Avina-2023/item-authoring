@@ -84,6 +84,14 @@ label span.mat-form-field-required-marker {
   color: $primary-field;
 }
 
+input.mat-input-element {
+  margin-top: -3px !important;
+}
+
+:host ::ng-deep.mat-input-element {
+  margin: 4px !important;
+}
+
 .login-icon-color {
   font-size: 21px;
   cursor: pointer;
@@ -92,7 +100,7 @@ label span.mat-form-field-required-marker {
 .login-email-icon em {
   font-size: 13px;
   position: relative;
-  bottom: 4px;
+  bottom: 6px;
   left: 1px;
 }
 
@@ -100,7 +108,7 @@ label span.mat-form-field-required-marker {
   font-size: 18px;
   left: 1px;
   position: relative;
-  bottom: 4px;
+  bottom: 5px;
 }
 
 // Forgot password css
