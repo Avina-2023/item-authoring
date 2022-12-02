@@ -20,12 +20,14 @@ export class ViewjobComponent implements OnInit {
   private gridApi!: GridApi;
   length: any;
   pageSize: any;
+  taobatch: any;
   paginationPageSize = 500;
   rowData: any;
   columnDefs: any = [];
   batchId: any = ""
   public sideBar = 'filters';
   batchInfo: any;
+  gettao: any;
   public defaultColDef = {
     flex: 1,
     minWidth: 100,
@@ -39,6 +41,7 @@ export class ViewjobComponent implements OnInit {
     "test1"
   ];
   @ViewChild('matDialog', { static: false }) matDialogRef: any;
+  singlelock: boolean = true;
   constructor(
     private appconfig: AppConfigService,
     private dialog: MatDialog,
@@ -159,19 +162,6 @@ export class ViewjobComponent implements OnInit {
         field: 'subClassification',
         tooltipField: 'subClassification',
       },
-      // {
-      //   headerName: 'Updated By',
-
-      //   minWidth: 140,
-      //   field: '',
-      //   tooltipField: '',
-      // },
-      // {
-      //   headerName: 'Updated On',
-      //   minWidth: 140,
-      //   field: '',
-      //   tooltipField: '',
-      // },
       {
         headerName: 'Version Number',
         minWidth: 160,
@@ -248,6 +238,19 @@ export class ViewjobComponent implements OnInit {
       } else {
         this.toastr.error('Something went wrong, please try after sometime')
       }
+    })
+  }
+  movetotav() {
+    this.singlelock = true
+    let batchId = { "batchId": +this.batchId };
+    this.http.toa(batchId).subscribe((response: any) => {
+      if(response.success){
+        this.viewJobDetails()
+        this.toastr.success(response.message)
+      }else{
+        this.toastr.error(response.message)
+      }
+      this.loading.setLoading(false);
     })
   }
 }

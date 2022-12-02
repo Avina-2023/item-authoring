@@ -143,11 +143,12 @@
     border-left: 2px solid;
     color: $primary-dull-gray;
     height: 40px;
+    padding-left: 10px;
   }
 
   .p-l-10 {
-    padding-left: 0px;
-    margin-left: 50%;
+    margin-left: 35%;
+    padding: 0px 6px;
   }
 
   .uniq-process {
@@ -182,6 +183,10 @@
     font-size: 12px;
     color: $primary-common-black;
   }
+}
+
+.disablebtn{
+  cursor:not-allowed !important
 }
 
 

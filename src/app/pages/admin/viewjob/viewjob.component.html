@@ -21,7 +21,6 @@
                     </span>
                 </div>
             </div>
-
             <div class="p-l-10">
                 <span>Total Items Count</span>
                 <div class="jobs-item">
@@ -44,6 +43,12 @@
                         {{batchInfo?.errorCount}}
                     </div>
                 </div>
+            </div>
+            <!-- Tao Button -->
+            <div class="upload-btnOne" >
+                <button [disabled]="batchInfo?.taoBatchSync!=='pending'&& singlelock" [ngClass]="batchInfo?.taoBatchSync!=='pending'&& singlelock?'disablebtn':''" (click)="movetotav()" class="upload-xcel" mat-raised-button color="primary">
+                    <img src="assets/images/uploadButton-arrow.svg" /> <span>{{batchInfo?.taoBatchSync}}</span>
+                </button>
             </div>
             <!-- Reupload Items file formet -->
             <div class="upload-btnOne" (click)="showUpload()">

@@ -66,6 +66,7 @@ export class JobslistComponent implements OnInit {
       else {
         this.Joblist = response.data;
         this.nodata = "";
+        this.loader.setLoading(false);
       }
     })
   }
