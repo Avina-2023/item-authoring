@@ -36,6 +36,7 @@ export class ViewjobComponent implements OnInit {
     enablePivot: true,
     sortable: true,
     filter: true,
+    resizable: true,
   };
   commontitle: any = [
     "test1"
@@ -244,13 +245,12 @@ export class ViewjobComponent implements OnInit {
     this.singlelock = true
     let batchId = { "batchId": +this.batchId };
     this.http.toa(batchId).subscribe((response: any) => {
-      if(response.success){
+      if (response.success) {
         this.viewJobDetails()
         this.toastr.success(response.message)
-      }else{
+      } else {
         this.toastr.error(response.message)
       }
-      this.loading.setLoading(false);
     })
   }
 }
