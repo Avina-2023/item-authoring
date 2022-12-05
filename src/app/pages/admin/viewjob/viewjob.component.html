@@ -45,9 +45,13 @@
                 </div>
             </div>
             <!-- Tao Button -->
-            <div class="upload-btnOne" >
-                <button [disabled]="batchInfo?.taoBatchSync!=='pending'&& singlelock" [ngClass]="batchInfo?.taoBatchSync!=='pending'&& singlelock?'disablebtn':''" (click)="movetotav()" class="upload-xcel" mat-raised-button color="primary">
-                    <img src="assets/images/uploadButton-arrow.svg" /> <span *ngIf="batchInfo?.taoBatchSync">{{batchInfo?.taoBatchSync=="pending"?'Pending':batchInfo?.taoBatchSync=="inprogress"?'In Progress':batchInfo?.taoBatchSync=="completed"?'Completed':''}}</span>
+            <div class="upload-btnOne">
+                <button [disabled]="batchInfo?.taoBatchSync!=='pending'&& singlelock"
+                    [ngClass]="batchInfo?.taoBatchSync!=='pending'&& singlelock?'disablebtn':''" (click)="movetotav()"
+                    class="upload-xcel" mat-raised-button color="primary">
+                    <img src="assets/images/uploadButton-arrow.svg" /> <span
+                        *ngIf="batchInfo?.taoBatchSync">{{batchInfo?.taoBatchSync=="pending"?'Pending':batchInfo?.taoBatchSync=="inprogress"?'In
+                        Progress':batchInfo?.taoBatchSync=="completed"?'Completed':''}}</span>
                 </button>
             </div>
             <!-- Reupload Items file formet -->
@@ -76,9 +80,9 @@
         <!-- Ag grid Table section -->
         <div class="aggrid-wrapper">
             <ag-grid-angular style="width: 100%; height: calc(100vh - 180px) !important;" class="ag-theme-alpine"
-                [columnDefs]="columnDefs" [rowData]="newList" [paginationPageSize]="500" [defaultColDef]="defaultColDef"
-                (gridReady)="onGridReady($event)" [sideBar]="sideBar" [pagination]="true"
-                [suppressRowClickSelection]="true" [cacheBlockSize]="500">
+                [columnDefs]="columnDefs" [rowData]="newList" [defaultColDef]="defaultColDef" [paginationPageSize]="500"
+                [defaultColDef]="defaultColDef" (gridReady)="onGridReady($event)" [sideBar]="sideBar"
+                [pagination]="true" [suppressRowClickSelection]="true" [cacheBlockSize]="500">
             </ag-grid-angular>
         </div>
     </div>
