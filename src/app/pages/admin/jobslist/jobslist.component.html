@@ -32,7 +32,13 @@
 </div>
 <!-- Batch job id section -->
 <ng-template #BatchList>
-    <div class="joblist-wrapper" *ngFor="let jobs of Joblist">
+    <div class="aggrid-wrapper">
+        <ag-grid-angular style="width: 100%; height: calc(100vh - 180px) !important;" class="ag-theme-alpine"
+            [columnDefs]="columnDefs" [rowData]="Joblist" [defaultColDef]="defaultColDef" [paginationPageSize]="500"
+            [sideBar]="sideBar" [pagination]="true" [suppressRowClickSelection]="true" [cacheBlockSize]="500">
+        </ag-grid-angular>
+    </div>
+    <!-- <div class="joblist-wrapper" *ngFor="let jobs of Joblist">
         <div class="job-id">
             <div class="jobid-sec">
                 <span>Batch Job Id -
@@ -103,5 +109,5 @@
                 <mat-icon>arrow_forward</mat-icon>
             </div>
         </button>
-    </div>
+    </div> -->
 </ng-template>

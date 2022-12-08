@@ -1,5 +1,7 @@
 @import '../../../../themes/theme.scss';
 
+
+
 .upload-btnOne {
   display: flex;
   justify-content: flex-end;
@@ -202,4 +204,18 @@
 span {
   font-size: 12px;
   color: $primary-common-black;
+}
+
+.aggrid-wrapper {
+  width: 100%;
+  padding: 0px 8px;
+  height: 100%;
+}
+
+.ag-theme-alpine {
+  --ag-header-height: 30px;
+  --ag-header-foreground-color: $primary-common-black;
+  --ag-header-background-color: #ededed;
+  font-size: 13px;
+  font-weight: 500;
 }

@@ -72,17 +72,21 @@ export class CommonuploadComponent implements OnInit {
     this.loading.setLoading(true);
     var userDetails: any = this.authConfig.getLocalValue('userDetails');
     var userName: any = this.authConfig.getLocalValue('firstname');
+
     var userDetailsobj = JSON.parse(userDetails)
     var orgId = userDetailsobj?.organisations[0].orgId
     const fd = new FormData();
+
     fd.append('fileName', this.fileName);
     fd.append('uploadFile', this.selectedImage);
     fd.append('orgId', orgId ? orgId : 1);
     fd.append('firstName', userName);
+
     this.http.uploaded(fd).subscribe((response: any) => {
       if (response.success) {
         this.loading.setLoading(false);
         this.newFile = response.message
+        // console.log(this.newFile);
         this.batchId = response.data[0].batchId;
         this.refresh.next('refresh');
       }

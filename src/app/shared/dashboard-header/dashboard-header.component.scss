@@ -50,6 +50,7 @@ mat-toolbar {
     border: none;
     outline: none;
     border-right: 8px solid $primary-lite-white;
+    cursor: pointer;
 
     option {
       border-radius: 0px !important;

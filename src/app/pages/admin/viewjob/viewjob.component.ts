@@ -7,13 +7,15 @@ import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router'
 import { ToastrService } from 'ngx-toastr';
 import { LoadingService } from 'src/app/services/loading.service';
-
+const incr = 1;
 @Component({
   selector: 'app-viewjob',
   templateUrl: './viewjob.component.html',
   styleUrls: ['./viewjob.component.scss']
 })
 export class ViewjobComponent implements OnInit {
+  progress = 0;
+
   newList: any;
   callFrom: any = 'View Job';
   public gridColumnApi: any;
@@ -28,6 +30,10 @@ export class ViewjobComponent implements OnInit {
   public sideBar = 'filters';
   batchInfo: any;
   gettao: any;
+  isSyncButtonenable = false;
+  timesync = false;
+  today: number = Date.now();
+  dateObj: number = Date.now();
   public defaultColDef = {
     flex: 1,
     minWidth: 100,
@@ -42,6 +48,7 @@ export class ViewjobComponent implements OnInit {
     "test1"
   ];
   @ViewChild('matDialog', { static: false }) matDialogRef: any;
+  @ViewChild('matDialogtao', { static: false }) matDialogRefTao: any;
   singlelock: boolean = true;
   constructor(
     private appconfig: AppConfigService,
@@ -58,6 +65,7 @@ export class ViewjobComponent implements OnInit {
     this.getRouterPath()
     this.tableview();
     this.viewJobDetails();
+    setInterval(() => this.manageProgress(), 150)
   }
 
   // BreadCrumb Routing
@@ -205,6 +213,9 @@ export class ViewjobComponent implements OnInit {
   showUpload() {
     this.matDialogOpen();
   }
+  openTao() {
+    this.matDialogOpentao();
+  }
   matDialogOpen() {
     const dialogRef = this.dialog.open(this.matDialogRef, {
       data: { type: "view" },
@@ -213,9 +224,21 @@ export class ViewjobComponent implements OnInit {
 
     });
   }
+  matDialogOpentao() {
+    const dialogRef = this.dialog.open(this.matDialogRefTao, {
+      data: { type: "view" },
+      width: '448px',
+      height: '315px'
+
+    });
+  }
   closePop(e: any) {
     this.dialog.closeAll();
   }
+  closeTao() {
+    this.dialog.closeAll();
+  }
+
 
   GobackJoblist() {
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.JOBSLIST)
@@ -242,16 +265,27 @@ export class ViewjobComponent implements OnInit {
     })
   }
   movetotav() {
-    this.singlelock = true
+    // this.singlelock = true
     let batchId = { "batchId": +this.batchId };
     this.http.toa(batchId).subscribe((response: any) => {
       if (response.success) {
+        this.isSyncButtonenable = true;
+        this.closeTao();
         this.viewJobDetails()
-        this.toastr.success(response.message)
+        this.toastr.success("Sync process started successfully.")
       } else {
         this.toastr.error(response.message)
       }
     })
+  }
+
+  manageProgress() {
+    if (this.progress === 100) {
+      this.progress = 100;
+      this.timesync = true;
+    } else {
+      this.progress = this.progress + incr;
+    }
   }
 }
 

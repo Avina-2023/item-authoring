@@ -45,17 +45,43 @@
                 </div>
             </div>
             <!-- Tao Button -->
-            <div class="upload-btnOne">
-                <button [disabled]="batchInfo?.taoBatchSync!=='pending'&& singlelock"
-                    [ngClass]="batchInfo?.taoBatchSync!=='pending'&& singlelock?'disablebtn':''" (click)="movetotav()"
-                    class="upload-xcel" mat-raised-button color="primary">
-                    <img src="assets/images/uploadButton-arrow.svg" /> <span
-                        *ngIf="batchInfo?.taoBatchSync">{{batchInfo?.taoBatchSync=="pending"?'Pending':batchInfo?.taoBatchSync=="inprogress"?'In
-                        Progress':batchInfo?.taoBatchSync=="completed"?'Completed':''}}</span>
+            <!--   -->
+            <div class="upload-btntao" *ngIf="batchInfo?.batchStatus" (click)="openTao()">
+                <button *ngIf="!isSyncButtonenable" class="upload-xcel" mat-raised-button color="primary">
+                    <mat-icon class="toa-icon">autorenew</mat-icon>
+                    <span>
+                        Sync Items to Tao
+                    </span>
                 </button>
             </div>
+
+            <!-- Tao Sync Status progress bar -->
+            <div *ngIf="isSyncButtonenable">
+                <div *ngIf="!timesync">
+                    <div class="sync-status">
+                        <h6>Sync Status</h6>
+                        <span>{{progress}}%</span>
+                    </div>
+                    <div>
+                        <mat-progress-bar mode="determinate" [value]="progress" class="progressBar">
+                        </mat-progress-bar>
+                    </div>
+                    <div class="toaTime">
+                        <span>Updated on {{ dateObj | date:'dd MMM y' }} | {{today | date:'hh:mm:ss a'}}
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Sync Completed Button -->
+
+            <div class="sync-complered" *ngIf="timesync">
+                <span>Sync Completed</span>
+            </div>
+
             <!-- Reupload Items file formet -->
-            <div class="upload-btnOne" (click)="showUpload()">
+            <div class="upload-btnOne" (click)="showUpload()" *ngIf="batchInfo?.errorCount">
                 <button class="upload-xcel" mat-raised-button color="primary">
                     <img src="assets/images/uploadButton-arrow.svg" /> <span>Reupload Items</span>
                 </button>
@@ -76,6 +102,20 @@
                 <app-commonupload [commontitle]="callFrom"></app-commonupload>
             </ng-template>
         </div>
+
+        <!-- Tao popup table messages -->
+        <ng-template #matDialogtao>
+            <span class="popup-image-tao">
+                <em class="icon-popup-warning-ylw tao"></em>
+            </span>
+            <h1 mat-dialog-title class="sure-message-tao">Are you Sure?</h1>
+            <h1 class="popupHead" mat-dialog-title>You want to Sync Items in the Batch Job Id - {{batchId}}
+                to Tao</h1>
+            <div class="action" mat-dialog-actions>
+                <button class="con-btn" mat-button [mat-dialog-close]="true">CANCEL</button>
+                <button class="confirm" mat-button (click)="movetotav()">YES </button>
+            </div>
+        </ng-template>
 
         <!-- Ag grid Table section -->
         <div class="aggrid-wrapper">
