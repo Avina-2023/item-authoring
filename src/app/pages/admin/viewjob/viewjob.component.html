@@ -45,7 +45,6 @@
                 </div>
             </div>
             <!-- Tao Button -->
-            <!--   -->
             <div class="upload-btntao" *ngIf="batchInfo?.batchStatus" (click)="openTao()">
                 <button *ngIf="!isSyncButtonenable" class="upload-xcel" mat-raised-button color="primary">
                     <mat-icon class="toa-icon">autorenew</mat-icon>
@@ -54,7 +53,6 @@
                     </span>
                 </button>
             </div>
-
             <!-- Tao Sync Status progress bar -->
             <div *ngIf="isSyncButtonenable">
                 <div *ngIf="!timesync">
@@ -71,15 +69,11 @@
                         </span>
                     </div>
                 </div>
-
             </div>
-
             <!-- Sync Completed Button -->
-
             <div class="sync-complered" *ngIf="timesync">
                 <span>Sync Completed</span>
             </div>
-
             <!-- Reupload Items file formet -->
             <div class="upload-btnOne" (click)="showUpload()" *ngIf="batchInfo?.errorCount">
                 <button class="upload-xcel" mat-raised-button color="primary">
@@ -89,7 +83,7 @@
             <ng-template #matDialog mat-dialog-container>
                 <div class="upload-title">
                     <h1 mat-dialog-title class="sure-message">Upload Items</h1>
-                    <span class="popup-image" (click)="closePop($event)">
+                    <span class="popup-image" (click)="closePop()">
                         <em class="icon-Popup-close"></em>
                     </span>
                 </div>
@@ -102,7 +96,6 @@
                 <app-commonupload [commontitle]="callFrom"></app-commonupload>
             </ng-template>
         </div>
-
         <!-- Tao popup table messages -->
         <ng-template #matDialogtao>
             <span class="popup-image-tao">
@@ -116,13 +109,12 @@
                 <button class="confirm" mat-button (click)="movetotav()">YES </button>
             </div>
         </ng-template>
-
         <!-- Ag grid Table section -->
         <div class="aggrid-wrapper">
-            <ag-grid-angular style="width: 100%; height: calc(100vh - 180px) !important;" class="ag-theme-alpine"
-                [columnDefs]="columnDefs" [rowData]="newList" [defaultColDef]="defaultColDef" [paginationPageSize]="500"
-                [defaultColDef]="defaultColDef" (gridReady)="onGridReady($event)" [sideBar]="sideBar"
-                [pagination]="true" [suppressRowClickSelection]="true" [cacheBlockSize]="500">
+            <ag-grid-angular style="width: 100%; height: calc(100vh - 225px) !important;" class="ag-theme-alpine"
+                [columnDefs]="columnDefs" [rowData]="newList" [defaultColDef]="defaultColDef" [paginationPageSize]="20"
+                (gridReady)="onGridReady($event)" [sideBar]="sideBar" [pagination]="true"
+                [suppressRowClickSelection]="true" [cacheBlockSize]="500">
             </ag-grid-angular>
         </div>
     </div>

@@ -16,7 +16,7 @@ import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 export class JobslistComponent implements OnInit {
   @ViewChild('matDialog', { static: false }) matDialogRef: any;
   // Ag grid variables
-  sideBar = 'filters';
+  public sideBar = 'filters';
   public gridColumnApi: any;
   private gridApi!: GridApi;
   length: any;
@@ -64,14 +64,13 @@ export class JobslistComponent implements OnInit {
         sortable: true,
         field: 'batchId',
         filter: 'agTextColumnFilter',
-        tooltipField: 'Job Id',
+        tooltipField: 'batchId',
         cellRenderer: (params: any) => {
-          if (params.value == true) {
-            return `<em class="icon-warning-red"></em>`;
+          if (params.data.errorCount == 0) {
+            return `<span>${params.data.batchId}</span><em style=" position: relative; left: 15px; top: 1px;" class="icon-warning-green"></em>`;
           } else {
-            return `<em class="icon-warning-green"></em>`;
+            return `<span>${params.data.batchId}</span><em style=" position: relative; left: 15px" class="icon-warning-red"></em>`;
           }
-
         }
       },
       {
@@ -79,62 +78,57 @@ export class JobslistComponent implements OnInit {
         minWidth: 360,
         field: 'fileName',
         filter: 'agTextColumnFilter',
-        tooltipField: 'File Name',
+        tooltipField: 'fileName',
       },
       {
         headerName: 'Uploaded By',
         field: 'createdBy',
         minWidth: 140,
         filter: 'agTextColumnFilter',
-        tooltipField: 'Uploaded By',
+        tooltipField: 'createdBy',
       },
       {
         headerName: 'Uploaded On',
         filter: 'agTextColumnFilter',
         field: 'updatedAt',
         minWidth: 140,
-        tooltipField: 'Uploaded On',
-
+        tooltipField: 'updatedAt',
+        cellRenderer: (params: any) => {
+          return (params.data.updatedAt.split(" ")[0])
+        }
       },
       {
         headerName: 'Items Count',
         minWidth: 140,
         field: 'totalCount',
-        tooltipField: 'Items Count',
+        tooltipField: 'totalCount',
       },
       {
         headerName: 'Processed',
         minWidth: 150,
         field: 'processedCount',
-        tooltipField: 'Processed',
+        tooltipField: 'processedCount',
       },
       {
         headerName: 'Errors',
         field: 'errorCount',
         minWidth: 140,
-        tooltipField: 'Errors',
+        tooltipField: 'errorCount',
       },
       {
         headerName: 'Sync Status',
         minWidth: 140,
-        field: 'competency',
-        tooltipField: 'Sync Status',
       },
       {
         headerName: 'Sync Updated Date',
-
         minWidth: 170,
-        // field: 'skill',
-        tooltipField: 'Sync Updated Date',
       },
       {
         headerName: 'Actions',
-
         minWidth: 120,
-        // field: 'area',
         tooltipField: 'Actions',
-        cellRenderer: function (params: any) {
-          return '<div> <button  style="color:#08558C" (click)="showviewjob(jobs.batchId)" >View</button> </div>'
+        cellRenderer: (params: any) => {
+          return '<div  style="color:#08558C; text-decoration: underline; cursor: pointer" > View </div>'
         }
       },
     ];
@@ -144,10 +138,9 @@ export class JobslistComponent implements OnInit {
       batchid: 12
     }
   })
-  showviewjob(batchId: any) {
-    this.appConfig.routeNavigationParams(APP_CONSTANTS.ENDPOINTS.ADMIN.VIEWJOB, batchId)
+  onCellClicked(event: any) {
+    this.appConfig.routeNavigationParams(APP_CONSTANTS.ENDPOINTS.ADMIN.VIEWJOB, event.data.batchId);
   }
-
   showUpload() {
     this.matDialogOpen();
   }
@@ -155,7 +148,6 @@ export class JobslistComponent implements OnInit {
     const dialogRef = this.dialog.open(this.matDialogRef, {
       width: '530px',
       height: '325px'
-
     });
   }
   closePop(e: any) {
@@ -172,7 +164,6 @@ export class JobslistComponent implements OnInit {
       }
       else {
         this.Joblist = response.data;
-        console.log(this.Joblist, 'iwygedu');
         this.nodata = "";
         this.loader.setLoading(false);
       }

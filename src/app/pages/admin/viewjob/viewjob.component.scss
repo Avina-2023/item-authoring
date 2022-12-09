@@ -142,8 +142,8 @@
   .outlerback-section {
     background-color: $primary-back-white;
     width: auto;
-    height: 536px;
-    margin: 0px 15px;
+    height: 485px;
+    margin: -9px 10px;
     overflow: hidden;
   }
 
@@ -214,11 +214,6 @@
     color: $primary-common-black;
   }
 }
-
-// .disablebtn {
-//   cursor: not-allowed !important
-// }
-
 
 // ag grid css start
 .aggrid-wrapper {

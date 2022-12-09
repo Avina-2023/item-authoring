@@ -49,7 +49,6 @@ export class ViewjobComponent implements OnInit {
   ];
   @ViewChild('matDialog', { static: false }) matDialogRef: any;
   @ViewChild('matDialogtao', { static: false }) matDialogRefTao: any;
-  singlelock: boolean = true;
   constructor(
     private appconfig: AppConfigService,
     private dialog: MatDialog,
@@ -57,9 +56,7 @@ export class ViewjobComponent implements OnInit {
     private route: ActivatedRoute,
     public toastr: ToastrService,
     private loading: LoadingService
-  ) {
-
-  }
+  ) { }
 
   ngOnInit(): void {
     this.getRouterPath()
@@ -89,7 +86,7 @@ export class ViewjobComponent implements OnInit {
       {
         headerName: 'Reference Id',
         width: 130,
-        minWidth: 120,
+        minWidth: 165,
         pinned: 'left',
         sortable: true,
         field: 'queReferance',
@@ -98,7 +95,7 @@ export class ViewjobComponent implements OnInit {
       },
       {
         headerName: 'Subject',
-        minWidth: 120,
+        minWidth: 160,
         field: 'Topic',
         filter: 'agTextColumnFilter',
         tooltipField: 'Topic',
@@ -114,13 +111,12 @@ export class ViewjobComponent implements OnInit {
         headerName: 'Sub-Category',
         filter: 'agTextColumnFilter',
         field: 'SubTopic',
-        minWidth: 140,
+        minWidth: 190,
         tooltipField: 'SubTopic',
       },
       {
         headerName: 'Topic',
-        minWidth: 120,
-
+        minWidth: 160,
         field: 'Topic',
         tooltipField: 'Topic',
       },
@@ -132,28 +128,24 @@ export class ViewjobComponent implements OnInit {
       },
       {
         headerName: 'Question Type',
-
         field: 'queType',
-        minWidth: 140,
+        minWidth: 230,
         tooltipField: 'queType',
       },
       {
         headerName: 'Compentency',
-
         minWidth: 140,
         field: 'competency',
         tooltipField: 'competency',
       },
       {
         headerName: 'Skill',
-
         minWidth: 120,
         field: 'skill',
         tooltipField: 'skill',
       },
       {
         headerName: 'Area',
-
         minWidth: 120,
         field: 'area',
         tooltipField: 'area',
@@ -166,7 +158,6 @@ export class ViewjobComponent implements OnInit {
       },
       {
         headerName: 'Sub-Classification',
-
         minWidth: 180,
         field: 'subClassification',
         tooltipField: 'subClassification',
@@ -190,13 +181,12 @@ export class ViewjobComponent implements OnInit {
           } else {
             return `<span style="color:#FFCE00"> In Progress </span>`;
           }
-
         }
       },
       {
         headerName: 'Message',
         pinned: 'right',
-        minWidth: 200,
+        minWidth: 160,
         width: 100,
         field: 'message',
         tooltipField: 'message',
@@ -221,7 +211,6 @@ export class ViewjobComponent implements OnInit {
       data: { type: "view" },
       width: '680px',
       height: '325px'
-
     });
   }
   matDialogOpentao() {
@@ -229,17 +218,11 @@ export class ViewjobComponent implements OnInit {
       data: { type: "view" },
       width: '448px',
       height: '315px'
-
     });
   }
-  closePop(e: any) {
+  closePop() {
     this.dialog.closeAll();
   }
-  closeTao() {
-    this.dialog.closeAll();
-  }
-
-
   GobackJoblist() {
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.JOBSLIST)
   }
@@ -265,12 +248,11 @@ export class ViewjobComponent implements OnInit {
     })
   }
   movetotav() {
-    // this.singlelock = true
     let batchId = { "batchId": +this.batchId };
     this.http.toa(batchId).subscribe((response: any) => {
       if (response.success) {
         this.isSyncButtonenable = true;
-        this.closeTao();
+        this.closePop();
         this.viewJobDetails()
         this.toastr.success("Sync process started successfully.")
       } else {

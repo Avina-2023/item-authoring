@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
@@ -86,7 +87,6 @@ export class CommonuploadComponent implements OnInit {
       if (response.success) {
         this.loading.setLoading(false);
         this.newFile = response.message
-        // console.log(this.newFile);
         this.batchId = response.data[0].batchId;
         this.refresh.next('refresh');
       }
@@ -94,7 +94,12 @@ export class CommonuploadComponent implements OnInit {
         this.toastr.error(response.message);
         this.loading.setLoading(false);
       }
-    })
+    },
+      (error: HttpErrorResponse) => {
+        this.toastr.error("Unexpected token ] in JSON at position 8900");
+        this.loading.setLoading(false);
+      }
+    )
   }
   delete() {
     this.fileName = false;
