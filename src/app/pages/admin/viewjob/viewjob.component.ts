@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
@@ -7,15 +7,20 @@ import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router'
 import { ToastrService } from 'ngx-toastr';
 import { LoadingService } from 'src/app/services/loading.service';
+import { WebSocketService } from 'src/app/services/web-socket.service';
+import { map, share, Subscription, timer } from 'rxjs';
 const incr = 1;
 @Component({
   selector: 'app-viewjob',
   templateUrl: './viewjob.component.html',
   styleUrls: ['./viewjob.component.scss']
 })
-export class ViewjobComponent implements OnInit {
+export class ViewjobComponent implements OnInit, OnDestroy {
+  time = new Date();
+  rxTime: any = new Date();
+  intervalId: any;
+  subscription: Subscription | undefined;
   progress = 0;
-
   newList: any;
   callFrom: any = 'View Job';
   public gridColumnApi: any;
@@ -32,7 +37,6 @@ export class ViewjobComponent implements OnInit {
   gettao: any;
   isSyncButtonenable = false;
   timesync = false;
-  today: number = Date.now();
   dateObj: number = Date.now();
   public defaultColDef = {
     flex: 1,
@@ -55,14 +59,26 @@ export class ViewjobComponent implements OnInit {
     private http: ApiService,
     private route: ActivatedRoute,
     public toastr: ToastrService,
-    private loading: LoadingService
+    private loading: LoadingService,
+    private webSocket: WebSocketService,
   ) { }
 
   ngOnInit(): void {
     this.getRouterPath()
     this.tableview();
     this.viewJobDetails();
-    setInterval(() => this.manageProgress(), 150)
+    setInterval(() => this.manageProgress(), 150);
+    this.webSocket.listen('test event').subscribe((data) => {
+      // console.log(data);
+    })
+    this.ClockTime();
+
+  }
+  ngOnDestroy() {
+    clearInterval(this.intervalId);
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   // BreadCrumb Routing
@@ -200,6 +216,20 @@ export class ViewjobComponent implements OnInit {
       },
     ];
   }
+  //  RX js Clock Time
+  ClockTime() {
+    this.intervalId = setInterval(() => {
+      this.time = new Date();
+    }, 1000);
+    this.subscription = timer(0, 1000)
+      .pipe(
+        map(() => new Date()),
+        share()
+      )
+      .subscribe((time: any) => {
+        this.rxTime = time;
+      });
+  }
   showUpload() {
     this.matDialogOpen();
   }
@@ -264,13 +294,14 @@ export class ViewjobComponent implements OnInit {
   manageProgress() {
     if (this.progress === 100) {
       this.progress = 100;
-      this.timesync = true;
-    } else {
+      // this.timesync = true;
+      // this.ClockTime()
+    }
+    else {
       this.progress = this.progress + incr;
     }
   }
+
 }
-
-
 
 

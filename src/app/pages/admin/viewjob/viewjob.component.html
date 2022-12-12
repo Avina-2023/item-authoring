@@ -55,6 +55,7 @@
             </div>
             <!-- Tao Sync Status progress bar -->
             <div *ngIf="isSyncButtonenable">
+
                 <div *ngIf="!timesync">
                     <div class="sync-status">
                         <h6>Sync Status</h6>
@@ -65,7 +66,7 @@
                         </mat-progress-bar>
                     </div>
                     <div class="toaTime">
-                        <span>Updated on {{ dateObj | date:'dd MMM y' }} | {{today | date:'hh:mm:ss a'}}
+                        <span>Updated on {{ dateObj | date:'dd MMM y' }} | {{ rxTime | date: 'hh:mm:ss a' }}
                         </span>
                     </div>
                 </div>

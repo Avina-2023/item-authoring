@@ -6,7 +6,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-jobslist',
   templateUrl: './jobslist.component.html',
@@ -47,7 +47,8 @@ export class JobslistComponent implements OnInit {
   constructor(private appConfig: AppConfigService,
     private dialog: MatDialog,
     private http: ApiService,
-    public loader: LoadingService
+    public loader: LoadingService,
+    public toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -160,6 +161,7 @@ export class JobslistComponent implements OnInit {
       if (response.data == undefined) {
         this.loader.setLoading(false);
         this.nodata = response.message;
+        this.toastr.error(response.message)
         this.Joblist = [];
       }
       else {
