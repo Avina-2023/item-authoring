@@ -93,113 +93,16 @@
   }
 }
 
-
-
-
-.joblist-wrapper {
-  display: flex;
-  justify-content: space-evenly;
-  padding: 3px;
-  margin: 0px 5px;
-
-  .job-id {
-    height: 70px;
-    width: 204px;
-    background-color: $primary-back-white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .jobid-sec {
-      color: $primary-batch-head;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-
-      em {
-        font-size: 16px;
-        position: relative;
-        left: 20px;
-        top: 1px;
-      }
-
-      span {
-        color: $primary-batch-head;
-        font-size: 16px;
-        display: flex;
-        align-items: center;
-      }
-    }
-  }
-
-  .file-name {
-    padding-left: 15px;
-    padding-right: 15px;
-    display: flex;
-    height: 70px;
-    width: 80%;
-    align-items: center;
-    justify-content: space-between;
-    background-color: $primary-back-white;
-
-    .jobs-filetag {
-      font-weight: 500;
-      font-size: 15px;
-      color: $primary-common-black;
-      font-weight: 500;
-    }
-
-    .jobs-item {
-      font-weight: 500;
-      font-size: 15px;
-      color: $primary-common-blue;
-    }
-
-    .jobs-proc {
-      font-weight: 500;
-      font-size: 15px;
-      color: $primary-common-green;
-    }
-
-    .error-red {
-      font-weight: 500;
-      font-size: 15px;
-      color: $primary-common-red;
-    }
-
-    .upload-span {
-      border-left: 2px solid;
-      color: $primary-dull-gray;
-    }
-
-    .p-l-10 {
-      padding-left: 10px;
-    }
-
-    .line {
-      border-left: 2px solid;
-      height: 40px;
-    }
-  }
-
-  .right-btn {
-    border: 0;
-    outline: none;
-  }
-
-  .right-arrow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 70px;
-    border: none;
-    width: 34px;
-    cursor: pointer;
-    background-color: $primary-back-white;
-  }
+.aggrid-wrapper {
+  width: 100%;
+  padding: 0px 8px;
+  height: 100%;
 }
 
-span {
-  font-size: 12px;
-  color: $primary-common-black;
+.ag-theme-alpine {
+  --ag-header-height: 30px;
+  --ag-header-foreground-color: $primary-common-black;
+  --ag-header-background-color: #ededed;
+  font-size: 13px;
+  font-weight: 500;
 }

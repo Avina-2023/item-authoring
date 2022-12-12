@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
@@ -7,13 +7,20 @@ import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router'
 import { ToastrService } from 'ngx-toastr';
 import { LoadingService } from 'src/app/services/loading.service';
-
+import { WebSocketService } from 'src/app/services/web-socket.service';
+import { map, share, Subscription, timer } from 'rxjs';
+const incr = 1;
 @Component({
   selector: 'app-viewjob',
   templateUrl: './viewjob.component.html',
   styleUrls: ['./viewjob.component.scss']
 })
-export class ViewjobComponent implements OnInit {
+export class ViewjobComponent implements OnInit, OnDestroy {
+  time = new Date();
+  rxTime: any = new Date();
+  intervalId: any;
+  subscription: Subscription | undefined;
+  progress = 0;
   newList: any;
   callFrom: any = 'View Job';
   public gridColumnApi: any;
@@ -28,6 +35,9 @@ export class ViewjobComponent implements OnInit {
   public sideBar = 'filters';
   batchInfo: any;
   gettao: any;
+  isSyncButtonenable = false;
+  timesync = false;
+  dateObj: number = Date.now();
   public defaultColDef = {
     flex: 1,
     minWidth: 100,
@@ -42,22 +52,33 @@ export class ViewjobComponent implements OnInit {
     "test1"
   ];
   @ViewChild('matDialog', { static: false }) matDialogRef: any;
-  singlelock: boolean = true;
+  @ViewChild('matDialogtao', { static: false }) matDialogRefTao: any;
   constructor(
     private appconfig: AppConfigService,
     private dialog: MatDialog,
     private http: ApiService,
     private route: ActivatedRoute,
     public toastr: ToastrService,
-    private loading: LoadingService
-  ) {
-
-  }
+    private loading: LoadingService,
+    private webSocket: WebSocketService,
+  ) { }
 
   ngOnInit(): void {
     this.getRouterPath()
     this.tableview();
     this.viewJobDetails();
+    setInterval(() => this.manageProgress(), 150);
+    this.webSocket.listen('test event').subscribe((data) => {
+      // console.log(data);
+    })
+    this.ClockTime();
+
+  }
+  ngOnDestroy() {
+    clearInterval(this.intervalId);
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   // BreadCrumb Routing
@@ -81,7 +102,7 @@ export class ViewjobComponent implements OnInit {
       {
         headerName: 'Reference Id',
         width: 130,
-        minWidth: 120,
+        minWidth: 165,
         pinned: 'left',
         sortable: true,
         field: 'queReferance',
@@ -90,7 +111,7 @@ export class ViewjobComponent implements OnInit {
       },
       {
         headerName: 'Subject',
-        minWidth: 120,
+        minWidth: 160,
         field: 'Topic',
         filter: 'agTextColumnFilter',
         tooltipField: 'Topic',
@@ -106,13 +127,12 @@ export class ViewjobComponent implements OnInit {
         headerName: 'Sub-Category',
         filter: 'agTextColumnFilter',
         field: 'SubTopic',
-        minWidth: 140,
+        minWidth: 190,
         tooltipField: 'SubTopic',
       },
       {
         headerName: 'Topic',
-        minWidth: 120,
-
+        minWidth: 160,
         field: 'Topic',
         tooltipField: 'Topic',
       },
@@ -124,28 +144,24 @@ export class ViewjobComponent implements OnInit {
       },
       {
         headerName: 'Question Type',
-
         field: 'queType',
-        minWidth: 140,
+        minWidth: 230,
         tooltipField: 'queType',
       },
       {
         headerName: 'Compentency',
-
         minWidth: 140,
         field: 'competency',
         tooltipField: 'competency',
       },
       {
         headerName: 'Skill',
-
         minWidth: 120,
         field: 'skill',
         tooltipField: 'skill',
       },
       {
         headerName: 'Area',
-
         minWidth: 120,
         field: 'area',
         tooltipField: 'area',
@@ -158,7 +174,6 @@ export class ViewjobComponent implements OnInit {
       },
       {
         headerName: 'Sub-Classification',
-
         minWidth: 180,
         field: 'subClassification',
         tooltipField: 'subClassification',
@@ -182,13 +197,12 @@ export class ViewjobComponent implements OnInit {
           } else {
             return `<span style="color:#FFCE00"> In Progress </span>`;
           }
-
         }
       },
       {
         headerName: 'Message',
         pinned: 'right',
-        minWidth: 200,
+        minWidth: 160,
         width: 100,
         field: 'message',
         tooltipField: 'message',
@@ -202,21 +216,43 @@ export class ViewjobComponent implements OnInit {
       },
     ];
   }
+  //  RX js Clock Time
+  ClockTime() {
+    this.intervalId = setInterval(() => {
+      this.time = new Date();
+    }, 1000);
+    this.subscription = timer(0, 1000)
+      .pipe(
+        map(() => new Date()),
+        share()
+      )
+      .subscribe((time: any) => {
+        this.rxTime = time;
+      });
+  }
   showUpload() {
     this.matDialogOpen();
+  }
+  openTao() {
+    this.matDialogOpentao();
   }
   matDialogOpen() {
     const dialogRef = this.dialog.open(this.matDialogRef, {
       data: { type: "view" },
       width: '680px',
       height: '325px'
-
     });
   }
-  closePop(e: any) {
+  matDialogOpentao() {
+    const dialogRef = this.dialog.open(this.matDialogRefTao, {
+      data: { type: "view" },
+      width: '448px',
+      height: '315px'
+    });
+  }
+  closePop() {
     this.dialog.closeAll();
   }
-
   GobackJoblist() {
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.JOBSLIST)
   }
@@ -242,19 +278,30 @@ export class ViewjobComponent implements OnInit {
     })
   }
   movetotav() {
-    this.singlelock = true
     let batchId = { "batchId": +this.batchId };
     this.http.toa(batchId).subscribe((response: any) => {
       if (response.success) {
+        this.isSyncButtonenable = true;
+        this.closePop();
         this.viewJobDetails()
-        this.toastr.success(response.message)
+        this.toastr.success("Sync process started successfully.")
       } else {
         this.toastr.error(response.message)
       }
     })
   }
+
+  manageProgress() {
+    if (this.progress === 100) {
+      this.progress = 100;
+      // this.timesync = true;
+      // this.ClockTime()
+    }
+    else {
+      this.progress = this.progress + incr;
+    }
+  }
+
 }
-
-
 
 

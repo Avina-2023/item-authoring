@@ -30,78 +30,13 @@
     </div>
 
 </div>
-<!-- Batch job id section -->
+
 <ng-template #BatchList>
-    <div class="joblist-wrapper" *ngFor="let jobs of Joblist">
-        <div class="job-id">
-            <div class="jobid-sec">
-                <span>Batch Job Id -
-                    {{ jobs.batchId}}
-                    <div *ngIf="jobs.batchStatus === true; else failStatus">
-                        <em class="icon-warning-green"></em>
-                    </div>
-                    <ng-template #failStatus>
-                        <em class="icon-warning-red"></em>
-                    </ng-template>
-                </span>
-            </div>
-        </div>
-        <div class="file-name">
-            <div style="width: 46%;">
-                <span>File name</span>
-                <div class="jobs-filetag">
-                    {{jobs.fileName}}
-                </div>
-            </div>
-            <div class="upload-span">
-                <div class="p-l-10">
-                    <span>Uploaded By</span>
-                    <div class="jobs-filetag">
-                        {{jobs.createdBy}}
-                    </div>
-                </div>
-            </div>
-            <div class="upload-span">
-                <div class="p-l-10">
-                    <span>Uploaded On</span>
-                    <div class="jobs-filetag">
-                        {{jobs.updatedAt.split(" ")[0]}}
-                    </div>
-                </div>
-
-            </div>
-            <div class="upload-span">
-                <div class="p-l-10">
-                    <span>Total Items Count</span>
-                    <div class="jobs-item">
-                        {{jobs.totalCount}}
-                    </div>
-                </div>
-
-            </div>
-            <div class="upload-span">
-                <div class="p-l-10">
-                    <span>Processed</span>
-                    <div class="jobs-proc">
-                        {{jobs.processedCount}}
-                    </div>
-                </div>
-
-            </div>
-            <div class="upload-span">
-                <div class="p-l-10">
-                    <span>Errors</span>
-                    <div class="error-red">
-                        {{jobs.errorCount}}
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <button class="right-btn" (click)="showviewjob(jobs.batchId)">
-            <div class="right-arrow">
-                <mat-icon>arrow_forward</mat-icon>
-            </div>
-        </button>
+    <div class="aggrid-wrapper">
+        <ag-grid-angular style="width: 100%; height: calc(100vh - 175px) !important;" class="ag-theme-alpine"
+            [columnDefs]="columnDefs" [rowData]="Joblist" [defaultColDef]="defaultColDef" [paginationPageSize]="10"
+            [sideBar]="sideBar" (cellClicked)="onCellClicked($event)" [pagination]="true"
+            [suppressRowClickSelection]="true" [cacheBlockSize]="500">
+        </ag-grid-angular>
     </div>
 </ng-template>
