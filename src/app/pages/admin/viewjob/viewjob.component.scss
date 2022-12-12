@@ -24,6 +24,36 @@
   }
 }
 
+.upload-btntao {
+  display: flex;
+  justify-content: flex-end;
+  margin: 11px 6px;
+
+  .upload-xcel {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 159px;
+    height: 30px;
+    background-color: $primary-tao-back;
+    border: 0;
+    border-radius: 4px;
+    color: $primary-back-white;
+    cursor: pointer;
+
+    .toa-icon {
+      font-size: 20px;
+      position: relative;
+      top: 2px;
+    }
+
+    span {
+      color: $primary-back-white;
+      font-size: 13px;
+    }
+  }
+}
+
 // upload excel popup
 ::ng-deep mat-dialog-container {
   border-radius: 0px !important;
@@ -112,8 +142,8 @@
   .outlerback-section {
     background-color: $primary-back-white;
     width: auto;
-    height: 536px;
-    margin: 0px 15px;
+    height: 485px;
+    margin: -9px 10px;
     overflow: hidden;
   }
 
@@ -147,8 +177,8 @@
   }
 
   .p-l-10 {
-    margin-left: 35%;
-    padding: 0px 6px;
+    margin-left: 45%;
+    padding: 0px 0px;
   }
 
   .uniq-process {
@@ -185,15 +215,10 @@
   }
 }
 
-.disablebtn{
-  cursor:not-allowed !important
-}
-
-
 // ag grid css start
 .aggrid-wrapper {
   width: 100%;
-  padding: 8px;
+  padding: 0px 8px;
   height: 100%;
 }
 
@@ -203,4 +228,118 @@
   --ag-header-background-color: #ededed;
   font-size: 13px;
   font-weight: 500;
+}
+
+// Tao Sync Scss
+.popup-image-tao {
+  display: flex;
+  justify-content: center !important;
+  position: relative;
+  top: 20px;
+  margin-top: 24px;
+
+  .tao {
+    font-size: 55px;
+  }
+}
+
+.sure-message-tao {
+  text-align: center !important;
+  position: relative;
+  top: 40px;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.popupHead {
+  text-align: center !important;
+  position: relative;
+  top: 35px;
+  font-size: 17px;
+
+}
+
+.action {
+  display: flex !important;
+  justify-content: center !important;
+  position: relative;
+  top: 30px;
+  margin: 0px 77px;
+
+  .confirm {
+    background: $primary-batch-head;
+    color: $primary-back-white;
+    margin-left: 10%;
+  }
+}
+
+.con-btn {
+  font-size: 14px;
+  cursor: pointer;
+  background: $primary-back-white;
+  color: $primary-batch-head;
+  border: 1px solid $primary-batch-head;
+  font-weight: 500;
+  width: 83px;
+  height: 40px;
+  border-radius: 4px;
+}
+
+.confirm {
+  background-color: $primary-batch-head;
+  border: 1px solid $primary-batch-head;
+  font-size: 14px;
+  width: 83px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.sync-status {
+  display: flex;
+  min-width: 15%;
+  justify-content: space-between;
+
+  h6 {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  span {
+    font-size: 11px;
+    font-weight: 500;
+  }
+}
+
+.progressBar {
+  width: 225px;
+  border-radius: 4px;
+  width: 233px;
+  height: 7px;
+  position: relative;
+  bottom: 10px;
+}
+
+.toaTime {
+  span {
+    font-weight: 500;
+    font-size: 13px;
+    // position: fixed;
+  }
+}
+
+.sync-complered {
+  span {
+    background-color: $dashboard-green;
+    width: 105px;
+    height: 18px;
+    padding: 4px 23px;
+    border-radius: 9px;
+    color: $primary-back-white;
+  }
+
+}
+
+::ng-deep .mat-progress-bar-fill::after {
+  background-color: #4EBA62;
 }

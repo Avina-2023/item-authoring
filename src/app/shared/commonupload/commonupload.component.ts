@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
@@ -72,13 +73,16 @@ export class CommonuploadComponent implements OnInit {
     this.loading.setLoading(true);
     var userDetails: any = this.authConfig.getLocalValue('userDetails');
     var userName: any = this.authConfig.getLocalValue('firstname');
+
     var userDetailsobj = JSON.parse(userDetails)
     var orgId = userDetailsobj?.organisations[0].orgId
     const fd = new FormData();
+
     fd.append('fileName', this.fileName);
     fd.append('uploadFile', this.selectedImage);
     fd.append('orgId', orgId ? orgId : 1);
     fd.append('firstName', userName);
+
     this.http.uploaded(fd).subscribe((response: any) => {
       if (response.success) {
         this.loading.setLoading(false);
@@ -90,7 +94,12 @@ export class CommonuploadComponent implements OnInit {
         this.toastr.error(response.message);
         this.loading.setLoading(false);
       }
-    })
+    },
+      (error: HttpErrorResponse) => {
+        this.toastr.error("Unexpected token ] in JSON at position 8900");
+        this.loading.setLoading(false);
+      }
+    )
   }
   delete() {
     this.fileName = false;
