@@ -45,7 +45,8 @@
                 </div>
             </div>
             <!-- Tao Button -->
-            <div class="upload-btntao" *ngIf="batchInfo?.batchStatus" (click)="openTao()">
+            <div class="upload-btntao" *ngIf="batchInfo?.batchStatus && completed != 'completed' , "
+                (click)="openTao()">
                 <button *ngIf="!isSyncButtonenable" class="upload-xcel" mat-raised-button color="primary">
                     <mat-icon class="toa-icon">autorenew</mat-icon>
                     <span>
@@ -72,8 +73,8 @@
                 </div>
             </div>
             <!-- Sync Completed Button -->
-            <div class="sync-complered" *ngIf="timesync">
-                <span>Sync Completed</span>
+            <div class="sync-complered" *ngIf="completed === 'completed' ">
+                <span>{{completed}}</span>
             </div>
             <!-- Reupload Items file formet -->
             <div class="upload-btnOne" (click)="showUpload()" *ngIf="batchInfo?.errorCount">

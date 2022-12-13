@@ -1,27 +1,38 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { io } from 'socket.io-client';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebSocketService {
+  public taoBatch: any;
+  public taoSyncPercentage: any;
+  taoUpdateId: any;
+  @Output() progress: EventEmitter<boolean> = new EventEmitter();
+  socket = io(environment.SOCKET_ENDPOINT)
 
-  socket: any;
-  readOnly: string = '';
-  constructor() {
-    // this.socket = io(this.readOnly)
+  constructor() { }
+  getPercentage() {
+    this.socket.on('taoSyncPercentage', (data: any) => {
+      this.taoSyncPercentage = data.taoSyncPercentage;
+      this.taoBatch = data.batchId;
+      this.taoUpdateId = data.updatedAt;
+      this.newMessageReceived(data);
+      this.progress.emit(data);
+    });
+  }
+  socketOf() {
+    this.socket.on('disconnectThatSoc', () => {
+      this.socket.disconnect();
+    });
   }
 
-  listen(eventName: string) {
-    return new Observable((subscriber) => {
-      this.socket.on(eventName, (data: any) => {
-        subscriber.next(data);
-      })
-    })
-  }
-
-  emit(eventName: string, data: any) {
-    this.socket.emit(eventName, data);
+  newMessageReceived(data: any) {
+    const observable = new Observable<any>(observer => {
+      observer.next(data);
+    });
+    return observable;
   }
 }

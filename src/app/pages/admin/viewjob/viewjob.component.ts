@@ -37,7 +37,9 @@ export class ViewjobComponent implements OnInit, OnDestroy {
   gettao: any;
   isSyncButtonenable = false;
   timesync = false;
+
   dateObj: number = Date.now();
+
   public defaultColDef = {
     flex: 1,
     minWidth: 100,
@@ -53,6 +55,8 @@ export class ViewjobComponent implements OnInit, OnDestroy {
   ];
   @ViewChild('matDialog', { static: false }) matDialogRef: any;
   @ViewChild('matDialogtao', { static: false }) matDialogRefTao: any;
+  prog: any;
+  completed: any;
   constructor(
     private appconfig: AppConfigService,
     private dialog: MatDialog,
@@ -61,23 +65,22 @@ export class ViewjobComponent implements OnInit, OnDestroy {
     public toastr: ToastrService,
     private loading: LoadingService,
     private webSocket: WebSocketService,
-  ) { }
+
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.getRouterPath()
     this.tableview();
     this.viewJobDetails();
-    setInterval(() => this.manageProgress(), 150);
-    this.webSocket.listen('test event').subscribe((data) => {
-      // console.log(data);
-    })
     this.ClockTime();
+    this.socketInitiazion();
 
   }
   ngOnDestroy() {
     clearInterval(this.intervalId);
     if (this.subscription) {
-      this.subscription.unsubscribe();
     }
   }
 
@@ -88,6 +91,19 @@ export class ViewjobComponent implements OnInit, OnDestroy {
     previousUrl: `${APP_CONSTANTS.ROUTES.ADMIN.VIEWJOB}`
   };
 
+  socketInitiazion() {
+    this.webSocket.getPercentage();
+    localStorage.setItem('Progressbarvalue', this.progress.toString());
+    this.webSocket.progress.subscribe((data: any) => {
+      // console.log(data);
+      this.progress = data?.taoSyncPercentage;
+      if (this.progress == 100) {
+        this.viewJobDetails();
+        this.timesync = true;
+        this.webSocket.socketOf();
+      }
+    })
+  }
   getRouterPath() {
     this.route.params.subscribe(params => {
       if (params['id']) {
@@ -272,6 +288,7 @@ export class ViewjobComponent implements OnInit, OnDestroy {
         this.loading.setLoading(false);
         this.newList = data.data[0].Questions;
         this.batchInfo = data.data[0];
+        this.completed = data.data[0].taoBatchSync;
       } else {
         this.toastr.error('Something went wrong, please try after sometime')
       }
@@ -281,6 +298,7 @@ export class ViewjobComponent implements OnInit, OnDestroy {
     let batchId = { "batchId": +this.batchId };
     this.http.toa(batchId).subscribe((response: any) => {
       if (response.success) {
+        this.socketInitiazion();
         this.isSyncButtonenable = true;
         this.closePop();
         this.viewJobDetails()
@@ -290,18 +308,6 @@ export class ViewjobComponent implements OnInit, OnDestroy {
       }
     })
   }
-
-  manageProgress() {
-    if (this.progress === 100) {
-      this.progress = 100;
-      // this.timesync = true;
-      // this.ClockTime()
-    }
-    else {
-      this.progress = this.progress + incr;
-    }
-  }
-
 }
 
 
