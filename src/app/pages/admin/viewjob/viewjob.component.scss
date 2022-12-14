@@ -337,6 +337,16 @@
     font-size: 14px;
     border-radius: 9px;
     color: $primary-back-white;
+    position: relative;
+    top: 6px;
+    left: 44%;
+  }
+
+  h6 {
+    font-weight: 500;
+    font-size: 13px;
+    top: 9px;
+    position: relative;
   }
 
 }

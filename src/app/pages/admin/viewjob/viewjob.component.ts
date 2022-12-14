@@ -8,18 +8,16 @@ import { ActivatedRoute } from '@angular/router'
 import { ToastrService } from 'ngx-toastr';
 import { LoadingService } from 'src/app/services/loading.service';
 import { WebSocketService } from 'src/app/services/web-socket.service';
-import { map, share, Subscription, timer } from 'rxjs';
 const incr = 1;
 @Component({
   selector: 'app-viewjob',
   templateUrl: './viewjob.component.html',
   styleUrls: ['./viewjob.component.scss']
 })
-export class ViewjobComponent implements OnInit, OnDestroy {
+export class ViewjobComponent implements OnInit {
   time = new Date();
   rxTime: any = new Date();
   intervalId: any;
-  subscription: Subscription | undefined;
   progress = 0;
   newList: any;
   callFrom: any = 'View Job';
@@ -34,10 +32,9 @@ export class ViewjobComponent implements OnInit, OnDestroy {
   batchId: any = ""
   public sideBar = 'filters';
   batchInfo: any;
-  gettao: any;
   isSyncButtonenable = false;
   timesync = false;
-
+  updatedTime: any;
   dateObj: number = Date.now();
 
   public defaultColDef = {
@@ -56,7 +53,9 @@ export class ViewjobComponent implements OnInit, OnDestroy {
   @ViewChild('matDialog', { static: false }) matDialogRef: any;
   @ViewChild('matDialogtao', { static: false }) matDialogRefTao: any;
   prog: any;
+  createdAt: any;
   completed: any;
+  batchIdTao: any;
   constructor(
     private appconfig: AppConfigService,
     private dialog: MatDialog,
@@ -65,24 +64,15 @@ export class ViewjobComponent implements OnInit, OnDestroy {
     public toastr: ToastrService,
     private loading: LoadingService,
     private webSocket: WebSocketService,
-
-  ) {
-
-  }
+  ) { }
 
   ngOnInit(): void {
     this.getRouterPath()
     this.tableview();
     this.viewJobDetails();
-    this.ClockTime();
-    this.socketInitiazion();
 
   }
-  ngOnDestroy() {
-    clearInterval(this.intervalId);
-    if (this.subscription) {
-    }
-  }
+
 
   // BreadCrumb Routing
   breadCrumData: any = {
@@ -91,11 +81,12 @@ export class ViewjobComponent implements OnInit, OnDestroy {
     previousUrl: `${APP_CONSTANTS.ROUTES.ADMIN.VIEWJOB}`
   };
 
+  // Tao Socket.io Method Functionality
   socketInitiazion() {
     this.webSocket.getPercentage();
-    localStorage.setItem('Progressbarvalue', this.progress.toString());
     this.webSocket.progress.subscribe((data: any) => {
-      // console.log(data);
+      this.createdAt = data.updatedAt;
+      this.batchIdTao = data.batchId;
       this.progress = data?.taoSyncPercentage;
       if (this.progress == 100) {
         this.viewJobDetails();
@@ -104,6 +95,8 @@ export class ViewjobComponent implements OnInit, OnDestroy {
       }
     })
   }
+
+  // Params ID pass In URL Method
   getRouterPath() {
     this.route.params.subscribe(params => {
       if (params['id']) {
@@ -113,6 +106,8 @@ export class ViewjobComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  // Ag Grid Table Dats
   tableview() {
     this.columnDefs = [
       {
@@ -232,20 +227,8 @@ export class ViewjobComponent implements OnInit, OnDestroy {
       },
     ];
   }
-  //  RX js Clock Time
-  ClockTime() {
-    this.intervalId = setInterval(() => {
-      this.time = new Date();
-    }, 1000);
-    this.subscription = timer(0, 1000)
-      .pipe(
-        map(() => new Date()),
-        share()
-      )
-      .subscribe((time: any) => {
-        this.rxTime = time;
-      });
-  }
+
+  // Pop Up's
   showUpload() {
     this.matDialogOpen();
   }
@@ -279,6 +262,7 @@ export class ViewjobComponent implements OnInit, OnDestroy {
     this.gridApi.closeToolPanel();
   }
 
+  // View Page API Method Calling
   viewJobDetails() {
     let viewJob = {
       batchId: +this.batchId
@@ -289,16 +273,19 @@ export class ViewjobComponent implements OnInit, OnDestroy {
         this.newList = data.data[0].Questions;
         this.batchInfo = data.data[0];
         this.completed = data.data[0].taoBatchSync;
+        this.createdAt = data.data[0].createdAt;
       } else {
         this.toastr.error('Something went wrong, please try after sometime')
       }
     })
   }
+
+  // Tao Sync method Functionality (YES or CANCEL BUTTON)
   movetotav() {
+    this.socketInitiazion();
     let batchId = { "batchId": +this.batchId };
     this.http.toa(batchId).subscribe((response: any) => {
       if (response.success) {
-        this.socketInitiazion();
         this.isSyncButtonenable = true;
         this.closePop();
         this.viewJobDetails()

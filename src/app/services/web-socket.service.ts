@@ -15,14 +15,13 @@ export class WebSocketService {
 
   constructor() { }
   getPercentage() {
-    this.socket.on('taoSyncPercentage', (data: any) => {
+    this.socket.on('taoSyncDet', (data: any) => {
       this.taoSyncPercentage = data.taoSyncPercentage;
-      this.taoBatch = data.batchId;
-      this.taoUpdateId = data.updatedAt;
       this.newMessageReceived(data);
       this.progress.emit(data);
     });
   }
+
   socketOf() {
     this.socket.on('disconnectThatSoc', () => {
       this.socket.disconnect();
