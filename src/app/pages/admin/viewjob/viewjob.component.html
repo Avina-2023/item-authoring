@@ -67,14 +67,17 @@
                         </mat-progress-bar>
                     </div>
                     <div class="toaTime">
-                        <span>Updated on {{ dateObj | date:'dd MMM y' }} | {{ rxTime | date: 'hh:mm:ss a' }}
-                        </span>
+                        <span>Updated on {{createdAt}} </span>
+
                     </div>
                 </div>
             </div>
             <!-- Sync Completed Button -->
             <div class="sync-complered" *ngIf="completed === 'completed' ">
                 <span>{{completed}}</span>
+                <div>
+                    <h6>Updated on {{createdAt}}</h6>
+                </div>
             </div>
             <!-- Reupload Items file formet -->
             <div class="upload-btnOne" (click)="showUpload()" *ngIf="batchInfo?.errorCount">
