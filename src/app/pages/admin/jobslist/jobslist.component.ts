@@ -25,6 +25,7 @@ export class JobslistComponent implements OnInit {
   paginationPageSize = 500;
   rowData: any;
   columnDefs: any = [];
+  taoBatchSync: any;
   public defaultColDef = {
     flex: 1,
     minWidth: 100,
@@ -119,10 +120,20 @@ export class JobslistComponent implements OnInit {
       {
         headerName: 'Sync Status',
         minWidth: 140,
-      },
-      {
-        headerName: 'Sync Updated Date',
-        minWidth: 170,
+        field: 'taoBatchSync',
+        tooltipField: 'taoBatchSync',
+        cellRenderer: (params: any) => {
+          if (params.data.taoBatchSync === 'pending') {
+            return `<span  style="color:#08558C">${params.data.taoBatchSync}</span>`;
+          }
+          else if (params.data.taoBatchSync === 'inprogress') {
+            return `<span style="color:#FFCE00">${params.data.taoBatchSync}</span>`;
+          }
+          else (params.data.taoBatchSync === 'completed')
+          {
+            return `<span style="color:#5CB646">${params.data.taoBatchSync}</span>`;
+          }
+        }
       },
       {
         headerName: 'Actions',
@@ -166,6 +177,9 @@ export class JobslistComponent implements OnInit {
       }
       else {
         this.Joblist = response.data;
+        this.taoBatchSync = response.data[0].taoBatchSync;
+
+
         this.nodata = "";
         this.loader.setLoading(false);
       }
