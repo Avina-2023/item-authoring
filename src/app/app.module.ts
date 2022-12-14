@@ -19,6 +19,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import 'ag-grid-enterprise';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { WebSocketService } from './services/web-socket.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +52,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     ),
   ],
 
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, IsloggedInGuard, LogoutGuard],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, IsloggedInGuard, LogoutGuard, WebSocketService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
