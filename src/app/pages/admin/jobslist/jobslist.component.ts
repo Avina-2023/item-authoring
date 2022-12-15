@@ -7,6 +7,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { ToastrService } from 'ngx-toastr';
+import * as moment from 'moment';
 @Component({
   selector: 'app-jobslist',
   templateUrl: './jobslist.component.html',
@@ -16,7 +17,7 @@ import { ToastrService } from 'ngx-toastr';
 export class JobslistComponent implements OnInit {
   @ViewChild('matDialog', { static: false }) matDialogRef: any;
   // Ag grid variables
-  public sideBar = 'filters';
+  // public sideBar = 'filters';
   public gridColumnApi: any;
   private gridApi!: GridApi;
   length: any;
@@ -26,6 +27,17 @@ export class JobslistComponent implements OnInit {
   rowData: any;
   columnDefs: any = [];
   taoBatchSync: any;
+  sideBar = {
+    toolPanels: [
+      {
+        id: 'filters',
+        labelDefault: 'Filters',
+        labelKey: 'filters',
+        iconKey: 'filter',
+        toolPanel: 'agFiltersToolPanel',
+      }
+    ], defaultToolPanel: ''
+  };
   public defaultColDef = {
     flex: 1,
     minWidth: 100,
@@ -35,6 +47,7 @@ export class JobslistComponent implements OnInit {
     sortable: true,
     filter: true,
     resizable: true,
+    suppressFilterButton: false
   };
   callFromJob: any = 'View Job List';
   Joblist: any = '';
@@ -69,9 +82,9 @@ export class JobslistComponent implements OnInit {
         tooltipField: 'batchId',
         cellRenderer: (params: any) => {
           if (params.data.errorCount == 0) {
-            return `<span>${params.data.batchId}</span><em style=" position: relative; left: 15px; top: 1px;" class="icon-warning-green"></em>`;
+            return `<span>${params.data.batchId}</span><em style=" position: relative; left: 20px; top: 1px;" class="icon-warning-green"></em>`;
           } else {
-            return `<span>${params.data.batchId}</span><em style=" position: relative; left: 15px" class="icon-warning-red"></em>`;
+            return `<span>${params.data.batchId}</span><em style=" position: relative; left: 20px;  top: 1px;" class="icon-warning-red"></em>`;
           }
         }
       },
@@ -92,11 +105,11 @@ export class JobslistComponent implements OnInit {
       {
         headerName: 'Uploaded On',
         filter: 'agTextColumnFilter',
-        field: 'updatedAt',
-        minWidth: 140,
-        tooltipField: 'updatedAt',
+        field: 'createdAt',
+        minWidth: 200,
+        tooltipField: 'createdAt',
         cellRenderer: (params: any) => {
-          return (params.data.updatedAt.split(" ")[0])
+          return moment(params.data.updatedAt).format('DD MMM YYYY h:mm:ss A')
         }
       },
       {
@@ -119,20 +132,29 @@ export class JobslistComponent implements OnInit {
       },
       {
         headerName: 'Sync Status',
-        minWidth: 140,
+        minWidth: 180,
         field: 'taoBatchSync',
-        tooltipField: 'taoBatchSync',
+        // tooltipField: 'taoBatchSync',
         cellRenderer: (params: any) => {
           if (params.data.taoBatchSync === 'pending') {
-            return `<span  style="color:#08558C">${params.data.taoBatchSync}</span>`;
+            return `<span style ="color:#08558C"> Ready to Sync </span>`;
           }
           else if (params.data.taoBatchSync === 'inprogress') {
-            return `<span style="color:#FFCE00">${params.data.taoBatchSync}</span>`;
+            return `<span style ="color:#FFCE00"> In Progress </span>`;
           }
           else (params.data.taoBatchSync === 'completed')
           {
-            return `<span style="color:#5CB646">${params.data.taoBatchSync}</span>`;
+            return `<span style ="color:#5CB646">Synced</span>`;
           }
+        }
+      },
+      {
+        headerName: 'Sync Updated Date',
+        field: 'updatedAt',
+        minWidth: 190,
+        tooltipField: 'updatedAt',
+        cellRenderer: (params: any) => {
+          return moment(params.data.updatedAt).format('DD MMM YYYY h:mm:ss A')
         }
       },
       {
@@ -151,7 +173,10 @@ export class JobslistComponent implements OnInit {
     }
   })
   onCellClicked(event: any) {
-    this.appConfig.routeNavigationParams(APP_CONSTANTS.ENDPOINTS.ADMIN.VIEWJOB, event.data.batchId);
+    if (event && event.column && event.column.userProvidedColDef && event.column.userProvidedColDef.headerName == 'Actions') {
+      this.appConfig.routeNavigationParams(APP_CONSTANTS.ENDPOINTS.ADMIN.VIEWJOB, event.data.batchId);
+    }
+
   }
   showUpload() {
     this.matDialogOpen();
@@ -168,6 +193,7 @@ export class JobslistComponent implements OnInit {
 
   batchData() {
     let listid = this.Joblist;
+    // this.loader.setLoading(true);
     this.http.Joblist(listid).subscribe((response: any) => {
       if (response.data == undefined) {
         this.loader.setLoading(false);
@@ -186,4 +212,6 @@ export class JobslistComponent implements OnInit {
     })
   }
 }
+
+
 
