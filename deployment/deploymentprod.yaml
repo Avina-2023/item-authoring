@@ -25,9 +25,9 @@ spec:
           imagePullPolicy: Always
           env:
           - name: PORT
-            value: '4007'
+            value: '80'
           ports:
-          - containerPort: 4007
+          - containerPort: 80
       imagePullSecrets:
         - name: mysecret
       nodeSelector:
