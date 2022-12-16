@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: authoringdataservice
+  name: authoringuiservice
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: authoringdataservice
+      app: authoringuiservice
   template:
     metadata:
       labels:
-        app: authoringdataservice
+        app: authoringuiservice
     spec:
       containers:
-        - name: authoringdataservice
-          image: uapprod.azurecr.io/authoringdataservice:$tag
+        - name: authoringuiservice
+          image: uapprod.azurecr.io/authoringuiservice:$tag
           resources:
            limits:
              cpu: "1"
