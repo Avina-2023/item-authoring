@@ -36,7 +36,7 @@ export class ViewjobComponent implements OnInit {
   timesync = false;
   updatedTime: any;
   dateObj: number = Date.now();
-
+  taoBatchId: any;
   public defaultColDef = {
     flex: 1,
     minWidth: 100,
@@ -70,7 +70,7 @@ export class ViewjobComponent implements OnInit {
     this.getRouterPath()
     this.tableview();
     this.viewJobDetails();
-
+    this.socketInitiazion();
   }
 
 
@@ -85,10 +85,11 @@ export class ViewjobComponent implements OnInit {
   socketInitiazion() {
     this.webSocket.getPercentage();
     this.webSocket.progress.subscribe((data: any) => {
+      console.log(data);
       this.createdAt = data.updatedAt;
-      this.batchIdTao = data.batchId;
       this.progress = data?.taoSyncPercentage;
-      if (this.progress == 100) {
+      this.taoBatchId = data?.batchId;
+      if (data == this.taoBatchId || this.progress == 100) {
         this.viewJobDetails();
         this.timesync = true;
         this.webSocket.socketOf();
@@ -264,6 +265,7 @@ export class ViewjobComponent implements OnInit {
 
   // View Page API Method Calling
   viewJobDetails() {
+    this.loading.setLoading(true);
     let viewJob = {
       batchId: +this.batchId
     }

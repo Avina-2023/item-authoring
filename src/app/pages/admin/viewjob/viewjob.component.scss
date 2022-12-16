@@ -331,15 +331,15 @@
 .sync-complered {
   span {
     background-color: $dashboard-green;
+    color: $primary-back-white;
     width: 105px;
     height: 18px;
-    padding: 4px 23px;
+    padding: 3px 18px;
     font-size: 14px;
-    border-radius: 9px;
-    color: $primary-back-white;
+    border-radius: 12px;
     position: relative;
     top: 6px;
-    left: 44%;
+    left: 41%;
   }
 
   h6 {
@@ -353,4 +353,16 @@
 
 ::ng-deep .mat-progress-bar-fill::after {
   background-color: #4EBA62;
+}
+
+
+// ::ng-deep .ag-theme-alpine .ag-header-cell,
+// .ag-theme-alpine .ag-header-group-cell {
+//   padding-left: 18px;
+//   padding-right: 18px;
+//   padding-bottom: 9px;
+// }
+
+.ag-theme-alpine .ag-header-row {
+  height: 30px;
 }

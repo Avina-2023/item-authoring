@@ -8,7 +8,6 @@ import { environment } from 'src/environments/environment';
 export class ApiService {
 
   BASE_URL = environment.API_BASE_URL;
-  TAO_URL = environment.API_TAO_URL
 
   constructor(
     private http: HttpClient,
@@ -40,6 +39,6 @@ export class ApiService {
   }
 
   toa(data: any) {
-    return this.http.post(`${this.TAO_URL}/createXMLFolder`, data)
+    return this.http.post(`${this.BASE_URL}/createXMLFolder`, data)
   }
 }
