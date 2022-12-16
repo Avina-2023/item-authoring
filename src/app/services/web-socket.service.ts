@@ -7,11 +7,9 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class WebSocketService {
-  public taoBatch: any;
   public taoSyncPercentage: any;
-  taoUpdateId: any;
   @Output() progress: EventEmitter<boolean> = new EventEmitter();
-  socket = io(environment.SOCKET_ENDPOINT)
+  socket = io(environment.API_BASE_URL)
 
   constructor() { }
   getPercentage() {

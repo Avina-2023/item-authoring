@@ -45,8 +45,7 @@
                 </div>
             </div>
             <!-- Tao Button -->
-            <div class="upload-btntao" *ngIf="batchInfo?.batchStatus && completed != 'completed' , "
-                (click)="openTao()">
+            <div class="upload-btntao" *ngIf="batchInfo?.batchStatus && completed === 'pending' , " (click)="openTao()">
                 <button *ngIf="!isSyncButtonenable" class="upload-xcel" mat-raised-button color="primary">
                     <mat-icon class="toa-icon">autorenew</mat-icon>
                     <span>
@@ -55,28 +54,25 @@
                 </button>
             </div>
             <!-- Tao Sync Status progress bar -->
-            <div *ngIf="isSyncButtonenable">
-
-                <div *ngIf="!timesync">
-                    <div class="sync-status">
-                        <h6>Sync Status</h6>
-                        <span>{{progress}}%</span>
-                    </div>
-                    <div>
-                        <mat-progress-bar mode="determinate" [value]="progress" class="progressBar">
-                        </mat-progress-bar>
-                    </div>
-                    <div class="toaTime">
-                        <span>Updated on {{createdAt}} </span>
-
-                    </div>
+            <div *ngIf="!timesync && completed === 'inprogress'">
+                <div class="sync-status">
+                    <h6>Sync Status</h6>
+                    <span>{{progress}}%</span>
+                </div>
+                <div>
+                    <mat-progress-bar mode="determinate" [value]="progress" class="progressBar">
+                    </mat-progress-bar>
+                </div>
+                <div class="toaTime">
+                    <span>Updated on {{createdAt | date:'dd MMM YYYY | hh:mm:ss a'}} </span>
                 </div>
             </div>
+
             <!-- Sync Completed Button -->
             <div class="sync-complered" *ngIf="completed === 'completed' ">
-                <span>{{completed}}</span>
+                <span>Sync {{completed}}</span>
                 <div>
-                    <h6>Updated on {{createdAt}}</h6>
+                    <h6>Updated on {{createdAt | date:'dd MMM YYYY | hh:mm:ss a'}}</h6>
                 </div>
             </div>
             <!-- Reupload Items file formet -->
