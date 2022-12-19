@@ -1,7 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { GridApi } from 'ag-grid-community';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
@@ -16,10 +15,9 @@ import * as moment from 'moment';
 })
 export class JobslistComponent implements OnInit {
   @ViewChild('matDialog', { static: false }) matDialogRef: any;
-  // Ag grid variables
-  // public sideBar = 'filters';
+  getBatchStatus: any;
   public gridColumnApi: any;
-  private gridApi!: GridApi;
+  gridApi: any;
   length: any;
   pageSize: any;
   taobatch: any;
@@ -27,6 +25,10 @@ export class JobslistComponent implements OnInit {
   rowData: any;
   columnDefs: any = [];
   taoBatchSync: any;
+  rootNode: any;
+  Joblist: any = '';
+  nodata: any;
+  quickSearchValue = '';
   sideBar = {
     toolPanels: [
       {
@@ -42,7 +44,6 @@ export class JobslistComponent implements OnInit {
     flex: 1,
     minWidth: 100,
     enableValue: true,
-    enableRowGroup: true,
     enablePivot: true,
     sortable: true,
     filter: true,
@@ -50,8 +51,6 @@ export class JobslistComponent implements OnInit {
     suppressFilterButton: false
   };
   callFromJob: any = 'View Job List';
-  Joblist: any = '';
-  nodata: any;
   breadCrumData: any = {
     previousPage: 'Batch Process >',
     currentPage: 'Jobs List',
@@ -69,7 +68,9 @@ export class JobslistComponent implements OnInit {
     this.tablejoblist();
     this.batchData();
   }
-
+  onGridReady(params: any) {
+    this.gridApi = params.api;
+  }
   tablejoblist() {
     this.columnDefs = [
       {
@@ -80,6 +81,13 @@ export class JobslistComponent implements OnInit {
         field: 'batchId',
         filter: 'agTextColumnFilter',
         tooltipField: 'batchId',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+
+        },
         cellRenderer: (params: any) => {
           if (params.data.errorCount == 0) {
             return `<span>${params.data.batchId}</span><em style=" position: relative; left: 20px; top: 1px;" class="icon-warning-green"></em>`;
@@ -94,6 +102,12 @@ export class JobslistComponent implements OnInit {
         field: 'fileName',
         filter: 'agTextColumnFilter',
         tooltipField: 'fileName',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
       },
       {
         headerName: 'Uploaded By',
@@ -101,6 +115,12 @@ export class JobslistComponent implements OnInit {
         minWidth: 140,
         filter: 'agTextColumnFilter',
         tooltipField: 'createdBy',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
       },
       {
         headerName: 'Uploaded On',
@@ -108,6 +128,12 @@ export class JobslistComponent implements OnInit {
         field: 'createdAt',
         minWidth: 200,
         tooltipField: 'createdAt',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
         cellRenderer: (params: any) => {
           return moment(params.data.updatedAt).format('DD MMM YYYY h:mm:ss A')
         }
@@ -117,50 +143,92 @@ export class JobslistComponent implements OnInit {
         minWidth: 140,
         field: 'totalCount',
         tooltipField: 'totalCount',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
       },
       {
         headerName: 'Processed',
         minWidth: 150,
         field: 'processedCount',
         tooltipField: 'processedCount',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
       },
       {
         headerName: 'Errors',
         field: 'errorCount',
         minWidth: 140,
         tooltipField: 'errorCount',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
       },
       {
         headerName: 'Sync Status',
         minWidth: 180,
         field: 'taoBatchSync',
-        // tooltipField: 'taoBatchSync',
+        tooltipField: 'taoBatchSync',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
         cellRenderer: (params: any) => {
-          if (params.data.taoBatchSync === 'pending') {
-            return `<span style ="color:#08558C"> Ready to Sync </span>`;
+          if (params.data.batchStatus === false) {
+            return ` --- `;
           }
-          else if (params.data.taoBatchSync === 'inprogress') {
-            return `<span style ="color:#FFCE00"> In Progress </span>`;
+          else if (params.data.taoBatchSync === 'Ready to Sync') {
+            return `<span  style="color:#08558C">${params.data.taoBatchSync}</span>`;
           }
-          else (params.data.taoBatchSync === 'completed')
+          else if (params.data.taoBatchSync === 'In Progress') {
+            return `<span style="color:#FFCE00">${params.data.taoBatchSync}</span>`;
+          }
+          else (params.data.taoBatchSync === 'Synced')
           {
-            return `<span style ="color:#5CB646">Synced</span>`;
+            return `<span style="color:#5CB646">${params.data.taoBatchSync}</span>`;
           }
         }
       },
       {
         headerName: 'Sync Updated Date',
         field: 'updatedAt',
-        minWidth: 190,
+        minWidth: 200,
         tooltipField: 'updatedAt',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
         cellRenderer: (params: any) => {
-          return moment(params.data.updatedAt).format('DD MMM YYYY h:mm:ss A')
+          if (params.data.batchStatus === false) {
+            return ` --- `;
+          }
+          return moment(params.data.updatedAt).format('DD MMM YYYY h:mm:ss A');
         }
       },
       {
         headerName: 'Actions',
         minWidth: 120,
         tooltipField: 'Actions',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
         cellRenderer: (params: any) => {
           return '<div  style="color:#08558C; text-decoration: underline; cursor: pointer" > View </div>'
         }
@@ -190,10 +258,15 @@ export class JobslistComponent implements OnInit {
   closePop(e: any) {
     this.dialog.closeAll();
   }
+  // getModel(e: any) {
+  //   const filteredArray = this.gridApi.getModel().rootNode.childrenAfterFilter;
+  //   if (filteredArray && filteredArray.length === 0) {
+  //     this.toastr.warning('No search results found');
+  //   }
+  // }
 
   batchData() {
     let listid = this.Joblist;
-    // this.loader.setLoading(true);
     this.http.Joblist(listid).subscribe((response: any) => {
       if (response.data == undefined) {
         this.loader.setLoading(false);
@@ -204,8 +277,6 @@ export class JobslistComponent implements OnInit {
       else {
         this.Joblist = response.data;
         this.taoBatchSync = response.data[0].taoBatchSync;
-
-
         this.nodata = "";
         this.loader.setLoading(false);
       }
