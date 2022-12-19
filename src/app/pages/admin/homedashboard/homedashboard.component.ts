@@ -11,16 +11,16 @@ import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 export class HomedashboardComponent implements OnInit {
 
   constructor(
-    private appConfig: AppConfigService,
-    private dialog: MatDialog,
-    private http: ApiService,
+    // private appConfig: AppConfigService,
+    // private dialog: MatDialog,
+    // private http: ApiService,
   ) { }
 
   ngOnInit(): void {
 
   }
-  breadCrumData: any = {
-    previousPage: 'Dashboard |',
-    currentPage: 'Dashboard',
-  };
+  // breadCrumData: any = {
+  //   previousPage: 'Dashboard |',
+  //   currentPage: 'Dashboard',
+  // };
 }
