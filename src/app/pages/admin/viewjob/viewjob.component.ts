@@ -232,8 +232,8 @@ export class ViewjobComponent implements OnInit {
       {
         headerName: 'Blooms Classification',
         minWidth: 200,
-        field: 'BloomsLavel',
-        tooltipField: 'BloomsLavel',
+        field: 'BloomsLevel',
+        tooltipField: 'BloomsLevel',
         filterParams: {
           buttons: ['reset'],
           closeOnApply: true,
