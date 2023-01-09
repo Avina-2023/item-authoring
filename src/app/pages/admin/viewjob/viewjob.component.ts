@@ -8,16 +8,12 @@ import { ActivatedRoute } from '@angular/router'
 import { ToastrService } from 'ngx-toastr';
 import { LoadingService } from 'src/app/services/loading.service';
 import { WebSocketService } from 'src/app/services/web-socket.service';
-const incr = 1;
 @Component({
   selector: 'app-viewjob',
   templateUrl: './viewjob.component.html',
   styleUrls: ['./viewjob.component.scss']
 })
 export class ViewjobComponent implements OnInit {
-  time = new Date();
-  rxTime: any = new Date();
-  intervalId: any;
   progress = 0;
   newList: any;
   callFrom: any = 'View Job';
@@ -32,30 +28,26 @@ export class ViewjobComponent implements OnInit {
   batchId: any = ""
   public sideBar = 'filters';
   batchInfo: any;
-  isSyncButtonenable = false;
   timesync = false;
-  updatedTime: any;
-  dateObj: number = Date.now();
-
+  taoBatchId: any;
+  isButtonenble = true;
+  createdAt: any;
+  completed: any;
   public defaultColDef = {
     flex: 1,
     minWidth: 100,
     enableValue: true,
-    enableRowGroup: true,
     enablePivot: true,
     sortable: true,
     filter: true,
-    resizable: true,
+    resizable: false,
   };
   commontitle: any = [
     "test1"
   ];
   @ViewChild('matDialog', { static: false }) matDialogRef: any;
   @ViewChild('matDialogtao', { static: false }) matDialogRefTao: any;
-  prog: any;
-  createdAt: any;
-  completed: any;
-  batchIdTao: any;
+
   constructor(
     private appconfig: AppConfigService,
     private dialog: MatDialog,
@@ -70,7 +62,7 @@ export class ViewjobComponent implements OnInit {
     this.getRouterPath()
     this.tableview();
     this.viewJobDetails();
-
+    this.socketInitiazion();
   }
 
 
@@ -86,9 +78,9 @@ export class ViewjobComponent implements OnInit {
     this.webSocket.getPercentage();
     this.webSocket.progress.subscribe((data: any) => {
       this.createdAt = data.updatedAt;
-      this.batchIdTao = data.batchId;
       this.progress = data?.taoSyncPercentage;
-      if (this.progress == 100) {
+      this.taoBatchId = data?.batchId;
+      if (data == this.taoBatchId || this.progress == 100 && this.progress == data?.taoSyncPercentage) {
         this.viewJobDetails();
         this.timesync = true;
         this.webSocket.socketOf();
@@ -119,6 +111,12 @@ export class ViewjobComponent implements OnInit {
         field: 'queReferance',
         filter: 'agTextColumnFilter',
         tooltipField: 'queReferance',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
       },
       {
         headerName: 'Subject',
@@ -126,6 +124,12 @@ export class ViewjobComponent implements OnInit {
         field: 'Topic',
         filter: 'agTextColumnFilter',
         tooltipField: 'Topic',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
       },
       {
         headerName: 'Category',
@@ -133,6 +137,12 @@ export class ViewjobComponent implements OnInit {
         minWidth: 120,
         filter: 'agTextColumnFilter',
         tooltipField: 'Section',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
       },
       {
         headerName: 'Sub-Category',
@@ -140,60 +150,120 @@ export class ViewjobComponent implements OnInit {
         field: 'SubTopic',
         minWidth: 190,
         tooltipField: 'SubTopic',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
       },
       {
         headerName: 'Topic',
         minWidth: 160,
         field: 'Topic',
         tooltipField: 'Topic',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
       },
       {
         headerName: 'Difficulty Level',
         minWidth: 150,
         field: 'DifficultyLevel',
         tooltipField: 'DifficultyLevel',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
       },
       {
         headerName: 'Question Type',
         field: 'queType',
         minWidth: 230,
         tooltipField: 'queType',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
       },
       {
         headerName: 'Compentency',
         minWidth: 140,
         field: 'competency',
         tooltipField: 'competency',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
       },
       {
         headerName: 'Skill',
         minWidth: 120,
         field: 'skill',
         tooltipField: 'skill',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
       },
       {
         headerName: 'Area',
         minWidth: 120,
         field: 'area',
         tooltipField: 'area',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
       },
       {
         headerName: 'Blooms Classification',
         minWidth: 200,
-        field: 'BloomsLavel',
-        tooltipField: 'BloomsLavel',
+        field: 'BloomsLevel',
+        tooltipField: 'BloomsLevel',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
       },
       {
         headerName: 'Sub-Classification',
         minWidth: 180,
         field: 'subClassification',
         tooltipField: 'subClassification',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
       },
       {
         headerName: 'Version Number',
         minWidth: 160,
         field: 'version',
         tooltipField: 'version',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
       },
       {
         headerName: 'Status',
@@ -202,11 +272,17 @@ export class ViewjobComponent implements OnInit {
         width: 100,
         field: 'status',
         tooltipField: 'status',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
         cellRenderer: (params: any) => {
-          if (params.value == true) {
-            return `<span style="color:#5CB646"> Processed </span>`;
+          if (params.value == 'Processed') {
+            return `<span style="color:#5CB646">${params.data.status} </span>`;
           } else {
-            return `<span style="color:#FFCE00"> In Progress </span>`;
+            return `<span style="color:#FFCE00">${params.data.status} </span>`;
           }
         }
       },
@@ -217,6 +293,12 @@ export class ViewjobComponent implements OnInit {
         width: 100,
         field: 'message',
         tooltipField: 'message',
+        filterParams: {
+          buttons: ['reset'],
+          closeOnApply: true,
+          filterOptions: ['contains'],
+          suppressAndOrCondition: true,
+        },
         cellRenderer: (params: any) => {
           if (params.value == 'Item Insterted' || params.value == 'Item Updated') {
             return `<span style="color:#000000">` + params.value + `</span>`;
@@ -264,6 +346,7 @@ export class ViewjobComponent implements OnInit {
 
   // View Page API Method Calling
   viewJobDetails() {
+    this.loading.setLoading(true);
     let viewJob = {
       batchId: +this.batchId
     }
@@ -274,19 +357,18 @@ export class ViewjobComponent implements OnInit {
         this.batchInfo = data.data[0];
         this.completed = data.data[0].taoBatchSync;
         this.createdAt = data.data[0].createdAt;
+        this.isButtonenble = true;
       } else {
         this.toastr.error('Something went wrong, please try after sometime')
       }
     })
   }
-
   // Tao Sync method Functionality (YES or CANCEL BUTTON)
   movetotav() {
-    this.socketInitiazion();
     let batchId = { "batchId": +this.batchId };
     this.http.toa(batchId).subscribe((response: any) => {
       if (response.success) {
-        this.isSyncButtonenable = true;
+        this.socketInitiazion();
         this.closePop();
         this.viewJobDetails()
         this.toastr.success("Sync process started successfully.")
