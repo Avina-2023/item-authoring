@@ -7,6 +7,7 @@ import { LogincommonsideComponent } from './logincommonside/logincommonside.comp
 import { MaterialModule } from '../material/material/material.module';
 import { BreadcrumComponent } from './breadcrum/breadcrum.component';
 import { CommonuploadComponent } from './commonupload/commonupload.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
     declarations: [
         DashboardHeaderComponent,
@@ -18,8 +19,9 @@ import { CommonuploadComponent } from './commonupload/commonupload.component';
     ],
     imports: [
         CommonModule,
-        MaterialModule
-
+        MaterialModule,
+        ReactiveFormsModule,
+        FormsModule,
     ],
     exports: [
         CommonModule,
