@@ -169,3 +169,13 @@
     font-size: 18px;
     font-weight: 500;
 }
+
+.Upload-dropDown {
+    display: flex;
+    justify-content: center;
+    margin-top: 18px;
+
+    .field {
+        width: 50% !important;
+    }
+}

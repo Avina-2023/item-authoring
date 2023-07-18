@@ -2,7 +2,23 @@
     <em class="icon-popup-warning"></em>
     <span class="item-text">
         {{dialogTitle}}</span>
+
 </div>
+<form [formGroup]="uploadForm">
+    <div class="Upload-dropDown" *ngIf="commontitle=='View Job List'">
+        <mat-form-field formControlName="uplolad" class="field" appearance="outline">
+            <mat-select appearance="outline" placeholder="Choose an option">
+                <mat-option (click)="sendInstanceid(item)" *ngFor="let item of CommomDrop" [value]="item.instanceId">
+                    {{item.name}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="uplolad?.invalid && uplolad?.touched">
+              <div *ngIf="uplolad?.errors?.required">Choose value is required</div>
+            </mat-error>
+        </mat-form-field>
+    </div>
+</form>
+
 
 <div class="uploded-moc" *ngIf="!newFile">
     <div class="common-upload-btn" for="fileInput" *ngIf="!fileName">

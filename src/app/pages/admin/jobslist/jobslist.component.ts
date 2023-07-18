@@ -251,8 +251,8 @@ export class JobslistComponent implements OnInit {
   }
   matDialogOpen() {
     const dialogRef = this.dialog.open(this.matDialogRef, {
-      width: '530px',
-      height: '325px'
+      width: '600px',
+      height: '420px'
     });
   }
   closePop(e: any) {
