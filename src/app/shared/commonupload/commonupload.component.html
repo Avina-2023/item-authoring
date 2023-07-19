@@ -2,18 +2,17 @@
     <em class="icon-popup-warning"></em>
     <span class="item-text">
         {{dialogTitle}}</span>
-
 </div>
 <form [formGroup]="uploadForm">
     <div class="Upload-dropDown" *ngIf="commontitle=='View Job List'">
-        <mat-form-field formControlName="uplolad" class="field" appearance="outline">
-            <mat-select appearance="outline" placeholder="Choose an option">
+        <mat-form-field formControlName="uplolad" class="field" appearance="outline" *ngIf="!newFile">
+            <mat-select appearance="outline" placeholder="Select Instance">
                 <mat-option (click)="sendInstanceid(item)" *ngFor="let item of CommomDrop" [value]="item.instanceId">
                     {{item.name}}
                 </mat-option>
             </mat-select>
             <mat-error *ngIf="uplolad?.invalid && uplolad?.touched">
-              <div *ngIf="uplolad?.errors?.required">Choose value is required</div>
+              <div *ngIf="uplolad?.errors?.required">Instance is required</div>
             </mat-error>
         </mat-form-field>
     </div>
@@ -59,6 +58,8 @@
 <!-- Main Upload Document Formet End-->
 <div class="greentic-popup" *ngIf="newFile">
     <em class="icon-popup-greenTic"></em>
+    <br>
+    <br>
     <div class="batch-process">
         <span>{{newFile}}</span>
     </div>
@@ -67,7 +68,7 @@
             Batch Job Id - {{batchId}}
         </span>
     </div>
-    <div class="upload-btnItems" mat-dialog-actions align="center">
+    <!-- <div class="upload-btnItems" mat-dialog-actions align="center">
         <button class="cancelItessms" (click)="returnUpload()" mat-button>Upload Items</button>
-    </div>
+    </div> -->
 </div>
