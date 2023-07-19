@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
+import { MatDialog } from '@angular/material/dialog';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-commonupload',
@@ -40,6 +41,7 @@ export class CommonuploadComponent implements OnInit {
     public toastr: ToastrService,
     private authConfig: AppConfigService,
     public loading: LoadingService,
+    private dialog: MatDialog,
   ) {
   }
 
@@ -85,36 +87,47 @@ export class CommonuploadComponent implements OnInit {
     this.instanceIdValue = value.instanceId
   }
   uploadDoc() {
+    if(this.uploadForm.valid){
     this.loading.setLoading(true);
     var userDetails: any = this.authConfig.getLocalValue('userDetails');
     var userName: any = this.authConfig.getLocalValue('firstname');
-
     var userDetailsobj = JSON.parse(userDetails)
     var orgId = userDetailsobj?.organisations[0].orgId
     const fd = new FormData();
-
     fd.append('fileName', this.fileName);
     fd.append('uploadFile', this.selectedImage);
     fd.append('orgId', orgId ? orgId : 1);
     fd.append('firstName', userName);
     fd.append('instanceId',this.instanceIdValue)
-    this.http.uploaded(fd).subscribe((response: any) => {
-      if (response.success) {
-        this.loading.setLoading(false);
-        this.newFile = response.message
-        this.batchId = response.data[0].batchId;
-        this.refresh.next('refresh');
+      this.http.uploaded(fd).subscribe((response: any) => {
+        if (response.success) {
+          this.loading.setLoading(false);
+          this.newFile = response.message
+          this.batchId = response.data[0].batchId;
+          this.refresh.next('refresh');
+          // this.dialog.closeAll();
+          this.toastr.success(response.message,"",{
+            closeButton:false
+          })
+        }
+        else {
+          this.toastr.error(response.message,"",{
+            closeButton:false
+          });
+          this.loading.setLoading(false);
+        }
       }
-      else {
-        this.toastr.error(response.message);
-        this.loading.setLoading(false);
-      }
-    },
-      (error: HttpErrorResponse) => {
-        this.toastr.error("Unexpected token ] in JSON at position 8900");
-        this.loading.setLoading(false);
-      }
-    )
+        // (error: HttpErrorResponse) => {
+        //   this.toastr.error("Unexpected token ] in JSON at position 8900");
+        //   this.loading.setLoading(false);
+        // }
+      )
+    }else{
+      this.toastr.warning('Please Select Instance',"",{
+        closeButton:false
+      })
+    }
+
   }
   delete() {
     this.fileName = false;
@@ -136,11 +149,12 @@ export class CommonuploadComponent implements OnInit {
 
     getInstance(){
       this.http.getInstanceData({}).subscribe((res:any)=>{
-        console.log(res)
         if(res.success == true){
           this.CommomDrop = res.data
         }else{
-          this.toastr.error(res.message)
+          this.toastr.error(res.message,"",{
+            closeButton:false
+          })
         }
       })
     }

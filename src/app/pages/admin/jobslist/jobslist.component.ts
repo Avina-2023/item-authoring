@@ -97,6 +97,13 @@ export class JobslistComponent implements OnInit {
         }
       },
       {
+        headerName: 'Source To',
+        width: 130,
+        minWidth: 220,
+        field: 'sourceTo',
+
+      },
+      {
         headerName: 'File Name',
         minWidth: 360,
         field: 'fileName',
