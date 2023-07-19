@@ -100,6 +100,7 @@ export class CommonuploadComponent implements OnInit {
     fd.append('firstName', userName);
     fd.append('instanceId',this.instanceIdValue)
       this.http.uploaded(fd).subscribe((response: any) => {
+        console.log(response.message)
         if (response.success) {
           this.loading.setLoading(false);
           this.newFile = response.message
@@ -116,11 +117,11 @@ export class CommonuploadComponent implements OnInit {
           });
           this.loading.setLoading(false);
         }
-      }
-        // (error: HttpErrorResponse) => {
-        //   this.toastr.error("Unexpected token ] in JSON at position 8900");
-        //   this.loading.setLoading(false);
-        // }
+      },
+        (error) => {
+            console.log(error)
+          this.loading.setLoading(false);
+        }
       )
     }else{
       this.toastr.warning('Please Select Instance',"",{
