@@ -3,8 +3,9 @@
     <span class="item-text">
         {{dialogTitle}}</span>
 </div>
+<div >
 <form [formGroup]="uploadForm">
-    <div class="Upload-dropDown" *ngIf="commontitle=='View Job List'">
+    <div class="Upload-dropDown">
         <mat-form-field formControlName="uplolad" class="field" appearance="outline" *ngIf="!newFile">
             <mat-select appearance="outline" placeholder="Select Instance">
                 <mat-option (click)="sendInstanceid(item)" *ngFor="let item of CommomDrop" [value]="item.instanceId">
@@ -17,7 +18,7 @@
         </mat-form-field>
     </div>
 </form>
-
+</div>
 
 <div class="uploded-moc" *ngIf="!newFile">
     <div class="common-upload-btn" for="fileInput" *ngIf="!fileName">
