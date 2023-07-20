@@ -33,7 +33,7 @@ export class CommonuploadComponent implements OnInit {
   dateFormatExist: boolean | undefined;
   selectedImage: any;
   @Output() refresh = new EventEmitter<string>();
-  @Input() commontitle: string | undefined;
+  @Input() commontitle: string | any;
   uploadForm: FormGroup | any;
   constructor(
     private http: ApiService,
@@ -46,6 +46,7 @@ export class CommonuploadComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.commontitle)
     this.formInitial();
     this.getInstance()
     if (this.commontitle == 'View Job') {
@@ -100,6 +101,7 @@ export class CommonuploadComponent implements OnInit {
     fd.append('firstName', userName);
     fd.append('instanceId',this.instanceIdValue)
       this.http.uploaded(fd).subscribe((response: any) => {
+        console.log(response.message)
         if (response.success) {
           this.loading.setLoading(false);
           this.newFile = response.message
@@ -116,11 +118,11 @@ export class CommonuploadComponent implements OnInit {
           });
           this.loading.setLoading(false);
         }
-      }
-        // (error: HttpErrorResponse) => {
-        //   this.toastr.error("Unexpected token ] in JSON at position 8900");
-        //   this.loading.setLoading(false);
-        // }
+      },
+        (error) => {
+            console.log(error)
+          this.loading.setLoading(false);
+        }
       )
     }else{
       this.toastr.warning('Please Select Instance',"",{
