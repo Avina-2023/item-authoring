@@ -320,8 +320,8 @@ export class ViewjobComponent implements OnInit {
   matDialogOpen() {
     const dialogRef = this.dialog.open(this.matDialogRef, {
       data: { type: "view" },
-      width: '680px',
-      height: '325px'
+      width: '740px',
+      height: '425px'
     });
   }
   matDialogOpentao() {
