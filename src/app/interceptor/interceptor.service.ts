@@ -44,42 +44,58 @@ export class InterceptorService implements HttpInterceptor {
         }
 
         if (error.status === 0) {
-          this.toastr.error('Your network connection is down or Request is getting timed out.', 'Please try again later..');
+          this.toastr.error('Your network connection is down or Request is getting timed out.', 'Please try again later..',{
+            closeButton:false
+          });
           return throwError(error);
         }
 
         if (error.status === 400) {
-          this.toastr.error(error.error && error.error.res ? error.error.res : '400 Bad Request');
+          this.toastr.error(error.error && error.error.res ? error.error.res : '400 Bad Request',"",{
+            closeButton:false
+          });
           return throwError(error);
         }
 
         if (error.status === 401) {
-          this.toastr.error(error.error && error.error.res ? error.error.res : '401 Unauthorized');
+          this.toastr.error(error.error && error.error.res ? error.error.res : '401 Unauthorized',"",{
+            closeButton:false
+          });
           return throwError(error);
         }
 
         if (error.status === 403) {
-          this.toastr.error(error.error && error.error.res ? error.error.res : '403 Forbidden');
+          this.toastr.error(error.error && error.error.res ? error.error.res : '403 Forbidden',"",{
+            closeButton:false
+          });
           return throwError(error);
         }
 
         if (error.status === 422) {
-          this.toastr.error(error.error && error.error.res ? error.error.res : '422 Unprocessable entity');
+          this.toastr.error(error.error && error.error.res ? error.error.res : '422 Unprocessable entity',"",{
+            closeButton:false
+          });
           return throwError(error);
         }
 
         if (error.status === 500) {
-          this.toastr.error('Server Error', 'Please try again later');
+          this.toastr.error('Server Error', 'Please try again later',{
+            closeButton:false
+          });
           return throwError(error);
         }
 
         if (error.status === 404) {
-          this.toastr.error(error.error && error.error.res ? error.error.res : '404 No data found');
+          this.toastr.error(error.error && error.error.res ? error.error.res : '404 No data found',"",{
+            closeButton:false
+          });
           return throwError(error);
         }
 
         if (error.status === 409) {
-          this.toastr.error(error.error && error.error.res ? error.error.res : '409 Conflict error');
+          this.toastr.error(error.error && error.error.res ? error.error.res : '409 Conflict error',"",{
+            closeButton:false
+          });
           return throwError(error);
         }
 
