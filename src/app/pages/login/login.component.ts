@@ -46,7 +46,9 @@ export class LoginComponent implements OnInit {
         this.authConfig.setlocalValue('firstname', res.data.attributes.firstName);
         this.authConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.ADMIN.JOBSLIST)
       } else {
-        this.toastr.error(res.message);
+        this.toastr.error(res.message,"",{
+          closeButton:false
+        });
       }
     }
     )

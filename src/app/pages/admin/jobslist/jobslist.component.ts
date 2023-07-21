@@ -278,7 +278,9 @@ export class JobslistComponent implements OnInit {
       if (response.data == undefined) {
         this.loader.setLoading(false);
         this.nodata = response.message;
-        this.toastr.error(response.message)
+        this.toastr.error(response.message,"",{
+          closeButton:false
+        })
         this.Joblist = [];
       }
       else {
