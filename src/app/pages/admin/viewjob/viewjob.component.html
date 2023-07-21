@@ -84,9 +84,12 @@
             <ng-template #matDialog mat-dialog-container>
                 <div class="upload-title">
                     <h1 mat-dialog-title class="sure-message">Upload Items</h1>
-                    <button mat-button class="close-icon closebtn" [mat-dialog-close]="true">
+                    <!-- <button mat-button class="close-icon closebtn" [mat-dialog-close]="true">
                       <mat-icon>close</mat-icon>
-                  </button>
+                  </button> -->
+                  <span class="popup-image"[mat-dialog-close]="true">
+                    <em class="icon-Popup-close"></em>
+                </span>
                 </div>
                 <div class="center-line">
 

@@ -359,7 +359,9 @@ export class ViewjobComponent implements OnInit {
         this.createdAt = data.data[0].createdAt;
         this.isButtonenble = true;
       } else {
-        this.toastr.error('Something went wrong, please try after sometime')
+        this.toastr.error('Something went wrong, please try after sometime',"",{
+          closeButton:false
+        })
       }
     })
   }
@@ -371,9 +373,13 @@ export class ViewjobComponent implements OnInit {
         this.socketInitiazion();
         this.closePop();
         this.viewJobDetails()
-        this.toastr.success("Sync process started successfully.")
+        this.toastr.success("Sync process started successfully.","",{
+          closeButton:false
+        })
       } else {
-        this.toastr.error(response.message)
+        this.toastr.error(response.message,"",{
+          closeButton:false
+        })
       }
     })
   }
