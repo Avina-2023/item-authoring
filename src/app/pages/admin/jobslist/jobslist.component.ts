@@ -101,7 +101,7 @@ export class JobslistComponent implements OnInit {
         width: 130,
         minWidth: 220,
         field: 'sourceTo',
-
+        tooltipField: 'sourceTo',
       },
       {
         headerName: 'File Name',
@@ -142,7 +142,7 @@ export class JobslistComponent implements OnInit {
           suppressAndOrCondition: true,
         },
         cellRenderer: (params: any) => {
-          return moment(params.data.updatedAt).format('DD MMM YYYY h:mm:ss A')
+          return moment(params.data.createdAt).format('DD MMM YYYY h:mm:ss A')
         }
       },
       {
@@ -192,6 +192,7 @@ export class JobslistComponent implements OnInit {
           filterOptions: ['contains'],
           suppressAndOrCondition: true,
         },
+
         cellRenderer: (params: any) => {
           if (params.data.batchStatus === false) {
             return ` --- `;
@@ -210,8 +211,8 @@ export class JobslistComponent implements OnInit {
       },
       {
         headerName: 'Sync Updated Date',
-        field: 'updatedAt',
         minWidth: 200,
+        field: 'updatedAt',
         tooltipField: 'updatedAt',
         filterParams: {
           buttons: ['reset'],
