@@ -46,7 +46,6 @@ export class CommonuploadComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.commontitle)
     this.formInitial();
     this.getInstance()
     if (this.commontitle == 'View Job') {
