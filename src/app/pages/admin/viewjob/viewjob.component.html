@@ -57,10 +57,10 @@
             <div *ngIf="!timesync && completed === 'inprogress'">
                 <div class="sync-status">
                     <h6>Sync Status</h6>
-                    <span>{{progress}}%</span>
+                    <span>{{progressprintedvalue}}%</span>
                 </div>
                 <div>
-                    <mat-progress-bar mode="determinate" [value]="progress" class="progressBar">
+                    <mat-progress-bar mode="determinate" [value]="progressprintedvalue" class="progressBar">
                     </mat-progress-bar>
                 </div>
                 <div class="toaTime">
