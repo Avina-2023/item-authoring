@@ -14,7 +14,8 @@ import { WebSocketService } from 'src/app/services/web-socket.service';
   styleUrls: ['./viewjob.component.scss']
 })
 export class ViewjobComponent implements OnInit {
-  progress = 0;
+  progress:any = 0;
+  progressprintedvalue:any;
   newList: any;
   callFrom: any = 'View Job';
   public gridColumnApi: any;
@@ -56,9 +57,16 @@ export class ViewjobComponent implements OnInit {
     public toastr: ToastrService,
     private loading: LoadingService,
     private webSocket: WebSocketService,
-  ) { }
+  ) {
+    this.socketInitiazion()
+  }
 
   ngOnInit(): void {
+
+    if (!localStorage.getItem('myValue')) {
+      localStorage.setItem('myValue', '0');
+    }
+    this.progressprintedvalue = localStorage.getItem('myValue')
     this.getRouterPath()
     this.tableview();
     this.viewJobDetails();
@@ -79,10 +87,13 @@ export class ViewjobComponent implements OnInit {
     this.webSocket.progress.subscribe((data: any) => {
       this.createdAt = data.updatedAt;
       this.progress = data?.taoSyncPercentage;
+      localStorage.setItem('myValue', this.progress);
+      this.progressprintedvalue = this.progress
       this.taoBatchId = data?.batchId;
       if (data == this.taoBatchId || this.progress == 100 && this.progress == data?.taoSyncPercentage) {
         this.viewJobDetails();
         this.timesync = true;
+        localStorage.setItem('myValue', '0');
         this.webSocket.socketOf();
       }
     })
