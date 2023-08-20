@@ -57,10 +57,10 @@
             <div *ngIf="!timesync && completed === 'inprogress'">
                 <div class="sync-status">
                     <h6>Sync Status</h6>
-                    <span>{{progress}}%</span>
+                    <span>{{progressprintedvalue}}%</span>
                 </div>
                 <div>
-                    <mat-progress-bar mode="determinate" [value]="progress" class="progressBar">
+                    <mat-progress-bar mode="determinate" [value]="progressprintedvalue" class="progressBar">
                     </mat-progress-bar>
                 </div>
                 <div class="toaTime">
@@ -84,9 +84,12 @@
             <ng-template #matDialog mat-dialog-container>
                 <div class="upload-title">
                     <h1 mat-dialog-title class="sure-message">Upload Items</h1>
-                    <span class="popup-image" (click)="closePop()">
-                        <em class="icon-Popup-close"></em>
-                    </span>
+                    <!-- <button mat-button class="close-icon closebtn" [mat-dialog-close]="true">
+                      <mat-icon>close</mat-icon>
+                  </button> -->
+                  <span class="popup-image"[mat-dialog-close]="true">
+                    <em class="icon-Popup-close"></em>
+                </span>
                 </div>
                 <div class="center-line">
 

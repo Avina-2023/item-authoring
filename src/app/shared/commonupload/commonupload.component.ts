@@ -4,6 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
+import { MatDialog } from '@angular/material/dialog';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-commonupload',
   templateUrl: './commonupload.component.html',
@@ -16,29 +18,36 @@ export class CommonuploadComponent implements OnInit {
   fileSize: any;
   newFile: any;
   file: any;
-  name: string = '';
+  CommomDrop:any
+  names: string = '';
   batchId: any;
   validFile = false;
   url = null;
+  instanceIdValue:any
   showSizeError = {
     default: true,
     image: false,
     size: false
   };
+
   dateFormatExist: boolean | undefined;
   selectedImage: any;
   @Output() refresh = new EventEmitter<string>();
-  @Input() commontitle: string | undefined;
-
+  @Input() commontitle: string | any;
+  uploadForm: FormGroup | any;
   constructor(
     private http: ApiService,
+    private fb: FormBuilder,
     public toastr: ToastrService,
     private authConfig: AppConfigService,
     public loading: LoadingService,
+    private dialog: MatDialog,
   ) {
   }
 
   ngOnInit(): void {
+    this.formInitial();
+    this.getInstance()
     if (this.commontitle == 'View Job') {
       this.dialogTitle = "Clear the errors and upload the file here. Items with same Reference Id will get replaced with the existing one.";
     }
@@ -47,6 +56,11 @@ export class CommonuploadComponent implements OnInit {
     }
   }
 
+  formInitial() {
+    this.uploadForm = this.fb.group({
+      uplolad: ['', [Validators.required]],
+    })
+  }
   //  File Upload Functionality
   async onSelectFile(event: any) {
     this.validFile = false;
@@ -69,37 +83,52 @@ export class CommonuploadComponent implements OnInit {
       this.showSizeError.size = false;
     }
   }
+  sendInstanceid(value:any){
+    this.instanceIdValue = value.instanceId
+  }
   uploadDoc() {
+    if(this.uploadForm.valid){
     this.loading.setLoading(true);
     var userDetails: any = this.authConfig.getLocalValue('userDetails');
     var userName: any = this.authConfig.getLocalValue('firstname');
-
     var userDetailsobj = JSON.parse(userDetails)
     var orgId = userDetailsobj?.organisations[0].orgId
     const fd = new FormData();
-
     fd.append('fileName', this.fileName);
     fd.append('uploadFile', this.selectedImage);
     fd.append('orgId', orgId ? orgId : 1);
     fd.append('firstName', userName);
+    fd.append('instanceId',this.instanceIdValue)
+      this.http.uploaded(fd).subscribe((response: any) => {
+        console.log(response.message)
+        if (response.success) {
+          this.loading.setLoading(false);
+          this.newFile = response.message
+          this.batchId = response.data[0].batchId;
+          this.refresh.next('refresh');
+          // this.dialog.closeAll();
+          this.toastr.success(response.message,"",{
+            closeButton:false
+          })
+        }
+        else {
+          this.toastr.error(response.message,"",{
+            closeButton:false
+          });
+          this.loading.setLoading(false);
+        }
+      },
+        (error) => {
+            console.log(error)
+          this.loading.setLoading(false);
+        }
+      )
+    }else{
+      this.toastr.warning('Please Select Instance',"",{
+        closeButton:false
+      })
+    }
 
-    this.http.uploaded(fd).subscribe((response: any) => {
-      if (response.success) {
-        this.loading.setLoading(false);
-        this.newFile = response.message
-        this.batchId = response.data[0].batchId;
-        this.refresh.next('refresh');
-      }
-      else {
-        this.toastr.error(response.message);
-        this.loading.setLoading(false);
-      }
-    },
-      (error: HttpErrorResponse) => {
-        this.toastr.error("Unexpected token ] in JSON at position 8900");
-        this.loading.setLoading(false);
-      }
-    )
   }
   delete() {
     this.fileName = false;
@@ -111,4 +140,24 @@ export class CommonuploadComponent implements OnInit {
     this.fileSize = "";
     this.selectedImage = {};
   }
+
+  get uplolad() {
+    return this.uploadForm.get('uplolad');
+  }
+
+
+
+
+    getInstance(){
+      this.http.getInstanceData({}).subscribe((res:any)=>{
+        if(res.success == true){
+          this.CommomDrop = res.data
+        }else{
+          this.toastr.error(res.message,"",{
+            closeButton:false
+          })
+        }
+      })
+    }
+
 }

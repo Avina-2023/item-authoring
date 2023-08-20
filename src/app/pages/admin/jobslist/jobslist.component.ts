@@ -97,6 +97,13 @@ export class JobslistComponent implements OnInit {
         }
       },
       {
+        headerName: 'Source To',
+        width: 130,
+        minWidth: 220,
+        field: 'sourceTo',
+        tooltipField: 'sourceTo',
+      },
+      {
         headerName: 'File Name',
         minWidth: 360,
         field: 'fileName',
@@ -135,7 +142,7 @@ export class JobslistComponent implements OnInit {
           suppressAndOrCondition: true,
         },
         cellRenderer: (params: any) => {
-          return moment(params.data.updatedAt).format('DD MMM YYYY h:mm:ss A')
+          return moment(params.data.createdAt).format('DD MMM YYYY h:mm:ss A')
         }
       },
       {
@@ -185,6 +192,7 @@ export class JobslistComponent implements OnInit {
           filterOptions: ['contains'],
           suppressAndOrCondition: true,
         },
+
         cellRenderer: (params: any) => {
           if (params.data.batchStatus === false) {
             return ` --- `;
@@ -203,8 +211,8 @@ export class JobslistComponent implements OnInit {
       },
       {
         headerName: 'Sync Updated Date',
-        field: 'updatedAt',
         minWidth: 200,
+        field: 'updatedAt',
         tooltipField: 'updatedAt',
         filterParams: {
           buttons: ['reset'],
@@ -251,8 +259,8 @@ export class JobslistComponent implements OnInit {
   }
   matDialogOpen() {
     const dialogRef = this.dialog.open(this.matDialogRef, {
-      width: '530px',
-      height: '325px'
+      width: '600px',
+      height: '420px'
     });
   }
   closePop(e: any) {
@@ -271,7 +279,9 @@ export class JobslistComponent implements OnInit {
       if (response.data == undefined) {
         this.loader.setLoading(false);
         this.nodata = response.message;
-        this.toastr.error(response.message)
+        this.toastr.error(response.message,"",{
+          closeButton:false
+        })
         this.Joblist = [];
       }
       else {
