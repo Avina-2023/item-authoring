@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: authoringuiservice
-          image: uapprod.azurecr.io/authoringuiservice:$tag
+          image: unifiedassessprod.azurecr.io/authoringuiservice:$tag
           resources:
            limits:
              cpu: "1"
