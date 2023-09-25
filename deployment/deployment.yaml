@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: authoringuiservice
+  namespace: cmsfixes
 spec:
   replicas: 1
   selector:
@@ -14,7 +15,7 @@ spec:
     spec:
       containers:
         - name: authoringuiservice
-          image: uapdevqa.azurecr.io/authoringuiservice:$tag
+          image: uapdevqa.azurecr.io/cmsuiservice:$tag
           imagePullPolicy: Always
           env:
           - name: PORT
