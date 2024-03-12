@@ -12,11 +12,16 @@ import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 export class DashboardHeaderComponent implements OnInit {
   username: any;
   getOrganiz: any;
+  orgId: any;
   @ViewChild('matDialog', { static: false }) matDialogRef: any;
 
   constructor(private appConfig: AppConfigService,
     private dialog: MatDialog,
-    private http: ApiService) { }
+    private http: ApiService) {
+    let userDetails: any = this.appConfig.getLocalValue('userDetails');
+    userDetails = JSON.parse(userDetails);
+    this.orgId = userDetails?.orgId;
+  }
 
   ngOnInit(): void {
     this.getorganiz();
@@ -39,8 +44,8 @@ export class DashboardHeaderComponent implements OnInit {
   }
 
   getorganiz() {
-    let data = '';
-    this.http.getOrganiz(data).subscribe((response: any) => {
+    let reqParams ={ "orgId": this.orgId }
+    this.http.getOrganiz(reqParams).subscribe((response: any) => {
       this.getOrganiz = response.data[0].organization_name;
     })
   }
