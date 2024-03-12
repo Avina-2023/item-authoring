@@ -15,6 +15,7 @@ import * as moment from 'moment';
 })
 export class JobslistComponent implements OnInit {
   @ViewChild('matDialog', { static: false }) matDialogRef: any;
+  orgId: any;
   getBatchStatus: any;
   public gridColumnApi: any;
   gridApi: any;
@@ -62,7 +63,11 @@ export class JobslistComponent implements OnInit {
     private http: ApiService,
     public loader: LoadingService,
     public toastr: ToastrService,
-  ) { }
+  ) {
+    let userDetails: any = this.appConfig.getLocalValue('userDetails');
+    userDetails = JSON.parse(userDetails);
+    this.orgId = userDetails?.orgId;
+  }
 
   ngOnInit(): void {
     this.tablejoblist();
@@ -274,8 +279,9 @@ export class JobslistComponent implements OnInit {
   // }
 
   batchData() {
-    let listid = this.Joblist;
-    this.http.Joblist(listid).subscribe((response: any) => {
+    // let listid = this.Joblist;
+    let reqParams ={ "orgId": this.orgId }
+    this.http.Joblist(reqParams).subscribe((response: any) => {
       if (response.data == undefined) {
         this.loader.setLoading(false);
         this.nodata = response.message;
