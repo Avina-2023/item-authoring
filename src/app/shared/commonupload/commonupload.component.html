@@ -48,8 +48,9 @@
     <div *ngIf="dateFormatExist" class="error">Data should not be in the date format</div>
 
     <div class="upload-btn" mat-dialog-actions align="center">
-        <button class="cancel" [ngStyle]="{'opacity': fileName ? '0.5' :'1.0'}" [disabled]="fileName ? false : true"
-            (click)="delete()" mat-button>Cancel</button>
+        <!-- <button class="cancel" [ngStyle]="{'opacity': fileName ? '0.5' :'1.0'}" [disabled]="fileName ? false : true"
+            (click)="delete()" mat-button>Cancel</button> -->
+        <button type="button" class="cancel" [ngStyle]="{'opacity': '0.5'}" (click)="closePop()" mat-button>Cancel</button>
         <button [ngStyle]="{'opacity': fileName ? '1.0':'0.5'}" [disabled]="fileName ? false :true" [disabled]="true"
             class="upload" mat-button (click)="uploadDoc()">Upload
         </button>

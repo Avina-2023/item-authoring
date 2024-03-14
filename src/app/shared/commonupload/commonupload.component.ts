@@ -139,6 +139,9 @@ export class CommonuploadComponent implements OnInit {
     this.fileName = false;
     this.selectedImage = false;
   }
+  closePop() {
+    this.dialog.closeAll();
+  }
   returnUpload() {
     this.newFile = false
     this.fileName = "";
