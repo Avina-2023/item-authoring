@@ -20,6 +20,7 @@ export class CommonuploadComponent implements OnInit {
   file: any;
   CommomDrop:any
   names: string = '';
+  orgId: any;
   batchId: any;
   validFile = false;
   url = null;
@@ -43,6 +44,9 @@ export class CommonuploadComponent implements OnInit {
     public loading: LoadingService,
     private dialog: MatDialog,
   ) {
+    let userDetails: any = this.authConfig.getLocalValue('userDetails');
+    userDetails = JSON.parse(userDetails);
+    this.orgId = userDetails?.orgId;
   }
 
   ngOnInit(): void {
@@ -92,7 +96,8 @@ export class CommonuploadComponent implements OnInit {
     var userDetails: any = this.authConfig.getLocalValue('userDetails');
     var userName: any = this.authConfig.getLocalValue('firstname');
     var userDetailsobj = JSON.parse(userDetails)
-    var orgId = userDetailsobj?.organisations[0].orgId
+    // var orgId = userDetailsobj?.organisations[0].orgId
+    var orgId = this.orgId
     const fd = new FormData();
     fd.append('fileName', this.fileName);
     fd.append('uploadFile', this.selectedImage);
@@ -134,6 +139,9 @@ export class CommonuploadComponent implements OnInit {
     this.fileName = false;
     this.selectedImage = false;
   }
+  closePop() {
+    this.dialog.closeAll();
+  }
   returnUpload() {
     this.newFile = false
     this.fileName = "";
@@ -149,7 +157,8 @@ export class CommonuploadComponent implements OnInit {
 
 
     getInstance(){
-      this.http.getInstanceData({}).subscribe((res:any)=>{
+      let reqParams ={ "orgId": this.orgId }
+      this.http.getInstanceData(reqParams).subscribe((res:any)=>{
         if(res.success == true){
           this.CommomDrop = res.data
         }else{
